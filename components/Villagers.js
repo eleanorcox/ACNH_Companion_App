@@ -240,6 +240,17 @@ const SortButtons = ({changeSort}) => {
   );
 };
 
+const updateSortAsc = (sortBy, newSortBy, sortAsc) => {
+  let newSortAsc;
+  if (sortBy !== newSortBy) {
+    newSortAsc = 1;
+  } else {
+    newSortAsc = -sortAsc;
+  }
+
+  return newSortAsc;
+};
+
 const ListControls = ({listControls, updateControls}) => {
   const filters = listControls[0];
   const sortBy = listControls[1];
@@ -252,7 +263,8 @@ const ListControls = ({listControls, updateControls}) => {
   };
 
   const handleChangeSort = newSortBy => {
-    const newControls = [filters, newSortBy, sortAsc];
+    const newSortAsc = updateSortAsc(sortBy, newSortBy, sortAsc);
+    const newControls = [filters, newSortBy, newSortAsc];
     updateControls(newControls);
   };
 
