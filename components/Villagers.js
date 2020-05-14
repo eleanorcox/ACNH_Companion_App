@@ -60,6 +60,58 @@ const filterData = filters => {
   return filteredVillagers;
 };
 
+const sortData = (villagerList, sortBy, asc) => {
+  let villagerListCopy = [...villagerList];
+
+  if (sortBy === 'Name') {
+    villagerListCopy.sort((a, b) => {
+      return a.name > b.name ? asc : -asc;
+    });
+  } else if (sortBy === 'Species') {
+    villagerListCopy.sort((a, b) => {
+      return a.species > b.species
+        ? asc
+        : a.species === b.species
+        ? a.name > b.name
+          ? 1
+          : -1
+        : -asc;
+    });
+  } else if (sortBy === 'Gender') {
+    villagerListCopy.sort((a, b) => {
+      return a.gender > b.gender
+        ? asc
+        : a.gender === b.gender
+        ? a.name > b.name
+          ? 1
+          : -1
+        : -asc;
+    });
+  } else if (sortBy === 'Personality') {
+    villagerListCopy.sort((a, b) => {
+      return a.personality > b.personality
+        ? asc
+        : a.personality === b.personality
+        ? a.name > b.name
+          ? 1
+          : -1
+        : -asc;
+    });
+  } else if (sortBy === 'Birthday') {
+    villagerListCopy.sort((a, b) => {
+      return a.birthday > b.birthday
+        ? asc
+        : a.birthday === b.birthday
+        ? a.name > b.name
+          ? 1
+          : -1
+        : -asc;
+    });
+  }
+
+  return villagerListCopy;
+};
+
 const FilterButtons = ({changeFilter}) => {
   const possibleGenderFilters = ['Female', 'Male'];
   const possibleSpeciesFilters = [
@@ -144,7 +196,7 @@ const FilterButtons = ({changeFilter}) => {
 
   return (
     <View>
-      <View style={styles.buttons}>{genderButtons}</View>
+      {/* <View style={styles.buttons}>{genderButtons}</View> */}
       <View style={styles.buttons}>{speciesButtons}</View>
       <View style={styles.buttons}>{personalityButtons}</View>
     </View>
@@ -166,6 +218,50 @@ const updateFilters = (filters, filter) => {
     filtersCopy.push(filter); // Add to filters
   }
   return filtersCopy;
+};
+
+const SortButtons = ({changeSort}) => {
+  // eslint-disable-next-line prettier/prettier
+  const sortByOptions = ['Name', 'Species', 'Gender', 'Personality', 'Birthday'];
+
+  return (
+    <View style={styles.buttons}>
+      {sortByOptions.map(sortByOpt => {
+        return (
+          <Button
+            title={sortByOpt}
+            onPress={() => {
+              changeSort(sortByOpt);
+            }}
+          />
+        );
+      })}
+    </View>
+  );
+};
+
+const ListControls = ({listControls, updateControls}) => {
+  const filters = listControls[0];
+  const sortBy = listControls[1];
+  const sortAsc = listControls[2];
+
+  const handleChangeFilter = newFilter => {
+    const updatedFilters = updateFilters(filters, newFilter);
+    const newControls = [updatedFilters, sortBy, sortAsc];
+    updateControls(newControls);
+  };
+
+  const handleChangeSort = newSortBy => {
+    const newControls = [filters, newSortBy, sortAsc];
+    updateControls(newControls);
+  };
+
+  return (
+    <View>
+      <FilterButtons filters={filters} changeFilter={handleChangeFilter} />
+      <SortButtons sortBy={sortBy} changeSort={handleChangeSort} />
+    </View>
+  );
 };
 
 const Item = ({villager}) => {
@@ -190,21 +286,33 @@ const Item = ({villager}) => {
 
 const Villagers = ({navigation}) => {
   console.log('villagers');
-  const [filters, setFilters] = useState([]);
+  // listControls is an array of the form [filters, sortBy, sortAsc] where:
+  // > filters is an array of filter arrays, e.g. [['gender', 'Female], ['species', 'Bear']]
+  // > sortBy is a string indicating the sorting option e.g. 'Name' or 'Personality'
+  // > sortAsc is a number indicating whether to sort in ascending or descending order, where ascending = 1 and descending = -1
+  const [listControls, setListControls] = useState([[], 'Name', 1]);
   const [villagersToDisplay, setVillagersToDisplay] = useState(villagers);
 
-  const handleChangeFilter = filter => {
-    const updatedFilters = updateFilters(filters, filter);
-    setFilters(updatedFilters);
+  const updateControls = newListControls => {
+    setListControls(newListControls);
   };
 
   useEffect(() => {
-    setVillagersToDisplay(filterData(filters));
-  }, [filters]);
+    const filters = listControls[0];
+    const sortBy = listControls[1];
+    const sortAsc = listControls[2];
+
+    const filteredVillagers = filterData(filters);
+    const sortedVillagers = sortData(filteredVillagers, sortBy, sortAsc);
+    setVillagersToDisplay(sortedVillagers);
+  }, [listControls]);
 
   return (
     <SafeAreaView style={styles.view}>
-      <FilterButtons filters={filters} changeFilter={handleChangeFilter} />
+      <ListControls
+        listControls={listControls}
+        updateControls={updateControls}
+      />
       <FlatList
         data={villagersToDisplay}
         renderItem={({item}) => <Item villager={item} />}
@@ -213,4 +321,5 @@ const Villagers = ({navigation}) => {
     </SafeAreaView>
   );
 };
+
 export default Villagers;
