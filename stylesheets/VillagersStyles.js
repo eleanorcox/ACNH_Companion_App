@@ -25,4 +25,13 @@ export default StyleSheet.create({
     color: "#666",
     backgroundColor: "#eaeaea",
   },
+  searchContainer: {
+    width: "100%",
+    backgroundColor: 'white',
+    borderWidth: 0, //no effect
+    shadowColor: 'white', //no effect
+  },
+  search: {
+    width: "100%",
+  },
 });
