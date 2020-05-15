@@ -367,7 +367,7 @@ const Villagers = ({navigation}) => {
         const villagerData = villager.name.toUpperCase();
         return villagerData.includes(query);
       });
-
+      console.log(searchResults);
       setVillagersToDisplay(searchResults);
     } else {
       const filteredVillagers = filterData(listControls.filters);
@@ -380,6 +380,18 @@ const Villagers = ({navigation}) => {
     }
   }, [listControls]);
 
+  const noVillagers = () => {
+    // const numFilters = listControls.filters.length;
+
+    return (
+      <View>
+        <Text>No villagers found!</Text>
+        {/* <Text>You currently have {numFilters} filters on</Text>
+        <Text>Try removing these, or check your spelling!</Text> */}
+      </View>
+    );
+  }
+
   return (
     <View style={styles.view}>
       <ListControls
@@ -390,6 +402,7 @@ const Villagers = ({navigation}) => {
         data={villagersToDisplay}
         renderItem={({item}) => <Item villager={item} />}
         keyExtractor={item => item.name}
+        ListEmptyComponent={noVillagers}
       />
     </View>
   );
