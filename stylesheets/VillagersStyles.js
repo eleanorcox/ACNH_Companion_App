@@ -22,16 +22,22 @@ export default StyleSheet.create({
     marginTop: 12,
     padding: 12,
     borderRadius: 8,
-    color: "#666",
-    backgroundColor: "#eaeaea",
+    color: '#666',
+    backgroundColor: '#eaeaea',
   },
+
+  listControls: {
+    width: '100%',
+  },
+
   searchContainer: {
-    width: "100%",
+    width: '100%',
     backgroundColor: 'white',
     borderWidth: 0, //no effect
     shadowColor: 'white', //no effect
   },
+
   search: {
-    width: "100%",
+    width: '100%',
   },
 });

@@ -258,17 +258,22 @@ const sortData = (villagerList, sortBy, asc) => {
 
 /* ListControls */
 const ListControls = ({listControls, updateControls}) => {
+  const [query, setQuery] = useState('');
+
   const handleChangeFilter = newFilter => {
+    setQuery('');
     const updatedFilters = updateFilters(listControls.filters, newFilter);
     const newControls = {
       filters: updatedFilters,
       sortBy: listControls.sortBy,
       sortAsc: listControls.sortAsc,
+      searchQuery: '',
     };
     updateControls(newControls);
   };
 
   const handleChangeSort = newSortBy => {
+    setQuery('');
     const newSortAsc = updateSortAsc(
       listControls.sortBy,
       newSortBy,
@@ -278,14 +283,36 @@ const ListControls = ({listControls, updateControls}) => {
       filters: listControls.filters,
       sortBy: newSortBy,
       sortAsc: newSortAsc,
+      searchQuery: '',
+    };
+    updateControls(newControls);
+  };
+
+  const searchFilterFunction = text => {
+    setQuery(text);
+    const newControls = {
+      filters: [],
+      sortBy: 'Name',
+      sortAsc: 1,
+      searchQuery: text,
     };
     updateControls(newControls);
   };
 
   return (
-    <View>
+    <View style={styles.listControls}>
       <FilterButtons changeFilter={handleChangeFilter} />
       <SortButtons changeSort={handleChangeSort} />
+      <SearchBar
+        placeholder="Search for villager..."
+        lightTheme
+        round
+        style={styles.search}
+        containerStyle={styles.searchContainer}
+        onChangeText={text => searchFilterFunction(text)}
+        autoCorrect={false}
+        value={query}
+      />
     </View>
   );
 };
@@ -318,38 +345,39 @@ const Villagers = ({navigation}) => {
   // > filters: an array of filter arrays, e.g. [['gender', 'Female], ['species', 'Bear']]
   // > sortBy: a string indicating the sorting option e.g. 'Name' or 'Personality'
   // > sortAsc: a number indicating whether to sort in ascending or descending order, where ascending = 1 and descending = -1
+  // > searchQuery: a string representing the text typed into the search bar
   const [listControls, setListControls] = useState({
     filters: [],
     sortBy: 'Name',
     sortAsc: 1,
+    searchQuery: '',
   });
   const [villagersToDisplay, setVillagersToDisplay] = useState(villagers);
-  const [query, setQuery] = useState('');
-
-  const searchFilterFunction = text => {
-    const textData = text.toUpperCase();
-
-    const newData = villagers.filter(villager => {
-      const villagerData = villager.name.toUpperCase();
-      return villagerData.includes(textData);
-    });
-
-    setQuery(text);
-    setVillagersToDisplay(newData);
-  };
 
   const updateControls = newListControls => {
     setListControls(newListControls);
   };
 
   useEffect(() => {
-    const filteredVillagers = filterData(listControls.filters);
-    const sortedVillagers = sortData(
-      filteredVillagers,
-      listControls.sortBy,
-      listControls.sortAsc,
-    );
-    setVillagersToDisplay(sortedVillagers);
+    console.log(listControls);
+    if (listControls.searchQuery !== '') {
+      const query = listControls.searchQuery.toUpperCase();
+
+      const searchResults = villagers.filter(villager => {
+        const villagerData = villager.name.toUpperCase();
+        return villagerData.includes(query);
+      });
+
+      setVillagersToDisplay(searchResults);
+    } else {
+      const filteredVillagers = filterData(listControls.filters);
+      const sortedVillagers = sortData(
+        filteredVillagers,
+        listControls.sortBy,
+        listControls.sortAsc,
+      );
+      setVillagersToDisplay(sortedVillagers);
+    }
   }, [listControls]);
 
   return (
@@ -357,16 +385,6 @@ const Villagers = ({navigation}) => {
       <ListControls
         listControls={listControls}
         updateControls={updateControls}
-      />
-      <SearchBar
-        placeholder="Search for villager..."
-        lightTheme
-        round
-        style={styles.search}
-        containerStyle={styles.searchContainer}
-        onChangeText={text => searchFilterFunction(text)}
-        autoCorrect={false}
-        value={query}
       />
       <FlatList
         data={villagersToDisplay}
