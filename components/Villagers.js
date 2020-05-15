@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Button, FlatList} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
-const villagers = require('@nooksbazaar/acdb/villagers.json');
+const allVillagers = require('@nooksbazaar/acdb/villagers.json');
 import styles from '../stylesheets/VillagersStyles';
 
 /* Filtering */
@@ -115,8 +115,8 @@ const updateFilters = (filters, filter) => {
   return filtersCopy;
 };
 
-const filterData = filters => {
-  let filteredVillagers = villagers;
+const filterData = (listToFilter, filters) => {
+  let filteredVillagers = listToFilter;
   let genderFilters = [];
   let speciesFilters = [];
   let personalityFilters = [];
@@ -261,19 +261,17 @@ const ListControls = ({listControls, updateControls}) => {
   const [query, setQuery] = useState('');
 
   const handleChangeFilter = newFilter => {
-    setQuery('');
     const updatedFilters = updateFilters(listControls.filters, newFilter);
     const newControls = {
       filters: updatedFilters,
       sortBy: listControls.sortBy,
       sortAsc: listControls.sortAsc,
-      searchQuery: '',
+      searchQuery: listControls.searchQuery,
     };
     updateControls(newControls);
   };
 
   const handleChangeSort = newSortBy => {
-    setQuery('');
     const newSortAsc = updateSortAsc(
       listControls.sortBy,
       newSortBy,
@@ -283,7 +281,7 @@ const ListControls = ({listControls, updateControls}) => {
       filters: listControls.filters,
       sortBy: newSortBy,
       sortAsc: newSortAsc,
-      searchQuery: '',
+      searchQuery: listControls.searchQuery,
     };
     updateControls(newControls);
   };
@@ -291,9 +289,9 @@ const ListControls = ({listControls, updateControls}) => {
   const searchFilterFunction = text => {
     setQuery(text);
     const newControls = {
-      filters: [],
-      sortBy: 'Name',
-      sortAsc: 1,
+      filters: listControls.filters,
+      sortBy: listControls.sortBy,
+      sortAsc: listControls.sortAsc,
       searchQuery: text,
     };
     updateControls(newControls);
@@ -352,45 +350,55 @@ const Villagers = ({navigation}) => {
     sortAsc: 1,
     searchQuery: '',
   });
-  const [villagersToDisplay, setVillagersToDisplay] = useState(villagers);
+  const [villagersToDisplay, setVillagersToDisplay] = useState(allVillagers);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
   };
 
   useEffect(() => {
-    console.log(listControls);
+    let filteredVillagers;
+
     if (listControls.searchQuery !== '') {
       const query = listControls.searchQuery.toUpperCase();
 
-      const searchResults = villagers.filter(villager => {
+      const searchResults = allVillagers.filter(villager => {
         const villagerData = villager.name.toUpperCase();
         return villagerData.includes(query);
       });
-      console.log(searchResults);
-      setVillagersToDisplay(searchResults);
+
+      filteredVillagers = filterData(searchResults, listControls.filters);
     } else {
-      const filteredVillagers = filterData(listControls.filters);
-      const sortedVillagers = sortData(
-        filteredVillagers,
-        listControls.sortBy,
-        listControls.sortAsc,
-      );
-      setVillagersToDisplay(sortedVillagers);
+      filteredVillagers = filterData(allVillagers, listControls.filters);
     }
+
+    const sortedVillagers = sortData(
+      filteredVillagers,
+      listControls.sortBy,
+      listControls.sortAsc,
+    );
+    setVillagersToDisplay(sortedVillagers);
   }, [listControls]);
 
   const noVillagers = () => {
-    // const numFilters = listControls.filters.length;
+    const numFilters = listControls.filters.length;
 
     return (
       <View>
         <Text>No villagers found!</Text>
-        {/* <Text>You currently have {numFilters} filters on</Text>
-        <Text>Try removing these, or check your spelling!</Text> */}
+        {numFilters === 1 && (
+          <Text>
+            You currently have {numFilters} filter applied, try removing this!
+          </Text>
+        )}
+        {numFilters > 1 && (
+          <Text>
+            You currently have {numFilters} filters applied, try removing these!
+          </Text>
+        )}
       </View>
     );
-  }
+  };
 
   return (
     <View style={styles.view}>
