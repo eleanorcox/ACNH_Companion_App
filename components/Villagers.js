@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, Button, FlatList} from 'react-native';
+import {View, Text, Image, Button, FlatList, Modal} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
@@ -91,8 +91,8 @@ const FilterButtons = ({changeFilter}) => {
 
   return (
     <View>
-      {/* <View style={styles.buttons}>{genderButtons}</View> */}
-      {/* <View style={styles.buttons}>{speciesButtons}</View> */}
+      <View style={styles.buttons}>{genderButtons}</View>
+      <View style={styles.buttons}>{speciesButtons}</View>
       <View style={styles.buttons}>{personalityButtons}</View>
     </View>
   );
@@ -351,6 +351,7 @@ const Villagers = ({navigation}) => {
     searchQuery: '',
   });
   const [villagersToDisplay, setVillagersToDisplay] = useState(allVillagers);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
@@ -380,6 +381,10 @@ const Villagers = ({navigation}) => {
     setVillagersToDisplay(sortedVillagers);
   }, [listControls]);
 
+  const toggleModal = visible => {
+    setModalVisible(visible);
+  };
+
   const noVillagers = () => {
     const numFilters = listControls.filters.length;
 
@@ -402,9 +407,31 @@ const Villagers = ({navigation}) => {
 
   return (
     <View style={styles.view}>
-      <ListControls
-        listControls={listControls}
-        updateControls={updateControls}
+      <Modal
+        animationType={'slide'}
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          console.log('Modal has been closed.');
+        }}>
+        <View>
+          <ListControls
+            listControls={listControls}
+            updateControls={updateControls}
+          />
+          <Button
+            title={'Close Controls'}
+            onPress={() => {
+              toggleModal(false);
+            }}
+          />
+        </View>
+      </Modal>
+      <Button
+        title={'Open Controls'}
+        onPress={() => {
+          toggleModal(true);
+        }}
       />
       <FlatList
         data={villagersToDisplay}
