@@ -40,4 +40,18 @@ export default StyleSheet.create({
   search: {
     width: '100%',
   },
+
+  itemModalContent: {
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: '50%',
+    flex: 0,
+  },
+
+  itemView: {
+    width: 250,
+    height: 250,
+    backgroundColor: 'white',
+  },
 });

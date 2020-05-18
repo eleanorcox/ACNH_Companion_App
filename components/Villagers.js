@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Button, FlatList, Modal} from 'react-native';
 import {SearchBar} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
 import styles from '../stylesheets/VillagersStyles';
@@ -318,6 +319,10 @@ const ListControls = ({listControls, updateControls}) => {
 /* FlatList */
 
 const Item = ({villager}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const toggleModal = visible => {
+    setModalVisible(visible);
+  };
   return (
     <View style={styles.villager}>
       <Text>Name: {villager.name}</Text>
@@ -326,13 +331,32 @@ const Item = ({villager}) => {
       <Text>Gender: {villager.gender}</Text>
       <Text>Personality: {villager.personality}</Text>
       <Text>Birthday: {villager.birthday}</Text>
-      {/* <Text>Catchphrase: {villager.catchphrase}</Text>
-      <Text>
-        Favourite Colours: {villager.colors[0]}, {villager.colors[1]}
-      </Text>
-      <Text>
-        Favourite Styles: {villager.styles[0]}, {villager.styles[1]}
-      </Text> */}
+      <Icon
+        name="more-horiz"
+        size={30}
+        onPress={() => {
+          toggleModal(true);
+        }}
+      />
+      <Modal transparent={true} visible={modalVisible}>
+        <View style={styles.itemModalContent}>
+          <View style={styles.itemView}>
+            <Button
+              title={'Close'}
+              onPress={() => {
+                toggleModal(false);
+              }}
+            />
+            <Text>Catchphrase: {villager.catchphrase}</Text>
+            <Text>
+              Favourite Colours: {villager.colors[0]}, {villager.colors[1]}
+            </Text>
+            <Text>
+              Favourite Styles: {villager.styles[0]}, {villager.styles[1]}
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -414,18 +438,16 @@ const Villagers = ({navigation}) => {
         onRequestClose={() => {
           console.log('Modal has been closed.');
         }}>
-        <View>
-          <ListControls
-            listControls={listControls}
-            updateControls={updateControls}
-          />
-          <Button
-            title={'Close Controls'}
-            onPress={() => {
-              toggleModal(false);
-            }}
-          />
-        </View>
+        <ListControls
+          listControls={listControls}
+          updateControls={updateControls}
+        />
+        <Button
+          title={'Close Controls'}
+          onPress={() => {
+            toggleModal(false);
+          }}
+        />
       </Modal>
       <Button
         title={'Open Controls'}
