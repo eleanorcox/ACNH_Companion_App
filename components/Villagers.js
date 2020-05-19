@@ -16,7 +16,7 @@ import styles from '../stylesheets/VillagersStyles';
 
 /* Filtering */
 
-const FilterButtons = ({changeFilter}) => {
+const FilterButtons = ({changeFilter, currentFilters}) => {
   const genderFilters = ['Female', 'Male'];
   const speciesFilters = [
     'Alligator',
@@ -65,34 +65,27 @@ const FilterButtons = ({changeFilter}) => {
     'Snooty',
   ];
 
-  const [genderPressed, setGenderPressed] = useState(
-    genderFilters.map(() => {
-      return false;
-    }),
-  );
+  let currentGenderFilters = [];
+  let currentSpeciesFilters = [];
+  let currentPersonalityFilters = [];
 
-  const [speciesPressed, setSpeciesPressed] = useState(
-    speciesFilters.map(() => {
-      return false;
-    }),
-  );
+  for (let i = 0; i < currentFilters.length; i++) {
+    const filterType = currentFilters[i][0];
+    if (filterType === 'gender') {
+      currentGenderFilters.push(currentFilters[i][1]);
+    } else if (filterType === 'species') {
+      currentSpeciesFilters.push(currentFilters[i][1]);
+    } else if (filterType === 'personality') {
+      currentPersonalityFilters.push(currentFilters[i][1]);
+    }
+  }
 
-  const [personalityPressed, setPersonalityPressed] = useState(
-    personalityFilters.map(() => {
-      return false;
-    }),
-  );
-
-  let genderButtons = genderFilters.map((filter, index) => {
-    const pressed = genderPressed[index];
+  let genderButtons = genderFilters.map(filter => {
+    const pressed = currentGenderFilters.includes(filter);
     return (
       <TouchableOpacity
         onPress={() => {
           changeFilter(['gender', filter]);
-
-          const newGenderPressed = [...genderPressed];
-          newGenderPressed[index] = !newGenderPressed[index];
-          setGenderPressed(newGenderPressed);
         }}
         style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
         <Text>{filter}</Text>
@@ -100,16 +93,12 @@ const FilterButtons = ({changeFilter}) => {
     );
   });
 
-  let speciesButtons = speciesFilters.map((filter, index) => {
-    const pressed = speciesPressed[index];
+  let speciesButtons = speciesFilters.map(filter => {
+    const pressed = currentSpeciesFilters.includes(filter);
     return (
       <TouchableOpacity
         onPress={() => {
           changeFilter(['species', filter]);
-
-          const newSpeciesPressed = [...speciesPressed];
-          newSpeciesPressed[index] = !newSpeciesPressed[index];
-          setSpeciesPressed(newSpeciesPressed);
         }}
         style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
         <Text>{filter}</Text>
@@ -117,16 +106,12 @@ const FilterButtons = ({changeFilter}) => {
     );
   });
 
-  let personalityButtons = personalityFilters.map((filter, index) => {
-    const pressed = personalityPressed[index];
+  let personalityButtons = personalityFilters.map(filter => {
+    const pressed = currentPersonalityFilters.includes(filter);
     return (
       <TouchableOpacity
         onPress={() => {
           changeFilter(['personality', filter]);
-
-          const newPersonalityPressed = [...personalityPressed];
-          newPersonalityPressed[index] = !newPersonalityPressed[index];
-          setPersonalityPressed(newPersonalityPressed);
         }}
         style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
         <Text>{filter}</Text>
@@ -354,7 +339,10 @@ const ListControls = ({listControls, updateControls}) => {
 
   return (
     <View style={styles.listControls}>
-      <FilterButtons changeFilter={handleChangeFilter} />
+      <FilterButtons
+        changeFilter={handleChangeFilter}
+        currentFilters={listControls.filters}
+      />
       <SortButtons
         changeSort={handleChangeSort}
         currentSortBy={listControls.sortBy}
