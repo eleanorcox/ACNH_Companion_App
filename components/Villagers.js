@@ -218,33 +218,29 @@ const filterData = (listToFilter, filters) => {
 
 /* Sorting */
 
-const SortButtons = ({changeSort}) => {
+const SortButtons = ({changeSort, currentSortBy, currentSortAsc}) => {
   // eslint-disable-next-line prettier/prettier
   const sortByOptions = ['Name', 'Species', 'Gender', 'Personality', 'Birthday'];
-  const [sortPressed, setSortPressed] = useState(
-    sortByOptions.map(() => {
-      return false;
-    }),
-  );
 
   return (
     <View style={styles.buttons}>
-      {sortByOptions.map((sortByOpt, index) => {
-        const pressed = sortPressed[index];
-
+      {sortByOptions.map(sortByOpt => {
         return (
           <TouchableOpacity
             onPress={() => {
               changeSort(sortByOpt);
-
-              const newSortPressed = sortByOptions.map(() => {
-                return false;
-              });
-              newSortPressed[index] = true;
-              setSortPressed(newSortPressed);
             }}
-            style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
+            style={
+              sortByOpt === currentSortBy
+                ? styles.buttonPressed
+                : styles.buttonUnpressed
+            }>
             <Text>{sortByOpt}</Text>
+            {sortByOpt === currentSortBy && (
+              <Icon
+                name={currentSortAsc === 1 ? 'expand-more' : 'expand-less'}
+              />
+            )}
           </TouchableOpacity>
         );
       })}
@@ -359,7 +355,11 @@ const ListControls = ({listControls, updateControls}) => {
   return (
     <View style={styles.listControls}>
       <FilterButtons changeFilter={handleChangeFilter} />
-      <SortButtons changeSort={handleChangeSort} />
+      <SortButtons
+        changeSort={handleChangeSort}
+        currentSortBy={listControls.sortBy}
+        currentSortAsc={listControls.sortAsc}
+      />
       <SearchBar
         placeholder="Search for villager..."
         lightTheme
