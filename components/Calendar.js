@@ -1,15 +1,12 @@
 import React from 'react';
-import {
-  View,
-  Text
-} from 'react-native';
+import {View, Text} from 'react-native';
 
-import styles from "../stylesheets/AppStyles";
+import styles from '../stylesheets/AppStyles';
 
 const Calendar = ({navigation}) => {
   return (
     <View style={styles.view}>
-        <Text>Calendar</Text>
+      <Text>Calendar</Text>
     </View>
   );
 };
