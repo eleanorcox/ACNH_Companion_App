@@ -18,6 +18,18 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
   },
 
+  buttonUnpressed: {
+    // alignSelf: 'center',
+    borderColor: '#000066',
+    backgroundColor: 'blue',
+  },
+
+  buttonPressed: {
+    // alignSelf: 'center',
+    borderColor: '#000066',
+    backgroundColor: 'pink',
+  },
+
   villager: {
     marginTop: 12,
     padding: 12,

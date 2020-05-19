@@ -1,5 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, Button, FlatList, Modal} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Button,
+  FlatList,
+  Modal,
+  TouchableOpacity,
+} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -9,8 +17,8 @@ import styles from '../stylesheets/VillagersStyles';
 /* Filtering */
 
 const FilterButtons = ({changeFilter}) => {
-  const possibleGenderFilters = ['Female', 'Male'];
-  const possibleSpeciesFilters = [
+  const genderFilters = ['Female', 'Male'];
+  const speciesFilters = [
     'Alligator',
     'Bear',
     'Bird',
@@ -46,7 +54,7 @@ const FilterButtons = ({changeFilter}) => {
     'Tiger',
     'Wolf',
   ];
-  const possiblePersonalityFilters = [
+  const personalityFilters = [
     'Big Sister',
     'Cranky',
     'Jock',
@@ -57,36 +65,72 @@ const FilterButtons = ({changeFilter}) => {
     'Snooty',
   ];
 
-  let genderButtons = possibleGenderFilters.map(filter => {
+  const [genderPressed, setGenderPressed] = useState(
+    genderFilters.map(() => {
+      return false;
+    }),
+  );
+
+  const [speciesPressed, setSpeciesPressed] = useState(
+    speciesFilters.map(() => {
+      return false;
+    }),
+  );
+
+  const [personalityPressed, setPersonalityPressed] = useState(
+    personalityFilters.map(() => {
+      return false;
+    }),
+  );
+
+  let genderButtons = genderFilters.map((filter, index) => {
+    const pressed = genderPressed[index];
     return (
-      <Button
-        title={filter}
+      <TouchableOpacity
         onPress={() => {
           changeFilter(['gender', filter]);
+
+          const newGenderPressed = [...genderPressed];
+          newGenderPressed[index] = !newGenderPressed[index];
+          setGenderPressed(newGenderPressed);
         }}
-      />
+        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
+        <Text>{filter}</Text>
+      </TouchableOpacity>
     );
   });
 
-  let speciesButtons = possibleSpeciesFilters.map(filter => {
+  let speciesButtons = speciesFilters.map((filter, index) => {
+    const pressed = speciesPressed[index];
     return (
-      <Button
-        title={filter}
+      <TouchableOpacity
         onPress={() => {
           changeFilter(['species', filter]);
+
+          const newSpeciesPressed = [...speciesPressed];
+          newSpeciesPressed[index] = !newSpeciesPressed[index];
+          setSpeciesPressed(newSpeciesPressed);
         }}
-      />
+        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
+        <Text>{filter}</Text>
+      </TouchableOpacity>
     );
   });
 
-  let personalityButtons = possiblePersonalityFilters.map(filter => {
+  let personalityButtons = personalityFilters.map((filter, index) => {
+    const pressed = personalityPressed[index];
     return (
-      <Button
-        title={filter}
+      <TouchableOpacity
         onPress={() => {
           changeFilter(['personality', filter]);
+
+          const newPersonalityPressed = [...personalityPressed];
+          newPersonalityPressed[index] = !newPersonalityPressed[index];
+          setPersonalityPressed(newPersonalityPressed);
         }}
-      />
+        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
+        <Text>{filter}</Text>
+      </TouchableOpacity>
     );
   });
 
@@ -177,17 +221,31 @@ const filterData = (listToFilter, filters) => {
 const SortButtons = ({changeSort}) => {
   // eslint-disable-next-line prettier/prettier
   const sortByOptions = ['Name', 'Species', 'Gender', 'Personality', 'Birthday'];
+  const [sortPressed, setSortPressed] = useState(
+    sortByOptions.map(() => {
+      return false;
+    }),
+  );
 
   return (
     <View style={styles.buttons}>
-      {sortByOptions.map(sortByOpt => {
+      {sortByOptions.map((sortByOpt, index) => {
+        const pressed = sortPressed[index];
+
         return (
-          <Button
-            title={sortByOpt}
+          <TouchableOpacity
             onPress={() => {
               changeSort(sortByOpt);
+
+              const newSortPressed = sortByOptions.map(() => {
+                return false;
+              });
+              newSortPressed[index] = true;
+              setSortPressed(newSortPressed);
             }}
-          />
+            style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
+            <Text>{sortByOpt}</Text>
+          </TouchableOpacity>
         );
       })}
     </View>
