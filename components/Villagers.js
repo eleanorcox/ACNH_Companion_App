@@ -11,6 +11,9 @@ import {
 import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {addResident, removeResident} from '../reducer';
+
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
 import styles from '../stylesheets/VillagersStyles';
 
@@ -369,6 +372,9 @@ const Item = ({villager}) => {
   const toggleModal = visible => {
     setModalVisible(visible);
   };
+  const dispatch = useDispatch();
+  const residents = useSelector(state => state.residents);
+
   return (
     <View style={styles.villager}>
       <Text>Name: {villager.name}</Text>
@@ -377,13 +383,27 @@ const Item = ({villager}) => {
       <Text>Gender: {villager.gender}</Text>
       <Text>Personality: {villager.personality}</Text>
       <Text>Birthday: {villager.birthday}</Text>
-      <Icon
-        name="more-horiz"
-        size={30}
-        onPress={() => {
-          toggleModal(true);
-        }}
-      />
+
+      <View style={styles.buttons}>
+        <Icon name="star-border" size={30} onPress={() => {}} />
+        <Icon
+          name="home"
+          size={30}
+          onPress={() => {
+            residents.includes(villager)
+              ? dispatch(removeResident(villager))
+              : dispatch(addResident(villager));
+          }}
+        />
+        <Icon
+          name="more-horiz"
+          size={30}
+          onPress={() => {
+            toggleModal(true);
+          }}
+        />
+      </View>
+
       <Modal transparent={true} visible={modalVisible}>
         <View style={styles.itemModalContent}>
           <View style={styles.itemView}>

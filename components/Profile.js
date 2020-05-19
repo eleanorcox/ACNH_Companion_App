@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
+import {useSelector} from 'react-redux';
 
 import styles from '../stylesheets/AppStyles';
 
 const Profile = ({navigation}) => {
   // const [value, onChangeText] = React.useState('Name Placeholder');
+  const residents = useSelector(state => state.residents);
 
   return (
     <View style={styles.view}>
@@ -19,6 +21,9 @@ const Profile = ({navigation}) => {
       <Text>Friend Code: SW_XXXX_YYYY_ZZZZ</Text>
       <View>
         <Text>Residents</Text>
+        {residents.map(resident => {
+          return <Text>{resident.name}</Text>;
+        })}
       </View>
     </View>
   );

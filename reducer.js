@@ -1,46 +1,47 @@
-// // This follows the ducks-modular-redux pattern to reduce number of files
+// This follows the ducks-modular-redux pattern to reduce number of files
 
-// const INITIAL_STATE = {
-//     currentVillagerFilters: [],
-//     possibleVillagerFilters: {
-//         gender: ["Male", "Female"],
-//         species: ["Alligator", "Bear", "Bird", "Bull", "Cat", "Chicken", "Cow", "Cub", "Deer", "Dog", "Duck", "Eagle", "Elephant", "Frog", "Goat", "Gorilla", "Hamster", "Hippo", "Horse", "Kangaroo", "Koala", "Lion", "Monkey", "Mouse", "Octopus", "Ostrich", "Penguin", "Pig", "Rabbit", "Rhino", "Sheep", "Squirrel", "Tiger", "Wolf"],
-//         personality: ["Big Sister", "Cranky", "Jock", "Lazy", "Normal", "Peppy", "Smug", "Snooty"]
-//     },
-// };
+const INITIAL_STATE = {
+  residents: [],
+};
 
-// // Action Types
-// const VILLAGER_FILTER = "VILLAGER_FILTER"
+// Action Types
+const ADD_RESIDENT = 'ADD_RESIDENT';
+const REMOVE_RESIDENT = 'REMOVE_RESIDENT';
 
-// // Reducers
-// const reducer = (state = INITIAL_STATE, action) => {
-//     switch (action.type) {
-//         case VILLAGER_FILTER:
-//             // Pulls current and possible out of previous state
-//             // We do not want to alter state directly in case
-//             // Another action is altering it at the same time
-//             const {
-//                 current,
-//                 possible,
-//             } = state;
-            
-//             const addedFilter = 
-//             // And put friend in friends.current
-//             current.push(addedFriend);
+// Reducers
+const reducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case ADD_RESIDENT:
+      const villager = action.payload;
+      const addedResident = [...state.residents];
+      addedResident.push(villager);
+      return {
+        ...state,
+        residents: addedResident,
+      };
+    case REMOVE_RESIDENT:
+      const resident = action.payload;
+      const removedResident = [...state.residents];
+      const villagerIndex = removedResident.indexOf(resident);
+      removedResident.splice(villagerIndex, 1);
+      return {
+        ...state,
+        residents: removedResident,
+      };
+    default:
+      return state;
+  }
+};
 
-//             //Finally, update out redux state
-//             const newState = {current, possible};
-//             return newState;
-//         default: return state;
-//     }
-// };
+// Action Creators
+export const addResident = villager => ({
+  type: ADD_RESIDENT,
+  payload: villager,
+});
 
-// // Action Creators
-// export const updateVillagerFilters = filter => (
-//     {
-//         type: VILLAGER_FILTER,
-//         payload: filter,
-//     }
-// );
+export const removeResident = resident => ({
+  type: REMOVE_RESIDENT,
+  payload: resident,
+});
 
-// export default reducer;
+export default reducer;
