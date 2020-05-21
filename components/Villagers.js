@@ -12,7 +12,12 @@ import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {addResident, removeResident} from '../reducer';
+import {
+  addResident,
+  removeResident,
+  addFavouriteVillager,
+  removeFavouriteVillager,
+} from '../reducer';
 
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
 import styles from '../stylesheets/VillagersStyles';
@@ -208,7 +213,7 @@ const filterData = (listToFilter, filters) => {
 
 const SortButtons = ({changeSort, currentSortBy, currentSortAsc}) => {
   // eslint-disable-next-line prettier/prettier
-  const sortByOptions = ['Name', 'Species', 'Gender', 'Personality', 'Birthday'];
+  const sortByOptions = ['Name', 'Species', 'Gender', 'Personality', 'Birthday', 'Favourites'];
 
   return (
     <View style={styles.buttons}>
@@ -247,8 +252,9 @@ const updateSortAsc = (sortBy, newSortBy, sortAsc) => {
   return newSortAsc;
 };
 
-const sortData = (villagerList, sortBy, asc) => {
+const sortData = (villagerList, sortBy, asc, favourites) => {
   let villagerListCopy = [...villagerList];
+  const favouritesCopy = [...favourites];
 
   if (sortBy === 'Name') {
     villagerListCopy.sort((a, b) => {
@@ -294,6 +300,22 @@ const sortData = (villagerList, sortBy, asc) => {
           : -1
         : -asc;
     });
+  } else if (sortBy === 'Favourites') {
+    favouritesCopy.sort((a, b) => {
+      return a.name > b.name ? asc : -asc;
+    });
+
+    // Remove favourites from villagerListCopy
+    for (let i = 0; i < favouritesCopy.length; i++) {
+      const index = villagerListCopy.indexOf(favouritesCopy[i]);
+      villagerListCopy.splice(index, 1);
+    }
+
+    villagerListCopy.sort((a, b) => {
+      return a.name > b.name ? asc : -asc;
+    });
+    favouritesCopy.push(...villagerListCopy);
+    villagerListCopy = favouritesCopy;
   }
 
   return villagerListCopy;
@@ -374,6 +396,7 @@ const Item = ({villager}) => {
   };
   const dispatch = useDispatch();
   const residents = useSelector(state => state.residents);
+  const favourites = useSelector(state => state.favouriteVillagers);
 
   return (
     <View style={styles.villager}>
@@ -385,7 +408,15 @@ const Item = ({villager}) => {
       <Text>Birthday: {villager.birthday}</Text>
 
       <View style={styles.buttons}>
-        <Icon name="star-border" size={30} onPress={() => {}} />
+        <Icon
+          name={favourites.includes(villager) ? 'star' : 'star-border'}
+          size={30}
+          onPress={() => {
+            favourites.includes(villager)
+              ? dispatch(removeFavouriteVillager(villager))
+              : dispatch(addFavouriteVillager(villager));
+          }}
+        />
         <Icon
           name="home"
           size={30}
@@ -442,6 +473,7 @@ const Villagers = ({navigation}) => {
   });
   const [villagersToDisplay, setVillagersToDisplay] = useState(allVillagers);
   const [modalVisible, setModalVisible] = useState(false);
+  const favourites = useSelector(state => state.favouriteVillagers);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
@@ -463,13 +495,15 @@ const Villagers = ({navigation}) => {
       filteredVillagers = filterData(allVillagers, listControls.filters);
     }
 
+    // const favourites = useSelector(state => state.favouriteVillagers);
     const sortedVillagers = sortData(
       filteredVillagers,
       listControls.sortBy,
       listControls.sortAsc,
+      favourites,
     );
     setVillagersToDisplay(sortedVillagers);
-  }, [listControls]);
+  }, [listControls, favourites]);
 
   const toggleModal = visible => {
     setModalVisible(visible);
