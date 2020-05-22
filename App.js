@@ -6,16 +6,16 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import reducer from './reducer';
+import reducer from './src/redux/reducer';
 
-import Home from './components/Home';
-import Profile from './components/Profile';
-import Collectibles from './components/Collectibles';
-import Calendar from './components/Calendar';
-import Furniture from './components/Furniture';
-import Guides from './components/Guides';
-import Recipes from './components/Recipes';
-import Villagers from './components/Villagers';
+import Home from './src/screens/Home/Home';
+import Profile from './src/screens/Profile/Profile';
+import Collectibles from './src/screens/Collectibles/Collectibles';
+import Calendar from './src/screens/Calendar/Calendar';
+import Furniture from './src/screens/Furniture/Furniture';
+import Guides from './src/screens/Guides/Guides';
+import Recipes from './src/screens/Recipes/Recipes';
+import Villagers from './src/screens/Villagers/Villagers';
 
 const Stack = createStackNavigator();
 

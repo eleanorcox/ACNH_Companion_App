@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import styles from '../stylesheets/AppStyles';
+import styles from 'styles/AppStyles';
 
 const Profile = ({navigation}) => {
   // const [value, onChangeText] = React.useState('Name Placeholder');

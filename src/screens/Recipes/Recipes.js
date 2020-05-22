@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, SafeAreaView, FlatList} from 'react-native';
 
 const recipesJson = require('@nooksbazaar/acdb/recipes.json');
-import styles from '../stylesheets/AppStyles';
+import styles from 'styles/AppStyles';
 
 const Item = ({recipe}) => {
   const recipeSources = recipe.source;

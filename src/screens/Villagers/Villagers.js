@@ -17,10 +17,10 @@ import {
   removeResident,
   addFavouriteVillager,
   removeFavouriteVillager,
-} from '../reducer';
+} from '../../redux/reducer';
 
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
-import styles from '../stylesheets/VillagersStyles';
+import styles from 'styles/VillagersStyles';
 
 /* Filtering */
 

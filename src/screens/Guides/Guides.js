@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-import styles from '../stylesheets/AppStyles';
+import styles from 'styles/AppStyles';
 
 const Guides = ({navigation}) => {
   return (

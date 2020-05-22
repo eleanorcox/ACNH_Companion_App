@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, SafeAreaView} from 'react-native';
-import styles from '../stylesheets/AppStyles';
+import styles from 'styles/AppStyles';
 
 const items = require('@nooksbazaar/acdb/items.json');
 let furniture = [];
