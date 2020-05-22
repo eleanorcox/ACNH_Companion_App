@@ -72,10 +72,12 @@ const FilterButtons = ({changeFilter, currentFilters}) => {
     'Smug',
     'Snooty',
   ];
+  const otherFilters = ['Favourites', 'Residents'];
 
-  let currentGenderFilters = [];
-  let currentSpeciesFilters = [];
-  let currentPersonalityFilters = [];
+  const currentGenderFilters = [];
+  const currentSpeciesFilters = [];
+  const currentPersonalityFilters = [];
+  const currentOtherFilters = [];
 
   for (let i = 0; i < currentFilters.length; i++) {
     const filterType = currentFilters[i][0];
@@ -85,6 +87,8 @@ const FilterButtons = ({changeFilter, currentFilters}) => {
       currentSpeciesFilters.push(currentFilters[i][1]);
     } else if (filterType === 'personality') {
       currentPersonalityFilters.push(currentFilters[i][1]);
+    } else if (filterType === 'other') {
+      currentOtherFilters.push(currentFilters[i][1]);
     }
   }
 
@@ -127,11 +131,25 @@ const FilterButtons = ({changeFilter, currentFilters}) => {
     );
   });
 
+  let otherButtons = otherFilters.map(filter => {
+    const pressed = currentOtherFilters.includes(filter);
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          changeFilter(['other', filter]);
+        }}
+        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
+        <Text>{filter}</Text>
+      </TouchableOpacity>
+    );
+  });
+
   return (
     <View>
       <View style={styles.buttons}>{genderButtons}</View>
       <View style={styles.buttons}>{speciesButtons}</View>
       <View style={styles.buttons}>{personalityButtons}</View>
+      <View style={styles.buttons}>{otherButtons}</View>
     </View>
   );
 };
@@ -153,11 +171,12 @@ const updateFilters = (filters, filter) => {
   return filtersCopy;
 };
 
-const filterData = (listToFilter, filters) => {
+const filterData = (listToFilter, filters, favourites, residents) => {
   let filteredVillagers = listToFilter;
   let genderFilters = [];
   let speciesFilters = [];
   let personalityFilters = [];
+  let otherFilters = [];
 
   for (let i = 0; i < filters.length; i++) {
     const filterType = filters[i][0];
@@ -167,6 +186,25 @@ const filterData = (listToFilter, filters) => {
       speciesFilters.push(filters[i][1]);
     } else if (filterType === 'personality') {
       personalityFilters.push(filters[i][1]);
+    } else if (filterType === 'other') {
+      otherFilters.push(filters[i][1]);
+    }
+  }
+  console.log(otherFilters);
+  console.log(favourites);
+
+  if (otherFilters.length > 0) {
+    for (let i = 0; i < otherFilters.length; i++) {
+      if (otherFilters[i] === 'Favourites') {
+        filteredVillagers = filteredVillagers.filter(villager => {
+          return favourites.includes(villager);
+        });
+      }
+      if (otherFilters[i] === 'Residents') {
+        filteredVillagers = filteredVillagers.filter(villager => {
+          return residents.includes(villager);
+        });
+      }
     }
   }
 
@@ -473,6 +511,7 @@ const Villagers = ({navigation}) => {
   });
   const [villagersToDisplay, setVillagersToDisplay] = useState(allVillagers);
   const [modalVisible, setModalVisible] = useState(false);
+  const residents = useSelector(state => state.residents);
   const favourites = useSelector(state => state.favouriteVillagers);
 
   const updateControls = newListControls => {
@@ -490,12 +529,21 @@ const Villagers = ({navigation}) => {
         return villagerData.includes(query);
       });
 
-      filteredVillagers = filterData(searchResults, listControls.filters);
+      filteredVillagers = filterData(
+        searchResults,
+        listControls.filters,
+        favourites,
+        residents,
+      );
     } else {
-      filteredVillagers = filterData(allVillagers, listControls.filters);
+      filteredVillagers = filterData(
+        allVillagers,
+        listControls.filters,
+        favourites,
+        residents,
+      );
     }
 
-    // const favourites = useSelector(state => state.favouriteVillagers);
     const sortedVillagers = sortData(
       filteredVillagers,
       listControls.sortBy,
@@ -503,7 +551,7 @@ const Villagers = ({navigation}) => {
       favourites,
     );
     setVillagersToDisplay(sortedVillagers);
-  }, [listControls, favourites]);
+  }, [listControls, favourites, residents]);
 
   const toggleModal = visible => {
     setModalVisible(visible);
@@ -531,13 +579,7 @@ const Villagers = ({navigation}) => {
 
   return (
     <View style={styles.view}>
-      <Modal
-        animationType={'slide'}
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => {
-          console.log('Modal has been closed.');
-        }}>
+      <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
         <ListControls
           listControls={listControls}
           updateControls={updateControls}
