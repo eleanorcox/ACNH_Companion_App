@@ -250,8 +250,15 @@ const filterData = (listToFilter, filters, favourites, residents) => {
 /* Sorting */
 
 const SortButtons = ({changeSort, currentSortBy, currentSortAsc}) => {
-  // eslint-disable-next-line prettier/prettier
-  const sortByOptions = ['Name', 'Species', 'Gender', 'Personality', 'Birthday', 'Favourites'];
+  const sortByOptions = [
+    'Name',
+    'Species',
+    'Gender',
+    'Personality',
+    'Birthday',
+    'Favourites',
+    'Residents',
+  ];
 
   return (
     <View style={styles.buttons}>
@@ -290,9 +297,10 @@ const updateSortAsc = (sortBy, newSortBy, sortAsc) => {
   return newSortAsc;
 };
 
-const sortData = (villagerList, sortBy, asc, favourites) => {
+const sortData = (villagerList, sortBy, asc, favourites, residents) => {
   let villagerListCopy = [...villagerList];
   const favouritesCopy = [...favourites];
+  const residentsCopy = [...residents];
 
   if (sortBy === 'Name') {
     villagerListCopy.sort((a, b) => {
@@ -354,6 +362,22 @@ const sortData = (villagerList, sortBy, asc, favourites) => {
     });
     favouritesCopy.push(...villagerListCopy);
     villagerListCopy = favouritesCopy;
+  } else if (sortBy === 'Residents') {
+    residentsCopy.sort((a, b) => {
+      return a.name > b.name ? asc : -asc;
+    });
+
+    // Remove residents from villagerListCopy
+    for (let i = 0; i < residentsCopy.length; i++) {
+      const index = villagerListCopy.indexOf(residentsCopy[i]);
+      villagerListCopy.splice(index, 1);
+    }
+
+    villagerListCopy.sort((a, b) => {
+      return a.name > b.name ? asc : -asc;
+    });
+    residentsCopy.push(...villagerListCopy);
+    villagerListCopy = residentsCopy;
   }
 
   return villagerListCopy;
@@ -549,6 +573,7 @@ const Villagers = ({navigation}) => {
       listControls.sortBy,
       listControls.sortAsc,
       favourites,
+      residents,
     );
     setVillagersToDisplay(sortedVillagers);
   }, [listControls, favourites, residents]);
