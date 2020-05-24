@@ -1,41 +1,115 @@
-import React from 'react';
-import {View, Text, SafeAreaView, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Button, FlatList, Modal} from 'react-native';
 
-const recipesJson = require('@nooksbazaar/acdb/recipes.json');
-import styles from 'styles/AppStyles';
+import {useSelector} from 'react-redux';
 
-const Item = ({recipe}) => {
-  const recipeSources = recipe.source;
-  let recipeSourcesStr = recipeSources.toString().replace(/,/g, ', ');
+const allRecipes = require('@nooksbazaar/acdb/recipes.json');
+for (let i = 0; i < allRecipes.length; i++) {
+  let name = allRecipes[i].name;
+  name = name[0].toUpperCase() + name.substring(1);
+  allRecipes[i].name = name;
+}
 
-  const recipeMaterials = recipe.materials;
-  let recipeMaterialsArr = [];
-  for (let [key, value] of Object.entries(recipeMaterials)) {
-    recipeMaterialsArr.push(`${key}: ${value}`);
-  }
-  const recipeMaterialsStr = recipeMaterialsArr.toString().replace(/,/g, ', ');
+import styles from 'styles/recipesStyles';
+
+import {filterData} from './filterData';
+import {sortData} from './sortData';
+import {ListControls} from './ListControls';
+import {Item} from './Item';
+import {NoResults} from './NoResults';
+
+const Recipes = () => {
+  // listControls is an object with the following key-value pairs:
+  // > filters: an array of filter arrays, e.g. [['sources', 'Balloons'], ['materials', 'clay']]
+  // > sortBy: a string indicating the sorting option e.g. 'Name' or 'Category'
+  // > sortAsc: a number indicating whether to sort in ascending or descending order, where ascending = 1 and descending = -1
+  // > searchQuery: a string representing the text typed into the search bar
+  const [listControls, setListControls] = useState({
+    filters: [],
+    sortBy: 'Name',
+    sortAsc: 1,
+    searchQuery: '',
+  });
+  const [recipesToDisplay, setRecipesToDisplay] = useState(allRecipes);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const learned = useSelector(state => state.learnedRecipes);
+  const favourites = useSelector(state => state.favouriteRecipes);
+
+  const updateControls = newListControls => {
+    setListControls(newListControls);
+  };
+
+  useEffect(() => {
+    console.log(favourites);
+    console.log(learned);
+    let filteredRecipes;
+
+    if (listControls.searchQuery !== '') {
+      const query = listControls.searchQuery.toUpperCase();
+
+      const searchResults = allRecipes.filter(recipe => {
+        const recipeData = recipe.name.toUpperCase();
+        return recipeData.includes(query);
+      });
+
+      filteredRecipes = filterData(
+        searchResults,
+        listControls.filters,
+        favourites,
+        learned,
+      );
+    } else {
+      filteredRecipes = filterData(
+        allRecipes,
+        listControls.filters,
+        favourites,
+        learned,
+      );
+    }
+
+    const sortedRecipes = sortData(
+      filteredRecipes,
+      listControls.sortBy,
+      listControls.sortAsc,
+      favourites,
+      learned,
+    );
+
+    setRecipesToDisplay(sortedRecipes);
+  }, [listControls, favourites, learned]);
+
+  const toggleModal = visible => {
+    setModalVisible(visible);
+  };
 
   return (
-    <View>
-      <Text>Name: {recipe.name}</Text>
-      <Text>Sources: {recipeSourcesStr}</Text>
-      <Text>Source Notes: {recipe.sourceNotes}</Text>
-      <Text>Category: {recipe.category}</Text>
-      <Text>Materials: {recipeMaterialsStr}</Text>
-    </View>
-  );
-};
-
-const Recipes = ({navigation}) => {
-  return (
-    <SafeAreaView style={styles.view}>
-      <Text>Recipes</Text>
-      <FlatList
-        data={recipesJson}
-        renderItem={({item}) => <Item recipe={item} />}
-        keyExtractor={item => item.uniqueEntryId}
+    <View style={styles.view}>
+      <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
+        <ListControls
+          listControls={listControls}
+          updateControls={updateControls}
+        />
+        <Button
+          title={'Close Controls'}
+          onPress={() => {
+            toggleModal(false);
+          }}
+        />
+      </Modal>
+      <Button
+        title={'Open Controls'}
+        onPress={() => {
+          toggleModal(true);
+        }}
       />
-    </SafeAreaView>
+      <FlatList
+        data={recipesToDisplay}
+        renderItem={({item}) => <Item recipe={item} />}
+        keyExtractor={item => item.name}
+        ListEmptyComponent={NoResults(listControls.filters.length)}
+      />
+    </View>
   );
 };
 

@@ -3,6 +3,8 @@
 const INITIAL_STATE = {
   residents: [],
   favouriteVillagers: [],
+  learnedRecipes: [],
+  favouriteRecipes: [],
 };
 
 // Action Types
@@ -10,6 +12,10 @@ const ADD_RESIDENT = 'ADD_RESIDENT';
 const REMOVE_RESIDENT = 'REMOVE_RESIDENT';
 const ADD_FAVOURITE_VILLAGER = 'ADD_FAVOURITE_VILLAGER';
 const REMOVE_FAVOURITE_VILLAGER = 'REMOVE_FAVOURITE_VILLAGER';
+const ADD_LEARNED_RECIPE = 'ADD_LEARNED_RECIPE';
+const REMOVE_LEARNED_RECIPE = 'REMOVE_LEARNED_RECIPE';
+const ADD_FAVOURITE_RECIPE = 'ADD_FAVOURITE_RECIPE';
+const REMOVE_FAVOURITE_RECIPE = 'REMOVE_FAVOURITE_RECIPE';
 
 // Reducers
 const reducer = (state = INITIAL_STATE, action) => {
@@ -50,6 +56,46 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         favouriteVillagers: removeFromFavourites,
       };
+    case ADD_LEARNED_RECIPE:
+      console.log('addlearn');
+      const learnedRecipe = action.payload;
+      const addToLearned = [...state.learnedRecipes];
+      addToLearned.push(learnedRecipe);
+      return {
+        ...state,
+        learnedRecipes: addToLearned,
+      };
+    case REMOVE_LEARNED_RECIPE:
+      console.log('rmvlearn');
+      const recipeToRemove = action.payload;
+      const removeFromLearned = [...state.learnedRecipes];
+      const recipeToRemoveIndex = removeFromLearned.indexOf(recipeToRemove);
+      removeFromLearned.splice(recipeToRemoveIndex, 1);
+      return {
+        ...state,
+        learnedRecipes: removeFromLearned,
+      };
+    case ADD_FAVOURITE_RECIPE:
+      console.log('addfav');
+      const favouriteRecipe = action.payload;
+      const addToFavouriteRecipes = [...state.favouriteRecipes];
+      addToFavouriteRecipes.push(favouriteRecipe);
+      return {
+        ...state,
+        favouriteRecipes: addToFavouriteRecipes,
+      };
+    case REMOVE_FAVOURITE_RECIPE:
+      console.log('rmvfav');
+      const favouriteToRemove = action.payload;
+      const removeFromFavouriteRecipes = [...state.favouriteRecipes];
+      const favouriteRecipeToRemoveIndex = removeFromFavouriteRecipes.indexOf(
+        favouriteToRemove,
+      );
+      removeFromFavouriteRecipes.splice(favouriteRecipeToRemoveIndex, 1);
+      return {
+        ...state,
+        favouriteRecipes: removeFromFavouriteRecipes,
+      };
     default:
       return state;
   }
@@ -74,6 +120,26 @@ export const addFavouriteVillager = villager => ({
 export const removeFavouriteVillager = villager => ({
   type: REMOVE_FAVOURITE_VILLAGER,
   payload: villager,
+});
+
+export const addLearnedRecipe = recipe => ({
+  type: ADD_LEARNED_RECIPE,
+  payload: recipe,
+});
+
+export const removeLearnedRecipe = recipe => ({
+  type: REMOVE_LEARNED_RECIPE,
+  payload: recipe,
+});
+
+export const addFavouriteRecipe = recipe => ({
+  type: ADD_FAVOURITE_RECIPE,
+  payload: recipe,
+});
+
+export const removeFavouriteRecipe = recipe => ({
+  type: REMOVE_FAVOURITE_RECIPE,
+  payload: recipe,
 });
 
 export default reducer;
