@@ -8,14 +8,14 @@ import {
   removeLearnedRecipe,
   addFavouriteRecipe,
   removeFavouriteRecipe,
-} from '../../redux/reducer';
+} from '../../redux/recipesReducer';
 
 import styles from 'styles/recipesStyles';
 
 export const Item = ({recipe}) => {
   const dispatch = useDispatch();
-  const learned = useSelector(state => state.learnedRecipes);
-  const favourites = useSelector(state => state.favouriteRecipes);
+  const learned = useSelector(state => state.recipes.learnedRecipes);
+  const favourites = useSelector(state => state.recipes.favouriteRecipes);
 
   let recipeSources = recipe.source.toString().replace(/,/g, ', ');
   const recipeHasSourceNotes = recipe.sourceNotes !== null;

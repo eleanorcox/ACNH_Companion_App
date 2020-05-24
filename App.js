@@ -5,8 +5,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import reducer from './src/redux/reducer';
+import {createStore, combineReducers} from 'redux';
+import villagersReducer from './src/redux/villagersReducer';
+import recipesReducer from './src/redux/recipesReducer';
+const reducer = combineReducers({
+  villagers: villagersReducer,
+  recipes: recipesReducer,
+});
 
 import Home from './src/screens/Home/Home';
 import Profile from './src/screens/Profile/Profile';

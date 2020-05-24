@@ -33,16 +33,14 @@ const Recipes = () => {
   const [recipesToDisplay, setRecipesToDisplay] = useState(allRecipes);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const learned = useSelector(state => state.learnedRecipes);
-  const favourites = useSelector(state => state.favouriteRecipes);
+  const learned = useSelector(state => state.recipes.learnedRecipes);
+  const favourites = useSelector(state => state.recipes.favouriteRecipes);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
   };
 
   useEffect(() => {
-    console.log(favourites);
-    console.log(learned);
     let filteredRecipes;
 
     if (listControls.searchQuery !== '') {

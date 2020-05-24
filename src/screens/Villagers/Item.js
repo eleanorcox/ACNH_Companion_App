@@ -8,7 +8,7 @@ import {
   removeResident,
   addFavouriteVillager,
   removeFavouriteVillager,
-} from '../../redux/reducer';
+} from '../../redux/villagersReducer';
 
 import styles from 'styles/VillagersStyles';
 
@@ -18,8 +18,8 @@ export const Item = ({villager}) => {
     setModalVisible(visible);
   };
   const dispatch = useDispatch();
-  const residents = useSelector(state => state.residents);
-  const favourites = useSelector(state => state.favouriteVillagers);
+  const residents = useSelector(state => state.villagers.residents);
+  const favourites = useSelector(state => state.villagers.favouriteVillagers);
 
   return (
     <View style={styles.villager}>

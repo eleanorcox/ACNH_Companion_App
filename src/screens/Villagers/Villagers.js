@@ -26,8 +26,8 @@ const Villagers = () => {
   });
   const [villagersToDisplay, setVillagersToDisplay] = useState(allVillagers);
   const [modalVisible, setModalVisible] = useState(false);
-  const residents = useSelector(state => state.residents);
-  const favourites = useSelector(state => state.favouriteVillagers);
+  const residents = useSelector(state => state.villagers.residents);
+  const favourites = useSelector(state => state.villagers.favouriteVillagers);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
