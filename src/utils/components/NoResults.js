@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export const NoResults = numFilters => {
+export const NoResults = (numFilters, type) => {
   return (
     <View>
-      <Text>No recipes found!</Text>
+      <Text>No {type} found!</Text>
       {numFilters === 1 && (
         <Text>
           You currently have {numFilters} filter applied, try removing this!

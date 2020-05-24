@@ -16,7 +16,7 @@ import {filterData} from './filterData';
 import {sortData} from './sortData';
 import {ListControls} from './ListControls';
 import {Item} from './Item';
-import {NoResults} from './NoResults';
+import {NoResults} from 'utils/components/NoResults';
 
 const Recipes = () => {
   // listControls is an object with the following key-value pairs:
@@ -107,7 +107,7 @@ const Recipes = () => {
         data={recipesToDisplay}
         renderItem={({item}) => <Item recipe={item} />}
         keyExtractor={item => item.name}
-        ListEmptyComponent={NoResults(listControls.filters.length)}
+        ListEmptyComponent={NoResults(listControls.filters.length, 'recipes')}
       />
     </View>
   );
