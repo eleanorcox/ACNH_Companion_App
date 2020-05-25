@@ -15,8 +15,9 @@ const reducer = combineReducers({
 
 import Home from './src/screens/Home/Home';
 import Profile from './src/screens/Profile/Profile';
-import Collectibles from './src/screens/Collectibles/Collectibles';
-import Calendar from './src/screens/Calendar/Calendar';
+import Critters from './src/screens/Critters/Critters';
+import Bugs from './src/screens/Critters/Bugs/Bugs';
+import Fish from './src/screens/Critters/Fish/Fish';
 import Furniture from './src/screens/Furniture/Furniture';
 import Guides from './src/screens/Guides/Guides';
 import Recipes from './src/screens/Recipes/Recipes';
@@ -32,8 +33,9 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Collectibles" component={Collectibles} />
-          <Stack.Screen name="Calendar" component={Calendar} />
+          <Stack.Screen name="Critters" component={Critters} />
+          <Stack.Screen name="Bugs" component={Bugs} />
+          <Stack.Screen name="Fish" component={Fish} />
           <Stack.Screen name="Furniture" component={Furniture} />
           <Stack.Screen name="Guides" component={Guides} />
           <Stack.Screen name="Recipes" component={Recipes} />

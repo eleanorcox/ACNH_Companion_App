@@ -18,9 +18,9 @@ const Home = ({navigation}) => {
         }}
       />
       <Button
-        title="Collectibles"
+        title="Critters"
         onPress={() => {
-          navigation.navigate('Collectibles');
+          navigation.navigate('Critters');
         }}
       />
       <Button
@@ -33,12 +33,6 @@ const Home = ({navigation}) => {
         title="Furniture"
         onPress={() => {
           navigation.navigate('Furniture');
-        }}
-      />
-      <Button
-        title="Calendar"
-        onPress={() => {
-          navigation.navigate('Calendar');
         }}
       />
       <Button
