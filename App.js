@@ -8,9 +8,11 @@ import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 import villagersReducer from './src/redux/villagersReducer';
 import recipesReducer from './src/redux/recipesReducer';
+import bugsReducer from './src/redux/bugsReducer';
 const reducer = combineReducers({
   villagers: villagersReducer,
   recipes: recipesReducer,
+  bugs: bugsReducer,
 });
 
 import Home from './src/screens/Home/Home';

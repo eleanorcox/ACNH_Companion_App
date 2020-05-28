@@ -14,7 +14,7 @@ export const getActiveMonthsStr = activeMonths => {
     'December',
   ];
 
-  let months = [];
+  const months = [];
   for (let i = 0; i < activeMonths.length; i++) {
     const month = activeMonths[i].month;
     months.push(month - 1); // 0-indexing
