@@ -13,42 +13,37 @@ const REMOVE_FAVOURITE_VILLAGER = 'REMOVE_FAVOURITE_VILLAGER';
 
 // Reducer
 const villagersReducer = (state = INITIAL_STATE, action) => {
+  const villager = action.payload;
+  const newResidents = [...state.residents];
+  const newFavouriteVillagers = [...state.favouriteVillagers];
+  let villagerIndex;
+
   switch (action.type) {
     case ADD_RESIDENT:
-      const villager = action.payload;
-      const addedResident = [...state.residents];
-      addedResident.push(villager);
+      newResidents.push(villager);
       return {
         ...state,
-        residents: addedResident,
+        residents: newResidents,
       };
     case REMOVE_RESIDENT:
-      const resident = action.payload;
-      const removedResident = [...state.residents];
-      const villagerIndex = removedResident.indexOf(resident);
-      removedResident.splice(villagerIndex, 1);
+      villagerIndex = newResidents.indexOf(villager);
+      newResidents.splice(villagerIndex, 1);
       return {
         ...state,
-        residents: removedResident,
+        residents: newResidents,
       };
     case ADD_FAVOURITE_VILLAGER:
-      const favouriteVillager = action.payload;
-      const addToFavourites = [...state.favouriteVillagers];
-      addToFavourites.push(favouriteVillager);
+      newFavouriteVillagers.push(villager);
       return {
         ...state,
-        favouriteVillagers: addToFavourites,
+        favouriteVillagers: newFavouriteVillagers,
       };
     case REMOVE_FAVOURITE_VILLAGER:
-      const villagerToRemove = action.payload;
-      const removeFromFavourites = [...state.favouriteVillagers];
-      const villagerToRemoveIndex = removeFromFavourites.indexOf(
-        villagerToRemove,
-      );
-      removeFromFavourites.splice(villagerToRemoveIndex, 1);
+      villagerIndex = newFavouriteVillagers.indexOf(villager);
+      newFavouriteVillagers.splice(villagerIndex, 1);
       return {
         ...state,
-        favouriteVillagers: removeFromFavourites,
+        favouriteVillagers: newFavouriteVillagers,
       };
     default:
       return state;
@@ -61,9 +56,9 @@ export const addResident = villager => ({
   payload: villager,
 });
 
-export const removeResident = resident => ({
+export const removeResident = villager => ({
   type: REMOVE_RESIDENT,
-  payload: resident,
+  payload: villager,
 });
 
 export const addFavouriteVillager = villager => ({

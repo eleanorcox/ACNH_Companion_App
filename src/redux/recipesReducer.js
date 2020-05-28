@@ -13,42 +13,37 @@ const REMOVE_FAVOURITE_RECIPE = 'REMOVE_FAVOURITE_RECIPE';
 
 // Reducer
 const recipesReducer = (state = INITIAL_STATE, action) => {
+  const recipe = action.payload;
+  const newLearnedRecipes = [...state.learnedRecipes];
+  const newFavouriteRecipes = [...state.favouriteRecipes];
+  let recipeIndex;
+
   switch (action.type) {
     case ADD_LEARNED_RECIPE:
-      const learnedRecipe = action.payload;
-      const addToLearned = [...state.learnedRecipes];
-      addToLearned.push(learnedRecipe);
+      newLearnedRecipes.push(recipe);
       return {
         ...state,
-        learnedRecipes: addToLearned,
+        learnedRecipes: newLearnedRecipes,
       };
     case REMOVE_LEARNED_RECIPE:
-      const recipeToRemove = action.payload;
-      const removeFromLearned = [...state.learnedRecipes];
-      const recipeToRemoveIndex = removeFromLearned.indexOf(recipeToRemove);
-      removeFromLearned.splice(recipeToRemoveIndex, 1);
+      recipeIndex = newLearnedRecipes.indexOf(recipe);
+      newLearnedRecipes.splice(recipeIndex, 1);
       return {
         ...state,
-        learnedRecipes: removeFromLearned,
+        learnedRecipes: newLearnedRecipes,
       };
     case ADD_FAVOURITE_RECIPE:
-      const favouriteRecipe = action.payload;
-      const addToFavourites = [...state.favouriteRecipes];
-      addToFavourites.push(favouriteRecipe);
+      newFavouriteRecipes.push(recipe);
       return {
         ...state,
-        favouriteRecipes: addToFavourites,
+        favouriteRecipes: newFavouriteRecipes,
       };
     case REMOVE_FAVOURITE_RECIPE:
-      const favouriteToRemove = action.payload;
-      const removeFromFavourites = [...state.favouriteRecipes];
-      const favouriteRecipeToRemoveIndex = removeFromFavourites.indexOf(
-        favouriteToRemove,
-      );
-      removeFromFavourites.splice(favouriteRecipeToRemoveIndex, 1);
+      recipeIndex = newFavouriteRecipes.indexOf(recipe);
+      newFavouriteRecipes.splice(recipeIndex, 1);
       return {
         ...state,
-        favouriteRecipes: removeFromFavourites,
+        favouriteRecipes: newFavouriteRecipes,
       };
     default:
       return state;

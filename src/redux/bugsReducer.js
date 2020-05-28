@@ -11,45 +11,37 @@ const REMOVE_DONATED_BUG = 'REMOVE_DONATED_BUG';
 
 // Reducer
 const bugsReducer = (state = INITIAL_STATE, action) => {
+  const bug = action.payload;
+  const newCaughtBugs = [...state.caughtBugs];
+  const newDonatedBugs = [...state.donatedBugs];
+  let bugIndex;
+
   switch (action.type) {
-    // const bug = action.payload; //TODO: Refactor
     case ADD_CAUGHT_BUG:
-      const caughtBug = action.payload;
-      const newCaughtBugs = [...state.caughtBugs];
-      newCaughtBugs.push(caughtBug);
+      newCaughtBugs.push(bug);
       return {
         ...state,
         caughtBugs: newCaughtBugs,
       };
     case REMOVE_CAUGHT_BUG:
-      const caughtBugToRemove = action.payload;
-      const removeFromCaught = [...state.caughtBugs];
-      const caughtBugToRemoveIndex = removeFromCaught.indexOf(
-        caughtBugToRemove,
-      );
-      removeFromCaught.splice(caughtBugToRemoveIndex, 1);
+      bugIndex = newCaughtBugs.indexOf(bug);
+      newCaughtBugs.splice(bugIndex, 1);
       return {
         ...state,
-        caughtBugs: removeFromCaught,
+        caughtBugs: newCaughtBugs,
       };
     case ADD_DONATED_BUG:
-      const donatedBug = action.payload;
-      const newDonatedBugs = [...state.donatedBugs];
-      newDonatedBugs.push(donatedBug);
+      newDonatedBugs.push(bug);
       return {
         ...state,
         donatedBugs: newDonatedBugs,
       };
     case REMOVE_DONATED_BUG:
-      const donatedBugToRemove = action.payload;
-      const removeFromDonated = [...state.donatedBugs];
-      const donatedBugToRemoveIndex = removeFromDonated.indexOf(
-        donatedBugToRemove,
-      );
-      removeFromDonated.splice(donatedBugToRemoveIndex, 1);
+      bugIndex = newDonatedBugs.indexOf(bug);
+      newDonatedBugs.splice(bugIndex, 1);
       return {
         ...state,
-        donatedBugs: removeFromDonated,
+        donatedBugs: newDonatedBugs,
       };
     default:
       return state;
