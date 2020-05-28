@@ -6,7 +6,7 @@ import styles from 'styles/AppStyles';
 
 const Profile = ({navigation}) => {
   // const [value, onChangeText] = React.useState('Name Placeholder');
-  const residents = useSelector(state => state.residents);
+  const residents = useSelector(state => state.villagers.residents);
 
   return (
     <View style={styles.view}>
