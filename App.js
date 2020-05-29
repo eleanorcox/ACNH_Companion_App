@@ -9,10 +9,12 @@ import {createStore, combineReducers} from 'redux';
 import villagersReducer from './src/redux/villagersReducer';
 import recipesReducer from './src/redux/recipesReducer';
 import bugsReducer from './src/redux/bugsReducer';
+import fishReducer from './src/redux/fishReducer';
 const reducer = combineReducers({
   villagers: villagersReducer,
   recipes: recipesReducer,
   bugs: bugsReducer,
+  fish: fishReducer,
 });
 
 import Home from './src/screens/Home/Home';
