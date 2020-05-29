@@ -115,7 +115,7 @@ export const filterData = (listToFilter, filters, caught, donated) => {
           const ranges = getActiveMonthsRanges(activeMonths);
 
           // Filter out bugs that are active all year
-          if (ranges[0][0] === 0 && ranges[0][1] === 11) { 
+          if (ranges[0][0] === 0 && ranges[0][1] === 11) {
             return false;
           }
 

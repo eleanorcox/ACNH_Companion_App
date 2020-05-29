@@ -31,5 +31,15 @@ export const getActiveMonthsRanges = activeMonths => {
     }
   }
 
+  // Corrects overflow at end of year, for example
+  // critters that are available December-February
+  // i.e. [[0,2], [11]] => [[11,2]]
+  const lastIndex = ranges.length - 1;
+  if (ranges[0][0] === 0 && ranges[lastIndex].includes(11)) {
+    const overflow = [ranges[lastIndex][0], ranges[0][1]];
+    ranges.pop();
+    ranges[0] = overflow;
+  }
+
   return ranges;
 };
