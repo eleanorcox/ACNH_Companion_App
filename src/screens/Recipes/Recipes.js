@@ -41,30 +41,13 @@ const Recipes = () => {
   };
 
   useEffect(() => {
-    let filteredRecipes;
-
-    if (listControls.searchQuery !== '') {
-      const query = listControls.searchQuery.toUpperCase();
-
-      const searchResults = allRecipes.filter(recipe => {
-        const recipeData = recipe.name.toUpperCase();
-        return recipeData.includes(query);
-      });
-
-      filteredRecipes = filterData(
-        searchResults,
-        listControls.filters,
-        favourites,
-        learned,
-      );
-    } else {
-      filteredRecipes = filterData(
-        allRecipes,
-        listControls.filters,
-        favourites,
-        learned,
-      );
-    }
+    const filteredRecipes = filterData(
+      allRecipes,
+      listControls.filters,
+      listControls.searchQuery,
+      favourites,
+      learned,
+    );
 
     const sortedRecipes = sortData(
       filteredRecipes,

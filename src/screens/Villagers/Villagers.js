@@ -34,30 +34,13 @@ const Villagers = () => {
   };
 
   useEffect(() => {
-    let filteredVillagers;
-
-    if (listControls.searchQuery !== '') {
-      const query = listControls.searchQuery.toUpperCase();
-
-      const searchResults = allVillagers.filter(villager => {
-        const villagerData = villager.name.toUpperCase();
-        return villagerData.includes(query);
-      });
-
-      filteredVillagers = filterData(
-        searchResults,
-        listControls.filters,
-        favourites,
-        residents,
-      );
-    } else {
-      filteredVillagers = filterData(
-        allVillagers,
-        listControls.filters,
-        favourites,
-        residents,
-      );
-    }
+    const filteredVillagers = filterData(
+      allVillagers,
+      listControls.filters,
+      listControls.searchQuery,
+      favourites,
+      residents,
+    );
 
     const sortedVillagers = sortData(
       filteredVillagers,

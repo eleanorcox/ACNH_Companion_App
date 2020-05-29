@@ -14,8 +14,8 @@ const allMonths = [
 ];
 import {getActiveMonthsRanges} from 'utils/getActiveMonthsRanges';
 
-export const filterData = (listToFilter, filters, caught, donated) => {
-  let filteredBugs = listToFilter;
+export const filterData = (bugs, filters, query, caught, donated) => {
+  let filteredBugs = bugs;
   const monthFilters = [];
   const timeFilters = [];
   const otherFilters = [];
@@ -29,6 +29,14 @@ export const filterData = (listToFilter, filters, caught, donated) => {
     } else if (filterType === 'other') {
       otherFilters.push(filters[i][1]);
     }
+  }
+
+  if (query !== '') {
+    query = query.toUpperCase();
+    filteredBugs = filteredBugs.filter(bug => {
+      const bugName = bug.name.toUpperCase();
+      return bugName.includes(query);
+    });
   }
 
   if (otherFilters.length > 0) {

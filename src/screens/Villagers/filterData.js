@@ -1,5 +1,11 @@
-export const filterData = (listToFilter, filters, favourites, residents) => {
-  let filteredVillagers = listToFilter;
+export const filterData = (
+  villagers,
+  filters,
+  query,
+  favourites,
+  residents,
+) => {
+  let filteredVillagers = villagers;
   let genderFilters = [];
   let speciesFilters = [];
   let personalityFilters = [];
@@ -16,6 +22,14 @@ export const filterData = (listToFilter, filters, favourites, residents) => {
     } else if (filterType === 'other') {
       otherFilters.push(filters[i][1]);
     }
+  }
+
+  if (query !== '') {
+    query = query.toUpperCase();
+    filteredVillagers = filteredVillagers.filter(villager => {
+      const villagerName = villager.name.toUpperCase();
+      return villagerName.includes(query);
+    });
   }
 
   if (otherFilters.length > 0) {

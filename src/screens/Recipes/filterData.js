@@ -1,5 +1,5 @@
-export const filterData = (listToFilter, filters, favourites, learned) => {
-  let filteredRecipes = listToFilter;
+export const filterData = (recipes, filters, query, favourites, learned) => {
+  let filteredRecipes = recipes;
   let sourcesFilters = [];
   let categoriesFilters = [];
   let materialsFilters = [];
@@ -16,6 +16,14 @@ export const filterData = (listToFilter, filters, favourites, learned) => {
     } else if (filterType === 'other') {
       otherFilters.push(filters[i][1]);
     }
+  }
+
+  if (query !== '') {
+    query = query.toUpperCase();
+    filteredRecipes = filteredRecipes.filter(recipe => {
+      const recipeName = recipe.name.toUpperCase();
+      return recipeName.includes(query);
+    });
   }
 
   if (otherFilters.length > 0) {

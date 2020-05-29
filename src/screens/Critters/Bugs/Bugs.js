@@ -48,25 +48,13 @@ const Bugs = ({navigation}) => {
   };
 
   useEffect(() => {
-    let filteredBugs;
-
-    if (listControls.searchQuery !== '') {
-      const query = listControls.searchQuery.toUpperCase();
-
-      const searchResults = allBugs.filter(bug => {
-        const bugName = bug.name.toUpperCase();
-        return bugName.includes(query);
-      });
-
-      filteredBugs = filterData(
-        searchResults,
-        listControls.filters,
-        caught,
-        donated,
-      );
-    } else {
-      filteredBugs = filterData(allBugs, listControls.filters, caught, donated);
-    }
+    const filteredBugs = filterData(
+      allBugs,
+      listControls.filters,
+      listControls.searchQuery,
+      caught,
+      donated,
+    );
 
     const sortedBugs = sortData(
       filteredBugs,
