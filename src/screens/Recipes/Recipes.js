@@ -12,9 +12,10 @@ for (let i = 0; i < allRecipes.length; i++) {
 
 import styles from 'styles/recipesStyles';
 
+import ListControls from 'utils/components/ListControls';
+import {filterOptions, sortOptions} from './filterSortOptions';
 import {filterData} from './filterData';
 import {sortData} from './sortData';
-import {ListControls} from './ListControls';
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
 
@@ -70,6 +71,8 @@ const Recipes = () => {
         <ListControls
           listControls={listControls}
           updateControls={updateControls}
+          filterOptions={filterOptions}
+          sortOptions={sortOptions}
         />
         <Button
           title={'Close Controls'}

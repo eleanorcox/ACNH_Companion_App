@@ -1,20 +1,17 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styles from 'styles/recipesStyles';
+import styles from 'styles/VillagersStyles';
 
-export const SortButtons = ({changeSort, currentSortBy, currentSortAsc}) => {
-  const sortByOptions = [
-    'Name',
-    'Sources',
-    'Category',
-    'Favourites',
-    'Learned',
-  ];
-
+const SortButtons = ({
+  sortOptions,
+  changeSort,
+  currentSortBy,
+  currentSortAsc,
+}) => {
   return (
     <View style={styles.buttons}>
-      {sortByOptions.map(sortByOpt => {
+      {sortOptions.map(sortByOpt => {
         return (
           <TouchableOpacity
             onPress={() => {
@@ -37,3 +34,5 @@ export const SortButtons = ({changeSort, currentSortBy, currentSortAsc}) => {
     </View>
   );
 };
+
+export default SortButtons;

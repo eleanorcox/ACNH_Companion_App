@@ -6,9 +6,10 @@ import {useSelector} from 'react-redux';
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
 import styles from 'styles/VillagersStyles';
 
+import ListControls from 'utils/components/ListControls';
+import {filterOptions, sortOptions} from './filterSortOptions';
 import {filterData} from './filterData';
 import {sortData} from './sortData';
-import {ListControls} from './ListControls';
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
 
@@ -63,6 +64,8 @@ const Villagers = () => {
         <ListControls
           listControls={listControls}
           updateControls={updateControls}
+          filterOptions={filterOptions}
+          sortOptions={sortOptions}
         />
         <Button
           title={'Close Controls'}

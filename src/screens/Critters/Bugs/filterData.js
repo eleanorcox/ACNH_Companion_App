@@ -75,7 +75,6 @@ export const filterData = (bugs, filters, query, caught, donated) => {
     }
   }
 
-  //   TODO: Implement filter by 'catch now', 'last chance', 'new this month'
   if (timeFilters.length > 0) {
     const currentMonth = new Date().getMonth(); //TODO: state
     const currentHour = new Date().getHours(); //TODO: get from state?

@@ -1,0 +1,46 @@
+export const filterOptions = {
+  month: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  shadow: [
+    'X-Small',
+    'Small',
+    'Medium',
+    'Medium w/Fin',
+    'Large',
+    'Large w/Fin',
+    'X-Large',
+    'XX-Large',
+    'Long',
+  ],
+  location: [
+    'Pier',
+    'Pond',
+    'River',
+    'River (clifftop)',
+    'River (mouth)',
+    'Sea',
+    'Sea (rainy days)',
+  ],
+  time: ['Catch Now!', 'New This Month', 'Last Chance'],
+  other: ['Caught', 'Donated'],
+};
+
+export const sortOptions = [
+  'Name',
+  'Critterpedia',
+  'Price',
+  'Caught',
+  'Donated',
+];

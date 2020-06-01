@@ -4,12 +4,17 @@ import {SearchBar} from 'react-native-elements';
 
 import styles from 'styles/VillagersStyles';
 
-import {FilterButtons} from './FilterButtons';
+import FilterButtons from './FilterButtons';
 import {updateFilters} from 'utils/updateFilters';
-import {SortButtons} from './SortButtons';
+import SortButtons from './SortButtons';
 import {updateSortAsc} from 'utils/updateSortAsc';
 
-export const ListControls = ({listControls, updateControls}) => {
+const ListControls = ({
+  listControls,
+  updateControls,
+  filterOptions,
+  sortOptions,
+}) => {
   const [query, setQuery] = useState('');
 
   const handleChangeFilter = newFilter => {
@@ -52,16 +57,18 @@ export const ListControls = ({listControls, updateControls}) => {
   return (
     <View style={styles.listControls}>
       <FilterButtons
+        filterOptions={filterOptions}
         changeFilter={handleChangeFilter}
         currentFilters={listControls.filters}
       />
       <SortButtons
+        sortOptions={sortOptions}
         changeSort={handleChangeSort}
         currentSortBy={listControls.sortBy}
         currentSortAsc={listControls.sortAsc}
       />
       <SearchBar
-        placeholder="Search for bug..."
+        placeholder="Search..."
         lightTheme
         round
         style={styles.search}
@@ -73,3 +80,5 @@ export const ListControls = ({listControls, updateControls}) => {
     </View>
   );
 };
+
+export default ListControls;

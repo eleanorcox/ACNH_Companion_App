@@ -4,11 +4,11 @@ import styles from 'styles/VillagersStyles';
 
 const FilterButtonsByType = ({
   filterType,
-  allFilters,
+  filterOptions,
   changeFilter,
   currentFilters,
 }) => {
-  const buttons = allFilters.map(filter => {
+  const buttons = filterOptions.map(filter => {
     let pressed = false;
     for (let i = 0; i < currentFilters.length; i++) {
       if (
