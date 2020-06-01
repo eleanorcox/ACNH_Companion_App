@@ -70,7 +70,8 @@ export const filterData = (bugs, filters, query, caught, donated) => {
           return months.includes(monthFilters[i]);
         }),
       );
-      filteredBugs = temp;
+      const uniqueBugs = new Set(temp);
+      filteredBugs = [...uniqueBugs];
     }
   }
 

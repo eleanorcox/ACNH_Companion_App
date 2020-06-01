@@ -76,7 +76,8 @@ export const filterData = (allFish, filters, query, caught, donated) => {
           return months.includes(monthFilters[i]);
         }),
       );
-      filteredFish = temp;
+      const uniqueFish = new Set(temp);
+      filteredFish = [...uniqueFish];
     }
   }
 
