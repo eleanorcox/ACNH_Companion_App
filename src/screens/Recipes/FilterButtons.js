@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
+import FilterButtonsByType from 'utils/components/FilterButtonsByType';
 import styles from 'styles/recipesStyles';
 
 const sourcesFilters = [
@@ -241,82 +242,40 @@ const materialsFilters = [
 const otherFilters = ['Favourites', 'Learned'];
 
 export const FilterButtons = ({changeFilter, currentFilters}) => {
-  const currentSourcesFilters = [];
-  const currentCategoriesFilters = [];
-  const currentMaterialsFilters = [];
-  const currentOtherFilters = [];
-
-  for (let i = 0; i < currentFilters.length; i++) {
-    const filterType = currentFilters[i][0];
-    if (filterType === 'sources') {
-      currentSourcesFilters.push(currentFilters[i][1]);
-    } else if (filterType === 'categories') {
-      currentCategoriesFilters.push(currentFilters[i][1]);
-    } else if (filterType === 'materials') {
-      currentMaterialsFilters.push(currentFilters[i][1]);
-    } else if (filterType === 'other') {
-      currentOtherFilters.push(currentFilters[i][1]);
-    }
-  }
-
-  let sourcesButtons = sourcesFilters.map(filter => {
-    const pressed = currentSourcesFilters.includes(filter);
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          changeFilter(['sources', filter]);
-        }}
-        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
-        <Text>{filter}</Text>
-      </TouchableOpacity>
-    );
-  });
-
-  let categoriesButtons = categoriesFilters.map(filter => {
-    const pressed = currentCategoriesFilters.includes(filter);
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          changeFilter(['categories', filter]);
-        }}
-        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
-        <Text>{filter}</Text>
-      </TouchableOpacity>
-    );
-  });
-
-  let materialsButtons = materialsFilters.map(filter => {
-    const pressed = currentMaterialsFilters.includes(filter);
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          changeFilter(['materials', filter]);
-        }}
-        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
-        <Text>{filter}</Text>
-      </TouchableOpacity>
-    );
-  });
-
-  let otherButtons = otherFilters.map(filter => {
-    const pressed = currentOtherFilters.includes(filter);
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          changeFilter(['other', filter]);
-        }}
-        style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
-        <Text>{filter}</Text>
-      </TouchableOpacity>
-    );
-  });
-
   return (
     <View>
-      <View style={styles.buttons}>{sourcesButtons}</View>
-      <View style={styles.buttons}>{categoriesButtons}</View>
-      <View style={styles.buttons}>{materialsButtons}</View>
-      <View style={styles.buttons}>{otherButtons}</View>
+      <View style={styles.buttons}>
+        <FilterButtonsByType
+          filterType={'sources'}
+          allFilters={sourcesFilters}
+          changeFilter={changeFilter}
+          currentFilters={currentFilters}
+        />
+      </View>
+      <View style={styles.buttons}>
+        <FilterButtonsByType
+          filterType={'categories'}
+          allFilters={categoriesFilters}
+          changeFilter={changeFilter}
+          currentFilters={currentFilters}
+        />
+      </View>
+      <View style={styles.buttons}>
+        <FilterButtonsByType
+          filterType={'materials'}
+          allFilters={materialsFilters}
+          changeFilter={changeFilter}
+          currentFilters={currentFilters}
+        />
+      </View>
+      <View style={styles.buttons}>
+        <FilterButtonsByType
+          filterType={'other'}
+          allFilters={otherFilters}
+          changeFilter={changeFilter}
+          currentFilters={currentFilters}
+        />
+      </View>
     </View>
   );
 };
