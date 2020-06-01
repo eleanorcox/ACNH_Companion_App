@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export const NoResults = (numFilters, type) => {
+const NoResults = ({numFilters, type}) => {
   return (
     <View>
       <Text>No {type} found!</Text>
@@ -18,3 +18,5 @@ export const NoResults = (numFilters, type) => {
     </View>
   );
 };
+
+export default NoResults;

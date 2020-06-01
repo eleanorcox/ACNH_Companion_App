@@ -9,7 +9,7 @@ import {filterData} from './filterData';
 import {sortData} from './sortData';
 import {ListControls} from './ListControls';
 import {Item} from './Item';
-import {NoResults} from 'utils/components/NoResults';
+import NoResults from 'utils/components/NoResults';
 
 const creatures = require('@nooksbazaar/acdb/creatures.json');
 const allFish = [];
@@ -95,7 +95,9 @@ const Fish = ({navigation}) => {
         data={fishToDisplay}
         renderItem={({item}) => <Item fish={item} />}
         keyExtractor={item => item.uniqueEntryId}
-        ListEmptyComponent={NoResults(listControls.filters.length, 'fish')}
+        ListEmptyComponent={
+          <NoResults numFilters={listControls.filters.length} type={'fish'} />
+        }
       />
     </View>
   );

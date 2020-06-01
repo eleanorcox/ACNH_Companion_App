@@ -10,7 +10,7 @@ import {filterData} from './filterData';
 import {sortData} from './sortData';
 import {ListControls} from './ListControls';
 import {Item} from './Item';
-import {NoResults} from 'utils/components/NoResults';
+import NoResults from 'utils/components/NoResults';
 
 const Villagers = () => {
   // listControls is an object with the following key-value pairs:
@@ -81,7 +81,12 @@ const Villagers = () => {
         data={villagersToDisplay}
         renderItem={({item}) => <Item villager={item} />}
         keyExtractor={item => item.name}
-        ListEmptyComponent={NoResults(listControls.filters.length, 'villagers')}
+        ListEmptyComponent={
+          <NoResults
+            numFilters={listControls.filters.length}
+            type={'villagers'}
+          />
+        }
       />
     </View>
   );
