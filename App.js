@@ -6,11 +6,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
+import profileReducer from './src/redux/profileReducer';
 import villagersReducer from './src/redux/villagersReducer';
 import recipesReducer from './src/redux/recipesReducer';
 import bugsReducer from './src/redux/bugsReducer';
 import fishReducer from './src/redux/fishReducer';
 const reducer = combineReducers({
+  profile: profileReducer,
   villagers: villagersReducer,
   recipes: recipesReducer,
   bugs: bugsReducer,
