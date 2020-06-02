@@ -24,6 +24,12 @@ const Home = ({navigation}) => {
         }}
       />
       <Button
+        title="Museum"
+        onPress={() => {
+          navigation.navigate('Museum');
+        }}
+      />
+      <Button
         title="Recipes"
         onPress={() => {
           navigation.navigate('Recipes');
