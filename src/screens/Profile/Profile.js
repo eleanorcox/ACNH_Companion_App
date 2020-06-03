@@ -2,7 +2,13 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, Image, Modal, Button} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 
-import {totalRecipes, totalFish, totalBugs} from './progressTotals';
+import {
+  totalRecipes,
+  totalFish,
+  totalBugs,
+  totalArt,
+  totalFossils,
+} from './progressTotals';
 
 import styles from 'styles/AppStyles';
 
@@ -42,9 +48,11 @@ const Profile = ({navigation}) => {
   const friendCode = useSelector(state => state.profile.friendCode);
 
   const residents = useSelector(state => state.villagers.residents);
-  const caughtBugs = useSelector(state => state.bugs.caughtBugs);
-  const caughtFish = useSelector(state => state.fish.caughtFish);
+  const donatedBugs = useSelector(state => state.bugs.donatedBugs);
+  const donatedFish = useSelector(state => state.fish.donatedFish);
   const learnedRecipes = useSelector(state => state.recipes.learnedRecipes);
+  const donatedFossils = useSelector(state => state.museum.donatedFossils);
+  const donatedArt = useSelector(state => state.museum.donatedArt);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [name, updateName] = useState('');
@@ -59,11 +67,11 @@ const Profile = ({navigation}) => {
     setModalVisible(visible);
   };
 
-  const formatCode = code => {
-    let formatted = code;
+  const formatCode = text => {
+    let formatted = text;
     formatted = formatted.replace(/-/g, '');
-    if (code.length > 0) {
-      const chunks = code.match(/.{1,4}/g);
+    if (text.length > 0) {
+      const chunks = text.match(/.{1,4}/g);
       formatted = chunks.toString().replace(/,/g, '-');
     }
     return formatted;
@@ -102,13 +110,22 @@ const Profile = ({navigation}) => {
         })}
       </View>
       <View>
-        <Text>Progress</Text>
+        <Text>Museum Progress</Text>
         <Text>
-          Bugs: {caughtBugs.length}/{totalBugs}
+          Bugs: {donatedBugs.length}/{totalBugs}
         </Text>
         <Text>
-          Fish: {caughtFish.length}/{totalFish}
+          Fish: {donatedFish.length}/{totalFish}
         </Text>
+        <Text>
+          Fossils: {donatedFossils.length}/{totalFossils}
+        </Text>
+        <Text>
+          Art: {donatedArt.length}/{totalArt}
+        </Text>
+      </View>
+      <View>
+        <Text>Collections Progress</Text>
         <Text>
           Recipes: {learnedRecipes.length}/{totalRecipes}
         </Text>
