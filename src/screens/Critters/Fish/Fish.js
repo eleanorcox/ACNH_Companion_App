@@ -43,6 +43,7 @@ const Fish = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const caught = useSelector(state => state.fish.caughtFish);
   const donated = useSelector(state => state.fish.donatedFish);
+  const hemisphere = useSelector(state => state.profile.hemisphere);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
@@ -55,6 +56,7 @@ const Fish = ({navigation}) => {
       listControls.searchQuery,
       caught,
       donated,
+      hemisphere,
     );
 
     const sortedFish = sortData(
@@ -66,7 +68,7 @@ const Fish = ({navigation}) => {
     );
 
     setFishToDisplay(sortedFish);
-  }, [listControls, caught, donated]);
+  }, [listControls, caught, donated, hemisphere]);
 
   const toggleModal = visible => {
     setModalVisible(visible);

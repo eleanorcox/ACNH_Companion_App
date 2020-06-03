@@ -14,7 +14,14 @@ const allMonths = [
 ];
 import {getActiveMonthsRanges} from 'utils/getActiveMonthsRanges';
 
-export const filterData = (allFish, filters, query, caught, donated) => {
+export const filterData = (
+  allFish,
+  filters,
+  query,
+  caught,
+  donated,
+  hemisphere,
+) => {
   let filteredFish = allFish;
   const monthFilters = [];
   const timeFilters = [];
@@ -65,7 +72,6 @@ export const filterData = (allFish, filters, query, caught, donated) => {
     for (let i = 0; i < monthFilters.length; i++) {
       temp = temp.concat(
         filteredFish.filter(fish => {
-          const hemisphere = 'northern'; // TODO: get this from state
           const activeMonths = fish.activeMonths[hemisphere];
           const months = [];
           for (let j = 0; j < activeMonths.length; j++) {
@@ -108,7 +114,6 @@ export const filterData = (allFish, filters, query, caught, donated) => {
   if (timeFilters.length > 0) {
     const currentMonth = new Date().getMonth(); //TODO: state
     const currentHour = new Date().getHours(); //TODO: get from state?
-    const hemisphere = 'northern'; // TODO: get this from state
 
     for (let i = 0; i < timeFilters.length; i++) {
       if (timeFilters[i] === 'Catch Now!') {

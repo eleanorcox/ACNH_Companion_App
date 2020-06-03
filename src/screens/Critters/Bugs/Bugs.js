@@ -43,6 +43,7 @@ const Bugs = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const caught = useSelector(state => state.bugs.caughtBugs);
   const donated = useSelector(state => state.bugs.donatedBugs);
+  const hemisphere = useSelector(state => state.profile.hemisphere);
 
   const updateControls = newListControls => {
     setListControls(newListControls);
@@ -55,6 +56,7 @@ const Bugs = ({navigation}) => {
       listControls.searchQuery,
       caught,
       donated,
+      hemisphere,
     );
 
     const sortedBugs = sortData(
@@ -66,7 +68,7 @@ const Bugs = ({navigation}) => {
     );
 
     setBugsToDisplay(sortedBugs);
-  }, [listControls, caught, donated]);
+  }, [listControls, caught, donated, hemisphere]);
 
   const toggleModal = visible => {
     setModalVisible(visible);

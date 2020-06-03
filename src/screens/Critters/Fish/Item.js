@@ -15,7 +15,7 @@ import {getActiveMonthsStr} from 'utils/getActiveMonthsStr';
 import {getActiveHoursStr} from 'utils/getActiveHoursStr';
 
 export const Item = ({fish}) => {
-  const hemisphere = 'northern'; // TODO: get this from state
+  const hemisphere = useSelector(state => state.profile.hemisphere);
   const activeMonths = fish.activeMonths[hemisphere];
   const activeMonthsStr = getActiveMonthsStr(activeMonths);
   const activeHoursStr = getActiveHoursStr(activeMonths);

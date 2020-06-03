@@ -14,7 +14,14 @@ const allMonths = [
 ];
 import {getActiveMonthsRanges} from 'utils/getActiveMonthsRanges';
 
-export const filterData = (bugs, filters, query, caught, donated) => {
+export const filterData = (
+  bugs,
+  filters,
+  query,
+  caught,
+  donated,
+  hemisphere,
+) => {
   let filteredBugs = bugs;
   const monthFilters = [];
   const timeFilters = [];
@@ -59,7 +66,6 @@ export const filterData = (bugs, filters, query, caught, donated) => {
     for (let i = 0; i < monthFilters.length; i++) {
       temp = temp.concat(
         filteredBugs.filter(bug => {
-          const hemisphere = 'northern'; // TODO: get this from state
           const activeMonths = bug.activeMonths[hemisphere];
           const months = [];
           for (let j = 0; j < activeMonths.length; j++) {
@@ -78,7 +84,6 @@ export const filterData = (bugs, filters, query, caught, donated) => {
   if (timeFilters.length > 0) {
     const currentMonth = new Date().getMonth(); //TODO: state
     const currentHour = new Date().getHours(); //TODO: get from state?
-    const hemisphere = 'northern'; // TODO: get this from state
 
     for (let i = 0; i < timeFilters.length; i++) {
       if (timeFilters[i] === 'Catch Now!') {
@@ -97,7 +102,8 @@ export const filterData = (bugs, filters, query, caught, donated) => {
               activeInCurrentHour = true;
             } else {
               for (let k = 0; k < hours.length; k++) {
-                const overnight = hours[k][1] - hours[k][0]; //Checks if hours passes midnight, requiring different calculation
+                //Checks if hours passes midnight, requiring different calculation
+                const overnight = hours[k][1] - hours[k][0];
                 if (overnight > 0) {
                   const withinHours =
                     hours[k][0] <= currentHour && currentHour <= hours[k][1];
