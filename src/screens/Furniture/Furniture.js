@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, SafeAreaView} from 'react-native';
 import styles from 'styles/AppStyles';
+import UnderConstruction from 'utils/components/UnderConstruction';
 
 const items = require('@nooksbazaar/acdb/items.json');
 let furniture = [];
@@ -25,14 +26,15 @@ const Item = ({furniture}) => {
 
 const Furniture = ({navigation}) => {
   return (
-    <SafeAreaView style={styles.view}>
-      <Text>Furniture</Text>
-      <FlatList
-        data={furniture}
-        renderItem={({item}) => <Item furniture={item} />}
-        // keyExtractor={item => item.uniqueEntryId}
-      />
-    </SafeAreaView>
+    <UnderConstruction />
+    // <SafeAreaView style={styles.view}>
+    //   <Text>Furniture</Text>
+    //   <FlatList
+    //     data={furniture}
+    //     renderItem={({item}) => <Item furniture={item} />}
+    //     // keyExtractor={item => item.uniqueEntryId}
+    //   />
+    // </SafeAreaView>
   );
 };
 
