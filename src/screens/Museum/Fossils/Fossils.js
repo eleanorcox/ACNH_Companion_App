@@ -1,11 +1,59 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-import styles from 'styles/AppStyles';
+import React, {useState, useEffect} from 'react';
+import {View, FlatList} from 'react-native';
+import {SearchBar} from 'react-native-elements';
+
+import styles from 'styles/VillagersStyles';
+
+import {useSelector} from 'react-redux';
+
+import {Item} from './Item';
+import NoResults from 'utils/components/NoResults';
+
+const items = require('@nooksbazaar/acdb/items.json');
+const fossils = items.filter(item => item.sourceSheet === 'Fossils');
 
 const Fossils = ({navigation}) => {
+  const [query, setQuery] = useState('');
+  const [fossilsToDisplay, setFossilsToDisplay] = useState(fossils);
+  const donated = useSelector(state => state.bugs.donatedBugs);
+
+  useEffect(() => {
+    let filteredFossils;
+    if (query !== '') {
+      const queryCaps = query.toUpperCase();
+      filteredFossils = fossils.filter(fossil => {
+        const fossilName = fossil.name.toUpperCase();
+        return fossilName.includes(queryCaps);
+      });
+    } else {
+      filteredFossils = fossils;
+    }
+
+    setFossilsToDisplay(filteredFossils);
+  }, [query]);
+
+  const searchFilterFunction = text => {
+    setQuery(text);
+  };
+
   return (
     <View style={styles.view}>
-      <Text>Fossils</Text>
+      <SearchBar
+        placeholder="Search..."
+        lightTheme
+        round
+        style={styles.search}
+        containerStyle={styles.searchContainer}
+        onChangeText={text => searchFilterFunction(text)}
+        autoCorrect={false}
+        value={query}
+      />
+      <FlatList
+        data={fossilsToDisplay}
+        renderItem={({item}) => <Item fossil={item} />}
+        keyExtractor={item => item.uniqueEntryId}
+        ListEmptyComponent={<NoResults numFilters={0} type={'fossils'} />}
+      />
     </View>
   );
 };

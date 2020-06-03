@@ -11,12 +11,14 @@ import villagersReducer from './src/redux/villagersReducer';
 import recipesReducer from './src/redux/recipesReducer';
 import bugsReducer from './src/redux/bugsReducer';
 import fishReducer from './src/redux/fishReducer';
+import museumReducer from './src/redux/museumReducer';
 const reducer = combineReducers({
   profile: profileReducer,
   villagers: villagersReducer,
   recipes: recipesReducer,
   bugs: bugsReducer,
   fish: fishReducer,
+  museum: museumReducer,
 });
 
 import Home from './src/screens/Home/Home';
