@@ -4,6 +4,9 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistStore, persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 import profileReducer from './src/redux/profileReducer';
@@ -12,7 +15,7 @@ import recipesReducer from './src/redux/recipesReducer';
 import bugsReducer from './src/redux/bugsReducer';
 import fishReducer from './src/redux/fishReducer';
 import museumReducer from './src/redux/museumReducer';
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   profile: profileReducer,
   villagers: villagersReducer,
   recipes: recipesReducer,
@@ -20,6 +23,31 @@ const reducer = combineReducers({
   fish: fishReducer,
   museum: museumReducer,
 });
+
+// Middleware: Redux Persist Config
+const persistConfig = {
+  // Root
+  key: 'root',
+  // Storage Method (React Native)
+  storage: AsyncStorage,
+  // Whitelist (Save Specific Reducers)
+  whitelist: [
+    'profileReducer',
+    'villagersReducer',
+    'recipesReducer',
+    'bugsReducer',
+    'fishReducer',
+    'museumReducer',
+  ],
+};
+
+// Middleware: Redux Persist Persisted Reducer
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Redux store
+const store = createStore(persistedReducer);
+// Middleware: Redux Persist Persister
+let persistor = persistStore(store);
 
 import Home from './src/screens/Home/Home';
 import Profile from './src/screens/Profile/Profile';
@@ -37,25 +65,26 @@ import Villagers from './src/screens/Villagers/Villagers';
 const Stack = createStackNavigator();
 
 const App = () => {
-  const store = createStore(reducer);
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Critters" component={Critters} />
-          <Stack.Screen name="Bugs" component={Bugs} />
-          <Stack.Screen name="Fish" component={Fish} />
-          <Stack.Screen name="Museum" component={Museum} />
-          <Stack.Screen name="Fossils" component={Fossils} />
-          <Stack.Screen name="Art" component={Art} />
-          <Stack.Screen name="Furniture" component={Furniture} />
-          <Stack.Screen name="Guides" component={Guides} />
-          <Stack.Screen name="Recipes" component={Recipes} />
-          <Stack.Screen name="Villagers" component={Villagers} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Critters" component={Critters} />
+            <Stack.Screen name="Bugs" component={Bugs} />
+            <Stack.Screen name="Fish" component={Fish} />
+            <Stack.Screen name="Museum" component={Museum} />
+            <Stack.Screen name="Fossils" component={Fossils} />
+            <Stack.Screen name="Art" component={Art} />
+            <Stack.Screen name="Furniture" component={Furniture} />
+            <Stack.Screen name="Guides" component={Guides} />
+            <Stack.Screen name="Recipes" component={Recipes} />
+            <Stack.Screen name="Villagers" component={Villagers} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };
