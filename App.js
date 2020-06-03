@@ -1,54 +1,16 @@
 import 'react-native-gesture-handler'; // Must be at top of file
 import React from 'react';
 
+// Redux
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './src/redux/store';
+
+// Navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {PersistGate} from 'redux-persist/integration/react';
-import {persistStore, persistReducer} from 'redux-persist';
-import AsyncStorage from '@react-native-community/async-storage';
-import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
-import profileReducer from './src/redux/profileReducer';
-import villagersReducer from './src/redux/villagersReducer';
-import recipesReducer from './src/redux/recipesReducer';
-import bugsReducer from './src/redux/bugsReducer';
-import fishReducer from './src/redux/fishReducer';
-import museumReducer from './src/redux/museumReducer';
-const rootReducer = combineReducers({
-  profile: profileReducer,
-  villagers: villagersReducer,
-  recipes: recipesReducer,
-  bugs: bugsReducer,
-  fish: fishReducer,
-  museum: museumReducer,
-});
-
-// Middleware: Redux Persist Config
-const persistConfig = {
-  // Root
-  key: 'root',
-  // Storage Method (React Native)
-  storage: AsyncStorage,
-  // Whitelist (Save Specific Reducers)
-  whitelist: [
-    'profileReducer',
-    'villagersReducer',
-    'recipesReducer',
-    'bugsReducer',
-    'fishReducer',
-    'museumReducer',
-  ],
-};
-
-// Middleware: Redux Persist Persisted Reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// Redux store
-const store = createStore(persistedReducer);
-// Middleware: Redux Persist Persister
-let persistor = persistStore(store);
-
+// Screens
 import Home from './src/screens/Home/Home';
 import Profile from './src/screens/Profile/Profile';
 import Critters from './src/screens/Critters/Critters';
