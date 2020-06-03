@@ -1,14 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 import styles from 'styles/AppStyles';
+import UnderConstruction from 'utils/components/UnderConstruction';
 
 const Guides = ({navigation}) => {
-  return (
-    <View style={styles.view}>
-      <Text>Guides</Text>
-    </View>
-  );
+  return <UnderConstruction />;
 };
 
 export default Guides;
