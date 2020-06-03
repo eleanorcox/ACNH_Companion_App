@@ -18,15 +18,13 @@ const Fossils = ({navigation}) => {
   const donated = useSelector(state => state.bugs.donatedBugs);
 
   useEffect(() => {
-    let filteredFossils;
+    let filteredFossils = fossils;
     if (query !== '') {
       const queryCaps = query.toUpperCase();
       filteredFossils = fossils.filter(fossil => {
         const fossilName = fossil.name.toUpperCase();
         return fossilName.includes(queryCaps);
       });
-    } else {
-      filteredFossils = fossils;
     }
 
     setFossilsToDisplay(filteredFossils);
