@@ -7,6 +7,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  scrollView: {
+    flex: 1,
+  },
+
   image: {
     width: 128,
     height: 128,

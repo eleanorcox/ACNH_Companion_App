@@ -1,5 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, Image, Modal, Button} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 
 import {
@@ -37,6 +44,10 @@ const fruits = other.filter(item => {
     item.name === 'Pear'
   );
 });
+const fruitImages = {};
+for (let i = 0; i < fruits.length; i++) {
+  fruitImages[fruits[i].name] = fruits[i].variants[0].inventoryImage;
+}
 
 const Profile = ({navigation}) => {
   const dispatch = useDispatch();
@@ -54,18 +65,7 @@ const Profile = ({navigation}) => {
   const donatedFossils = useSelector(state => state.museum.donatedFossils);
   const donatedArt = useSelector(state => state.museum.donatedArt);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [name, updateName] = useState('');
-  const [island, updateIsland] = useState('');
-  const [fruit, updateFruit] = useState('Apple');
-  const [hemi, updateHemi] = useState('northern');
-  const [code, updateCode] = useState('');
-
   const currentMonth = new Date().getMonth(); //TODO: state
-
-  const toggleModal = visible => {
-    setModalVisible(visible);
-  };
 
   const formatCode = text => {
     let formatted = text;
@@ -77,141 +77,117 @@ const Profile = ({navigation}) => {
     return formatted;
   };
 
+  const nativeFruitImage = fruitImages[nativeFruit];
+  const hemisphereImage =
+    hemisphere === 'northern'
+      ? require('assets/images/northernHemisphere219x219.png')
+      : require('assets/images/southernHemisphere219x219.png');
+
   return (
-    <View style={styles.view}>
-      <Text>Name: {playerName}</Text>
-      <Text>Island: {islandName}</Text>
-      <Text>Native Fruit: {nativeFruit}</Text>
-      <Text>
-        Hemisphere: {hemisphere[0].toUpperCase() + hemisphere.substring(1)}
-      </Text>
-      <Text>Friend Code: SW-{friendCode}</Text>
-      <View>
-        <Text>Residents</Text>
-        {residents.map(resident => {
-          return (
-            <Image source={{uri: resident.iconImage}} style={styles.image} />
-          );
-        })}
-      </View>
-      <View>
-        <Text>Upcoming Birthdays</Text>
-        {residents.map(resident => {
-          let birthday = resident.birthday;
-          birthday = birthday.split('/');
-          const birthdayMonth = Number(birthday[0]) - 1;
-          if (birthdayMonth === currentMonth) {
-            return (
-              <Text>
-                {resident.name} {resident.birthday}
-              </Text>
-            );
-          }
-        })}
-      </View>
-      <View>
-        <Text>Museum Progress</Text>
-        <Text>
-          Bugs: {donatedBugs.length}/{totalBugs}
-        </Text>
-        <Text>
-          Fish: {donatedFish.length}/{totalFish}
-        </Text>
-        <Text>
-          Fossils: {donatedFossils.length}/{totalFossils}
-        </Text>
-        <Text>
-          Art: {donatedArt.length}/{totalArt}
-        </Text>
-      </View>
-      <View>
-        <Text>Collections Progress</Text>
-        <Text>
-          Recipes: {learnedRecipes.length}/{totalRecipes}
-        </Text>
-      </View>
-      <Button
-        title={'Change'}
-        onPress={() => {
-          toggleModal(true);
-        }}
-      />
-      <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
+    <SafeAreaView style={styles.view}>
+      <ScrollView style={styles.scrollView}>
+        {/* Name */}
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={text => {
+            dispatch(updatePlayerName(text));
+          }}
+          value={playerName}
+        />
+        {/* Island Name */}
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={text => {
+            dispatch(updateIslandName(text));
+          }}
+          maxLength={10}
+          value={islandName}
+        />
+        {/* Native Fruit */}
+        <Image source={{uri: nativeFruitImage}} style={styles.image} />
+        <Picker
+          selectedValue={nativeFruit}
+          style={{height: 50, width: 150}}
+          onValueChange={value => {
+            dispatch(updateNativeFruit(value));
+          }}>
+          <Picker.Item label="Apple" value="Apple" />
+          <Picker.Item label="Cherry" value="Cherry" />
+          <Picker.Item label="Orange" value="Orange" />
+          <Picker.Item label="Peach" value="Peach" />
+          <Picker.Item label="Pear" value="Pear" />
+        </Picker>
+        {/* Hemisphere */}
+        <Image source={hemisphereImage} style={styles.image} />
+        <Picker
+          selectedValue={hemisphere}
+          style={{height: 50, width: 150}}
+          onValueChange={value => {
+            dispatch(updateHemisphere(value));
+          }}>
+          <Picker.Item label="Northern" value="northern" />
+          <Picker.Item label="Southern" value="southern" />
+        </Picker>
         <View>
-          <Text>Change Name</Text>
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={text => updateName(text)}
-            value={name}
-          />
-        </View>
-        <View>
-          <Text>Change Island Name</Text>
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={text => updateIsland(text)}
-            value={island}
-          />
-        </View>
-        <View>
-          <Text>Change Native Fruit</Text>
-          <Picker
-            selectedValue={fruit}
-            style={{height: 50, width: 150}}
-            onValueChange={value => updateFruit(value)}>
-            <Picker.Item label="Apple" value="Apple" />
-            <Picker.Item label="Cherry" value="Cherry" />
-            <Picker.Item label="Orange" value="Orange" />
-            <Picker.Item label="Peach" value="Peach" />
-            <Picker.Item label="Pear" value="Pear" />
-          </Picker>
-        </View>
-        <View>
-          <Text>Change Hemisphere</Text>
-          <Picker
-            selectedValue={hemi}
-            style={{height: 50, width: 150}}
-            onValueChange={value => updateHemi(value)}>
-            <Picker.Item label="Northern" value="northern" />
-            <Picker.Item label="Southern" value="southern" />
-          </Picker>
-        </View>
-        <View>
-          <Text>Change Friend Code</Text>
+          <Text>Friend Code: SW-</Text>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={text => {
               text = text.replace(/-/g, '');
-              updateCode(text);
+              const formatted = formatCode(text);
+              dispatch(updateFriendCode(formatted));
             }}
             keyboardType="number-pad"
             maxLength={14}
-            value={formatCode(code)}
+            value={friendCode}
           />
         </View>
-        <Button
-          title={'Save'}
-          onPress={() => {
-            if (name !== '') {
-              dispatch(updatePlayerName(name));
+        <View>
+          <Text>Residents</Text>
+          {residents.map(resident => {
+            return (
+              <Image source={{uri: resident.iconImage}} style={styles.image} />
+            );
+          })}
+        </View>
+        <View>
+          <Text>Upcoming Birthdays</Text>
+          {residents.map(resident => {
+            let birthday = resident.birthday;
+            birthday = birthday.split('/');
+            const birthdayMonth = Number(birthday[0]) - 1;
+            if (birthdayMonth === currentMonth) {
+              return (
+                <Text>
+                  {resident.name} {resident.birthday}
+                </Text>
+              );
             }
-            if (island !== '') {
-              dispatch(updateIslandName(island));
-            }
-            if (fruit !== nativeFruit) {
-              dispatch(updateNativeFruit(fruit));
-            }
-            if (hemi !== hemisphere) {
-              dispatch(updateHemisphere(hemi));
-            }
-            if (code !== '') {
-              dispatch(updateFriendCode(formatCode(code)));
-            }
-            toggleModal(false);
-          }}
-        />
-      </Modal>
-    </View>
+          })}
+        </View>
+        <View>
+          <Text>Museum Progress</Text>
+          <Text>
+            Bugs: {donatedBugs.length}/{totalBugs}
+          </Text>
+          <Text>
+            Fish: {donatedFish.length}/{totalFish}
+          </Text>
+          <Text>
+            Fossils: {donatedFossils.length}/{totalFossils}
+          </Text>
+          <Text>
+            Art: {donatedArt.length}/{totalArt}
+          </Text>
+        </View>
+        <View>
+          <Text>Collections Progress</Text>
+          <Text>
+            Recipes: {learnedRecipes.length}/{totalRecipes}
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
