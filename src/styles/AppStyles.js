@@ -26,6 +26,7 @@ export default StyleSheet.create({
   },
 
   iconsContainer: {
+    backgroundColor: PHONE_BACKGROUND,
     marginVertical: iconsMargin,
     marginHorizontal: 10,
     flex: 1,
