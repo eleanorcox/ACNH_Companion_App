@@ -19,7 +19,9 @@ import Fish from './src/screens/Critters/Fish/Fish';
 import Museum from './src/screens/Museum/Museum';
 import Fossils from './src/screens/Museum/Fossils/Fossils';
 import Art from './src/screens/Museum/Art/Art';
-import Furniture from './src/screens/Furniture/Furniture';
+import Items from './src/screens/Items/Items';
+import Stalks from './src/screens/Stalks/Stalks';
+import Todo from './src/screens/Todo/Todo';
 import Guides from './src/screens/Guides/Guides';
 import Recipes from './src/screens/Recipes/Recipes';
 import Villagers from './src/screens/Villagers/Villagers';
@@ -40,7 +42,9 @@ const App = () => {
             <Stack.Screen name="Museum" component={Museum} />
             <Stack.Screen name="Fossils" component={Fossils} />
             <Stack.Screen name="Art" component={Art} />
-            <Stack.Screen name="Furniture" component={Furniture} />
+            <Stack.Screen name="Items" component={Items} />
+            <Stack.Screen name="Stalks" component={Stalks} />
+            <Stack.Screen name="Todo" component={Todo} />
             <Stack.Screen name="Guides" component={Guides} />
             <Stack.Screen name="Recipes" component={Recipes} />
             <Stack.Screen name="Villagers" component={Villagers} />
