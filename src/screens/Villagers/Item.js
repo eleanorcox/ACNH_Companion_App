@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, Image, Button, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -23,39 +24,79 @@ export const Item = ({villager}) => {
 
   return (
     <View style={styles.villager}>
-      <Text>Name: {villager.name}</Text>
-      <Image source={{uri: villager.iconImage}} style={styles.image} />
-      <Text>Species: {villager.species}</Text>
-      <Text>Gender: {villager.gender}</Text>
-      <Text>Personality: {villager.personality}</Text>
-      <Text>Birthday: {villager.birthday}</Text>
+      <Text style={styles.name}>{villager.name}</Text>
+      <View style={styles.row}>
+        <View style={styles.leftContainer}>
+          <Image source={{uri: villager.iconImage}} style={styles.image} />
+        </View>
+        <View style={styles.rightContainer}>
+          <View style={styles.row}>
+            <View style={styles.characteristic}>
+              <Text>Species</Text>
+            </View>
+            <View style={styles.characteristicAnswer}>
+              <Text>{villager.species}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.characteristic}>
+              <Text>Gender</Text>
+            </View>
+            <View style={styles.characteristicAnswer}>
+              <Text>{villager.gender}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.characteristic}>
+              <Text>Personality</Text>
+            </View>
+            <View style={styles.characteristicAnswer}>
+              <Text>{villager.personality}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.characteristic}>
+              <Text>Birthday</Text>
+            </View>
+            <View style={styles.characteristicAnswer}>
+              <Text>{villager.birthday}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
 
-      <View style={styles.buttons}>
-        <Icon
-          name={favourites.includes(villager) ? 'star' : 'star-border'}
-          size={30}
-          onPress={() => {
-            favourites.includes(villager)
-              ? dispatch(removeFavouriteVillager(villager))
-              : dispatch(addFavouriteVillager(villager));
-          }}
-        />
-        <Icon
-          name="home"
-          size={30}
-          onPress={() => {
-            residents.includes(villager)
-              ? dispatch(removeResident(villager))
-              : dispatch(addResident(villager));
-          }}
-        />
-        <Icon
-          name="more-horiz"
-          size={30}
-          onPress={() => {
-            toggleModal(true);
-          }}
-        />
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon
+            name={favourites.includes(villager) ? 'star' : 'star-border'}
+            size={35}
+            onPress={() => {
+              favourites.includes(villager)
+                ? dispatch(removeFavouriteVillager(villager))
+                : dispatch(addFavouriteVillager(villager));
+            }}
+          />
+        </View>
+        <View style={styles.icon}>
+          <MaterialCommunityIcons
+            name={residents.includes(villager) ? 'home' : 'home-outline'}
+            size={35}
+            onPress={() => {
+              residents.includes(villager)
+                ? dispatch(removeResident(villager))
+                : dispatch(addResident(villager));
+            }}
+          />
+        </View>
+        <View style={styles.icon}>
+          <Icon
+            name="more-horiz"
+            size={35}
+            onPress={() => {
+              toggleModal(true);
+            }}
+          />
+        </View>
       </View>
 
       <Modal transparent={true} visible={modalVisible}>
