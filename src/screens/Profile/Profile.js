@@ -17,7 +17,7 @@ import {
   totalFossils,
 } from './progressTotals';
 
-import styles from 'styles/appStyles';
+import styles from 'styles/profileStyles';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -48,6 +48,16 @@ const fruitImages = {};
 for (let i = 0; i < fruits.length; i++) {
   fruitImages[fruits[i].name] = fruits[i].variants[0].inventoryImage;
 }
+
+const DisplayResidents = ({residents}) => {
+  const residentsImages = residents.map(resident => {
+    return (
+      <Image source={{uri: resident.iconImage}} style={styles.residentIcon} />
+    );
+  });
+
+  return <View style={styles.residentsContainer}>{residentsImages}</View>;
+};
 
 const Profile = ({navigation}) => {
   const dispatch = useDispatch();
@@ -85,88 +95,128 @@ const Profile = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.view}>
-      <ScrollView style={styles.scrollView}>
-        {/* Name */}
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={text => {
-            dispatch(updatePlayerName(text));
-          }}
-          value={playerName}
-        />
-        {/* Island Name */}
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={text => {
-            dispatch(updateIslandName(text));
-          }}
-          maxLength={10}
-          value={islandName}
-        />
-        {/* Native Fruit */}
-        <Image source={{uri: nativeFruitImage}} style={styles.image} />
-        <Picker
-          selectedValue={nativeFruit}
-          style={{height: 50, width: 150}}
-          onValueChange={value => {
-            dispatch(updateNativeFruit(value));
-          }}>
-          <Picker.Item label="Apple" value="Apple" />
-          <Picker.Item label="Cherry" value="Cherry" />
-          <Picker.Item label="Orange" value="Orange" />
-          <Picker.Item label="Peach" value="Peach" />
-          <Picker.Item label="Pear" value="Pear" />
-        </Picker>
-        {/* Hemisphere */}
-        <Image source={hemisphereImage} style={styles.image} />
-        <Picker
-          selectedValue={hemisphere}
-          style={{height: 50, width: 150}}
-          onValueChange={value => {
-            dispatch(updateHemisphere(value));
-          }}>
-          <Picker.Item label="Northern" value="northern" />
-          <Picker.Item label="Southern" value="southern" />
-        </Picker>
-        <View>
-          <Text>Friend Code: SW-</Text>
+      <ScrollView
+        style={styles.scrollView}
+        // contentContainerStyle={styles.scrollViewContent}
+      >
+        {/* Passport */}
+        <View style={styles.card}>
+          <Text style={styles.title}>Passport</Text>
+          {/* Name */}
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={styles.input}
             onChangeText={text => {
-              text = text.replace(/-/g, '');
-              const formatted = formatCode(text);
-              dispatch(updateFriendCode(formatted));
+              dispatch(updatePlayerName(text));
             }}
-            keyboardType="number-pad"
-            maxLength={14}
-            value={friendCode}
+            value={playerName}
           />
+
+          {/* Island Name */}
+          <TextInput
+            style={styles.input}
+            onChangeText={text => {
+              dispatch(updateIslandName(text));
+            }}
+            maxLength={10}
+            value={islandName}
+          />
+
+          {/* Native Fruit */}
+          <View style={styles.rowContainer}>
+            <View style={styles.leftContainer}>
+              <Text>Native Fruit</Text>
+            </View>
+            <View style={styles.rightContainer}>
+              <Image
+                source={{uri: nativeFruitImage}}
+                style={styles.pickerImage}
+              />
+              <View style={styles.rightInput}>
+                <Picker
+                  selectedValue={nativeFruit}
+                  mode={'dropdown'}
+                  onValueChange={value => {
+                    dispatch(updateNativeFruit(value));
+                  }}>
+                  <Picker.Item label="Apple" value="Apple" />
+                  <Picker.Item label="Cherry" value="Cherry" />
+                  <Picker.Item label="Orange" value="Orange" />
+                  <Picker.Item label="Peach" value="Peach" />
+                  <Picker.Item label="Pear" value="Pear" />
+                </Picker>
+              </View>
+            </View>
+          </View>
+
+          {/* Hemisphere */}
+          <View style={styles.rowContainer}>
+            <View style={styles.leftContainer}>
+              <Text>Hemisphere</Text>
+            </View>
+            <View style={styles.rightContainer}>
+              <Image source={hemisphereImage} style={styles.pickerImage} />
+              <View style={styles.rightInput}>
+                <Picker
+                  selectedValue={hemisphere}
+                  mode={'dropdown'}
+                  onValueChange={value => {
+                    dispatch(updateHemisphere(value));
+                  }}>
+                  <Picker.Item label="Northern" value="northern" />
+                  <Picker.Item label="Southern" value="southern" />
+                </Picker>
+              </View>
+            </View>
+          </View>
+
+          {/* Friend Code */}
+          <View style={styles.rowContainer}>
+            <View style={styles.leftContainer}>
+              <Text>Switch Code </Text>
+            </View>
+            <View style={styles.rightContainer}>
+              <Text style={styles.switchCodeSW}>SW-</Text>
+              <TextInput
+                style={styles.rightInput}
+                onChangeText={text => {
+                  text = text.replace(/-/g, '');
+                  const formatted = formatCode(text);
+                  dispatch(updateFriendCode(formatted));
+                }}
+                keyboardType="number-pad"
+                maxLength={14}
+                value={friendCode}
+              />
+            </View>
+          </View>
         </View>
-        <View>
-          <Text>Residents</Text>
-          {residents.map(resident => {
-            return (
-              <Image source={{uri: resident.iconImage}} style={styles.image} />
-            );
-          })}
+
+        {/* Residents */}
+        <View style={styles.card}>
+          <View>
+            <Text style={styles.title}>Residents</Text>
+            <DisplayResidents residents={residents} />
+          </View>
+          <View>
+            <Text>Upcoming Birthdays</Text>
+            {residents.map(resident => {
+              let birthday = resident.birthday;
+              birthday = birthday.split('/');
+              const birthdayMonth = Number(birthday[0]) - 1;
+              if (birthdayMonth === currentMonth) {
+                return (
+                  <Text>
+                    {resident.name} {resident.birthday}
+                  </Text>
+                );
+              }
+            })}
+          </View>
         </View>
-        <View>
-          <Text>Upcoming Birthdays</Text>
-          {residents.map(resident => {
-            let birthday = resident.birthday;
-            birthday = birthday.split('/');
-            const birthdayMonth = Number(birthday[0]) - 1;
-            if (birthdayMonth === currentMonth) {
-              return (
-                <Text>
-                  {resident.name} {resident.birthday}
-                </Text>
-              );
-            }
-          })}
-        </View>
-        <View>
-          <Text>Museum Progress</Text>
+
+        {/* Progress */}
+        <View style={styles.card}>
+          <Text style={styles.title}>Museum Progress</Text>
           <Text>
             Bugs: {donatedBugs.length}/{totalBugs}
           </Text>
@@ -180,8 +230,8 @@ const Profile = ({navigation}) => {
             Art: {donatedArt.length}/{totalArt}
           </Text>
         </View>
-        <View>
-          <Text>Collections Progress</Text>
+        <View style={styles.card}>
+          <Text style={styles.title}>Collections Progress</Text>
           <Text>
             Recipes: {learnedRecipes.length}/{totalRecipes}
           </Text>
