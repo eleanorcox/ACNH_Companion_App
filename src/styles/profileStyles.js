@@ -149,12 +149,12 @@ export default StyleSheet.create({
     backgroundColor: BEIGE_MEDIUM,
   },
 
-//   progressRight: {
-//     flex: 1,
-//     backgroundColor: BEIGE_MEDIUM,
-//     borderRadius: 10,
-//     height: 40,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
+  //   progressRight: {
+  //     flex: 1,
+  //     backgroundColor: BEIGE_MEDIUM,
+  //     borderRadius: 10,
+  //     height: 40,
+  //     justifyContent: 'center',
+  //     alignItems: 'center',
+  //   },
 });
