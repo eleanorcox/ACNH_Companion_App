@@ -32,25 +32,4 @@ export default StyleSheet.create({
     width: 128,
     height: 128,
   },
-
-  iconsContainer: {
-    marginVertical: iconsMargin,
-    marginHorizontal: 10,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-
-  iconContainer: {
-    alignItems: 'center',
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-  },
-
-  icon: {
-    width: iconSize,
-    height: iconSize,
-  },
 });
