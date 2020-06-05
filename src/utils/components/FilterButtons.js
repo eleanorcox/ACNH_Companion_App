@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import FilterButtonsByType from 'utils/components/FilterButtonsByType';
-import styles from 'styles/villagersStyles';
 
 const FilterButtons = ({filterOptions, changeFilter, currentFilters}) => {
   const filterOptionsArray = Object.entries(filterOptions);
@@ -25,5 +25,13 @@ const FilterButtons = ({filterOptions, changeFilter, currentFilters}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
+  },
+});
 
 export default FilterButtons;

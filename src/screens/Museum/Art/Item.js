@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSelector, useDispatch} from 'react-redux';
 import {addDonatedArt, removeDonatedArt} from '../../../redux/museumReducer';
 
-import styles from 'styles/recipesStyles';
+import styles from 'styles/museumStyles';
 
 export const Item = ({art}) => {
   const dispatch = useDispatch();

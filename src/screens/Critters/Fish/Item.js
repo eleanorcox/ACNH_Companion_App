@@ -10,7 +10,7 @@ import {
   removeDonatedFish,
 } from '../../../redux/fishReducer';
 
-import styles from 'styles/recipesStyles';
+import styles from 'styles/crittersStyles';
 import {getActiveMonthsStr} from 'utils/getActiveMonthsStr';
 import {getActiveHoursStr} from 'utils/getActiveHoursStr';
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
-import styles from 'styles/villagersStyles';
+import styles from 'styles/museumStyles';
 
 import {useSelector} from 'react-redux';
 

@@ -1,15 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  image: {
-    width: 128,
-    height: 128,
-  },
-
   view: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: '#000',
   },
 
   buttons: {
@@ -18,7 +14,12 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
   },
 
-  villager: {
+  image: {
+    width: 128,
+    height: 128,
+  },
+
+  recipe: {
     marginTop: 12,
     padding: 12,
     borderRadius: 8,
@@ -26,17 +27,14 @@ export default StyleSheet.create({
     backgroundColor: '#eaeaea',
   },
 
-  itemModalContent: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
-    margin: '50%',
-    flex: 0,
+  searchContainer: {
+    width: '100%',
+    backgroundColor: 'white',
+    borderWidth: 0, //no effect
+    shadowColor: 'white', //no effect
   },
 
-  itemView: {
-    width: 250,
-    height: 250,
-    backgroundColor: 'white',
+  search: {
+    width: '100%',
   },
 });

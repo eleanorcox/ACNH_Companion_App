@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
-import styles from 'styles/villagersStyles';
+import {StyleSheet} from 'react-native';
 
 import FilterButtons from './FilterButtons';
 import {updateFilters} from 'utils/updateFilters';
@@ -80,5 +80,22 @@ const ListControls = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  listControls: {
+    width: '100%',
+  },
+
+  searchContainer: {
+    width: '100%',
+    backgroundColor: 'white',
+    borderWidth: 0, //no effect
+    shadowColor: 'white', //no effect
+  },
+
+  search: {
+    width: '100%',
+  },
+});
 
 export default ListControls;

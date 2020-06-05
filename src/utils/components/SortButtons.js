@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styles from 'styles/villagersStyles';
+import {StyleSheet} from 'react-native';
 
 const SortButtons = ({
   sortOptions,
@@ -34,5 +34,25 @@ const SortButtons = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
+  },
+
+  buttonUnpressed: {
+    // alignSelf: 'center',
+    borderColor: '#000066',
+    backgroundColor: 'blue',
+  },
+
+  buttonPressed: {
+    // alignSelf: 'center',
+    borderColor: '#000066',
+    backgroundColor: 'pink',
+  },
+});
 
 export default SortButtons;

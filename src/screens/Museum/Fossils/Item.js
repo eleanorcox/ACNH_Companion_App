@@ -8,7 +8,7 @@ import {
   removeDonatedFossil,
 } from '../../../redux/museumReducer';
 
-import styles from 'styles/recipesStyles';
+import styles from 'styles/museumStyles';
 
 // TODO: Order fossils by collection (i.e. all diplodocus together)
 export const Item = ({fossil}) => {

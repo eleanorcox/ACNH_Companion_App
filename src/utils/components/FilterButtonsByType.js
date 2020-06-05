@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import styles from 'styles/villagersStyles';
+import {StyleSheet} from 'react-native';
 
 const FilterButtonsByType = ({
   filterType,
@@ -30,5 +30,19 @@ const FilterButtonsByType = ({
   });
   return buttons;
 };
+
+const styles = StyleSheet.create({
+  buttonUnpressed: {
+    // alignSelf: 'center',
+    borderColor: '#000066',
+    backgroundColor: 'blue',
+  },
+
+  buttonPressed: {
+    // alignSelf: 'center',
+    borderColor: '#000066',
+    backgroundColor: 'pink',
+  },
+});
 
 export default FilterButtonsByType;

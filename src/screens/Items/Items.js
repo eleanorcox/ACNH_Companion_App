@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, FlatList, SafeAreaView} from 'react-native';
-import styles from 'styles/appStyles';
 import UnderConstruction from 'utils/components/UnderConstruction';
 
 const items = require('@nooksbazaar/acdb/items.json');

@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-
-import styles from 'styles/appStyles';
+import {StyleSheet} from 'react-native';
 
 const items = require('@nooksbazaar/acdb/items.json');
 const housewares = items.filter(item => item.sourceSheet === 'Housewares');
@@ -23,5 +22,18 @@ const UnderConstruction = ({navigation}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: 128,
+    height: 128,
+  },
+
+  view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default UnderConstruction;

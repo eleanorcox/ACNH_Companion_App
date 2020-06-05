@@ -1,12 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PHONE_BACKGROUND, BEIGE_MEDIUM, BEIGE_LIGHT, GREEN_MEDIUM} from 'assets/colours';
-import {Dimensions} from 'react-native';
-
-const dimensions = Dimensions.get('window');
-const windowWidth = dimensions.width;
-const windowHeight = dimensions.height;
-const iconSize = 0.29 * windowWidth;
-const iconsMargin = 0.07 * windowHeight;
+import {BEIGE_LIGHT, GREEN_MEDIUM} from 'assets/colours';
 
 export default StyleSheet.create({
   headerBackground: {
