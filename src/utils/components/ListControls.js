@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
-import styles from 'styles/VillagersStyles';
+import styles from 'styles/villagersStyles';
 
 import FilterButtons from './FilterButtons';
 import {updateFilters} from 'utils/updateFilters';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 
-import styles from 'styles/AppStyles';
+import styles from 'styles/appStyles';
 
 const items = require('@nooksbazaar/acdb/items.json');
 const housewares = items.filter(item => item.sourceSheet === 'Housewares');

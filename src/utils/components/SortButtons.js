@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styles from 'styles/VillagersStyles';
+import styles from 'styles/villagersStyles';
 
 const SortButtons = ({
   sortOptions,

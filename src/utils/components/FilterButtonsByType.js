@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import styles from 'styles/VillagersStyles';
+import styles from 'styles/villagersStyles';
 
 const FilterButtonsByType = ({
   filterType,
