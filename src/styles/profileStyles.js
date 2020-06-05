@@ -8,8 +8,10 @@ import {
 import {Dimensions} from 'react-native';
 
 const dimensions = Dimensions.get('window');
+const windowWidth = dimensions.width;
 
 export default StyleSheet.create({
+  // GENERAL
   view: {
     backgroundColor: ICON_GREEN,
   },
@@ -30,12 +32,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
-  input: {
-    width: 200,
-    height: 60,
-    backgroundColor: BEIGE_MEDIUM,
-    borderRadius: 15,
-    marginTop: 5,
+  title: {
     textAlign: 'center',
   },
 
@@ -44,6 +41,16 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginTop: 5,
     flex: 1,
+  },
+
+  //   PASSPORT
+  input: {
+    width: 200,
+    height: 60,
+    backgroundColor: BEIGE_MEDIUM,
+    borderRadius: 15,
+    marginTop: 5,
+    textAlign: 'center',
   },
 
   leftContainer: {
@@ -82,15 +89,7 @@ export default StyleSheet.create({
     borderRadius: 15,
   },
 
-  image: {
-    width: 128,
-    height: 128,
-  },
-
-  title: {
-    textAlign: 'center',
-  },
-
+  //   RESIDENTS
   residentsContainer: {
     backgroundColor: BEIGE_MEDIUM,
     borderRadius: 15,
@@ -103,5 +102,43 @@ export default StyleSheet.create({
     // flexBasis: '20%',
     width: 70,
     height: 70,
+  },
+
+  birthdayRowContainer: {
+    flexDirection: 'row',
+    marginTop: 5,
+    width: windowWidth / 1.3,
+  },
+
+  name: {
+    flex: 1,
+    height: 30,
+    backgroundColor: BEIGE_DARK,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 5,
+  },
+
+  birthday: {
+    flex: 1,
+    height: 30,
+    backgroundColor: BEIGE_MEDIUM,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  //   PROGRESS
+  progressLeft: {
+    backgroundColor: '#00f',
+  },
+
+  progressMid: {
+    backgroundColor: '#0f0',
+  },
+
+  progressRight: {
+    backgroundColor: '#f00',
   },
 });

@@ -50,6 +50,9 @@ for (let i = 0; i < fruits.length; i++) {
 }
 
 const DisplayResidents = ({residents}) => {
+  if (residents.length === 0) {
+    return <Text>Try adding some residents in the Villagers section!</Text>;
+  }
   const residentsImages = residents.map(resident => {
     return (
       <Image source={{uri: resident.iconImage}} style={styles.residentIcon} />
@@ -57,6 +60,32 @@ const DisplayResidents = ({residents}) => {
   });
 
   return <View style={styles.residentsContainer}>{residentsImages}</View>;
+};
+
+const DisplayBirthdays = ({residents, currentMonth}) => {
+  const birthdays = residents.map(resident => {
+    let birthday = resident.birthday;
+    birthday = birthday.split('/');
+    const birthdayMonth = Number(birthday[0]) - 1;
+    if (birthdayMonth === currentMonth) {
+      return (
+        <View style={styles.birthdayRowContainer}>
+          {/* <View> */}
+          <View style={styles.name}>
+            <Text>{resident.name}</Text>
+          </View>
+          <View style={styles.birthday}>
+            <Text>{resident.birthday}</Text>
+          </View>
+        </View>
+      );
+    }
+  });
+  if (birthdays[0] === undefined) {
+    return <Text>No birthdays this month!</Text>;
+  } else {
+    return birthdays;
+  }
 };
 
 const Profile = ({navigation}) => {
@@ -197,26 +226,33 @@ const Profile = ({navigation}) => {
             <Text style={styles.title}>Residents</Text>
             <DisplayResidents residents={residents} />
           </View>
-          <View>
-            <Text>Upcoming Birthdays</Text>
-            {residents.map(resident => {
-              let birthday = resident.birthday;
-              birthday = birthday.split('/');
-              const birthdayMonth = Number(birthday[0]) - 1;
-              if (birthdayMonth === currentMonth) {
-                return (
-                  <Text>
-                    {resident.name} {resident.birthday}
-                  </Text>
-                );
-              }
-            })}
-          </View>
+          {residents.length > 0 && (
+            <View>
+              <Text style={styles.title}>Upcoming Birthdays</Text>
+              <DisplayBirthdays
+                residents={residents}
+                currentMonth={currentMonth}
+              />
+            </View>
+          )}
         </View>
 
         {/* Progress */}
         <View style={styles.card}>
           <Text style={styles.title}>Museum Progress</Text>
+          <View style={styles.rowContainer}>
+            <View style={styles.progressLeft}>
+              <Text>Bugs</Text>
+            </View>
+            <View style={styles.progressMid}>
+              <Text>
+                {donatedBugs.length}/{totalBugs}
+              </Text>
+            </View>
+            <View style={styles.progressRight}>
+              <Text>Progress Bar</Text>
+            </View>
+          </View>
           <Text>
             Bugs: {donatedBugs.length}/{totalBugs}
           </Text>
