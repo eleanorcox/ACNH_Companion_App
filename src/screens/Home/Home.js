@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import styles from 'styles/AppStyles';
+import styles from 'styles/appStyles';
 
 // Icons
 const profileIcon = require('assets/images/Icon_Profile.png');

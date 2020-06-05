@@ -10,7 +10,7 @@ import {
   removeFavouriteVillager,
 } from '../../redux/villagersReducer';
 
-import styles from 'styles/VillagersStyles';
+import styles from 'styles/villagersStyles';
 
 export const Item = ({villager}) => {
   const [modalVisible, setModalVisible] = useState(false);

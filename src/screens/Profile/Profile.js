@@ -17,7 +17,7 @@ import {
   totalFossils,
 } from './progressTotals';
 
-import styles from 'styles/AppStyles';
+import styles from 'styles/appStyles';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {

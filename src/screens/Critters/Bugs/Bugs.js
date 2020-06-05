@@ -3,7 +3,7 @@ import {View, Button, FlatList, Modal} from 'react-native';
 
 import {useSelector} from 'react-redux';
 
-import styles from 'styles/VillagersStyles';
+import styles from 'styles/villagersStyles';
 
 import ListControls from 'utils/components/ListControls';
 import {filterOptions, sortOptions} from './filterSortOptions';

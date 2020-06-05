@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler'; // Must be at top of file
 import React from 'react';
+import styles from 'styles/appStyles';
 
 // Redux
 import {Provider} from 'react-redux';
@@ -33,7 +34,14 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: styles.headerBackground,
+              headerTintColor: '#fff',
+              headerTitleAlign: 'center',
+              cardStyle: styles.screenBackground,
+              // gestureEnabled: true,
+            }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="Critters" component={Critters} />

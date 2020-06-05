@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PHONE_BACKGROUND} from 'assets/colours';
+import {PHONE_BACKGROUND, BEIGE_MEDIUM, BEIGE_LIGHT, GREEN_MEDIUM} from 'assets/colours';
 import {Dimensions} from 'react-native';
 
 const dimensions = Dimensions.get('window');
@@ -9,11 +9,19 @@ const iconSize = 0.29 * windowWidth;
 const iconsMargin = 0.07 * windowHeight;
 
 export default StyleSheet.create({
+  headerBackground: {
+    backgroundColor: GREEN_MEDIUM,
+  },
+
+  screenBackground: {
+    backgroundColor: BEIGE_LIGHT,
+  },
+
   view: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: PHONE_BACKGROUND,
+    backgroundColor: '#000',
   },
 
   scrollView: {
@@ -26,7 +34,6 @@ export default StyleSheet.create({
   },
 
   iconsContainer: {
-    backgroundColor: PHONE_BACKGROUND,
     marginVertical: iconsMargin,
     marginHorizontal: 10,
     flex: 1,

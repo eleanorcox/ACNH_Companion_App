@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button} from 'react-native';
-import styles from 'styles/AppStyles';
+import styles from 'styles/appStyles';
 
 const Critters = ({navigation}) => {
   return (
