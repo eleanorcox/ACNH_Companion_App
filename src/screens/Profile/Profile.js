@@ -70,7 +70,6 @@ const DisplayBirthdays = ({residents, currentMonth}) => {
     if (birthdayMonth === currentMonth) {
       return (
         <View style={styles.birthdayRowContainer}>
-          {/* <View> */}
           <View style={styles.name}>
             <Text>{resident.name}</Text>
           </View>
@@ -249,28 +248,53 @@ const Profile = ({navigation}) => {
                 {donatedBugs.length}/{totalBugs}
               </Text>
             </View>
-            <View style={styles.progressRight}>
+            {/* <View style={styles.progressRight}>
               <Text>Progress Bar</Text>
+            </View> */}
+          </View>
+          <View style={styles.rowContainer}>
+            <View style={styles.progressLeft}>
+              <Text>Fish</Text>
+            </View>
+            <View style={styles.progressMid}>
+              <Text>
+                {donatedFish.length}/{totalFish}
+              </Text>
             </View>
           </View>
-          <Text>
-            Bugs: {donatedBugs.length}/{totalBugs}
-          </Text>
-          <Text>
-            Fish: {donatedFish.length}/{totalFish}
-          </Text>
-          <Text>
-            Fossils: {donatedFossils.length}/{totalFossils}
-          </Text>
-          <Text>
-            Art: {donatedArt.length}/{totalArt}
-          </Text>
+          <View style={styles.rowContainer}>
+            <View style={styles.progressLeft}>
+              <Text>Fossils</Text>
+            </View>
+            <View style={styles.progressMid}>
+              <Text>
+                {donatedFossils.length}/{totalFossils}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.rowContainer}>
+            <View style={styles.progressLeft}>
+              <Text>Art</Text>
+            </View>
+            <View style={styles.progressMid}>
+              <Text>
+                {donatedArt.length}/{totalArt}
+              </Text>
+            </View>
+          </View>
         </View>
         <View style={styles.card}>
           <Text style={styles.title}>Collections Progress</Text>
-          <Text>
-            Recipes: {learnedRecipes.length}/{totalRecipes}
-          </Text>
+          <View style={styles.rowContainer}>
+            <View style={styles.progressLeft}>
+              <Text>Recipes</Text>
+            </View>
+            <View style={styles.progressMid}>
+              <Text>
+                {learnedRecipes.length}/{totalRecipes}
+              </Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

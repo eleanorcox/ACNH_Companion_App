@@ -131,14 +131,30 @@ export default StyleSheet.create({
 
   //   PROGRESS
   progressLeft: {
-    backgroundColor: '#00f',
+    flex: 1,
+    backgroundColor: BEIGE_DARK,
+    borderRadius: 10,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 5,
   },
 
   progressMid: {
-    backgroundColor: '#0f0',
+    flex: 1,
+    borderRadius: 10,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: BEIGE_MEDIUM,
   },
 
-  progressRight: {
-    backgroundColor: '#f00',
-  },
+//   progressRight: {
+//     flex: 1,
+//     backgroundColor: BEIGE_MEDIUM,
+//     borderRadius: 10,
+//     height: 40,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
 });
