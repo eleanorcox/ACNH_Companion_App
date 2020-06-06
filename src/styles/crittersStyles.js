@@ -21,6 +21,7 @@ import {
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
+const windowHeight = dimensions.height;
 const cardWidth = 0.9 * windowWidth;
 
 export default StyleSheet.create({
@@ -47,6 +48,12 @@ export default StyleSheet.create({
     backgroundColor: HEADER_YELLOW_DARK,
     marginVertical: 4,
     borderRadius: 10,
+  },
+
+  controlsContainer: {
+    height: windowHeight,
+    backgroundColor: ICON_YELLOW_DARK,
+    alignItems: 'center',
   },
 
   critter: {

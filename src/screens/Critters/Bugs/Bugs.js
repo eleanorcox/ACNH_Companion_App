@@ -77,19 +77,21 @@ const Bugs = ({navigation}) => {
   return (
     <View style={styles.view}>
       <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
-        <ListControls
-          listControls={listControls}
-          updateControls={updateControls}
-          filterOptions={filterOptions}
-          sortOptions={sortOptions}
-        />
-        <TouchableOpacity
-          onPress={() => {
-            toggleModal(false);
-          }}
-          style={styles.controlButton}>
-          <Text style={styles.textWhite}>Close Controls</Text>
-        </TouchableOpacity>
+        <View style={styles.controlsContainer}>
+          <ListControls
+            listControls={listControls}
+            updateControls={updateControls}
+            filterOptions={filterOptions}
+            sortOptions={sortOptions}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              toggleModal(false);
+            }}
+            style={styles.controlButton}>
+            <Text style={styles.textWhite}>Close Controls</Text>
+          </TouchableOpacity>
+        </View>
       </Modal>
       <TouchableOpacity
         onPress={() => {
