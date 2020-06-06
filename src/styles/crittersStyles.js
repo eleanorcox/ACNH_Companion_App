@@ -112,8 +112,8 @@ export default StyleSheet.create({
   },
 
   image: {
-    width: 128,
-    height: 128,
+    width: 120,
+    height: 120,
     backgroundColor: BEIGE_MEDIUM,
     borderRadius: 100,
   },
