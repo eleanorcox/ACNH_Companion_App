@@ -12,21 +12,39 @@ export const Item = ({art}) => {
   const donated = useSelector(state => state.museum.donatedArt);
 
   return (
-    <View style={styles.recipe}>
-      <Text>Name: {art.name}</Text>
-      <Image source={{uri: art.variants[0].image}} style={styles.image} />
-      <Text>Real Name: {art.realArtworkTitle}</Text>
-      <Text>Artist: {art.artist}</Text>
-      <View style={styles.buttons}>
-        <Icon
-          name={donated.includes(art) ? 'bookmark' : 'bookmark-border'}
-          size={30}
-          onPress={() => {
-            donated.includes(art)
-              ? dispatch(removeDonatedArt(art))
-              : dispatch(addDonatedArt(art));
-          }}
-        />
+    <View style={styles.card}>
+      <Text style={styles.name}>{art.name}</Text>
+      <View style={styles.row}>
+        <View style={styles.leftContainer}>
+          <Image source={{uri: art.variants[0].image}} style={styles.image} />
+        </View>
+        <View style={styles.rightContainer}>
+          <View style={styles.row}>
+            <View style={styles.characteristicArt}>
+              <Text>Real Title</Text>
+            </View>
+            <View style={styles.characteristicAnswerArt}>
+              <Text>{art.realArtworkTitle}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.characteristicArt}>
+              <Text>Artist</Text>
+            </View>
+            <View style={styles.characteristicAnswerArt}>
+              <Text>{art.artist}</Text>
+            </View>
+          </View>
+          <Icon
+            name={donated.includes(art) ? 'bookmark' : 'bookmark-border'}
+            size={30}
+            onPress={() => {
+              donated.includes(art)
+                ? dispatch(removeDonatedArt(art))
+                : dispatch(addDonatedArt(art));
+            }}
+          />
+        </View>
       </View>
     </View>
   );

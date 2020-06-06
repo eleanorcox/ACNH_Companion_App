@@ -40,8 +40,9 @@ const Fossils = ({navigation}) => {
         placeholder="Search..."
         lightTheme
         round
-        style={styles.search}
+        // style={styles.search}
         containerStyle={styles.searchContainer}
+        inputContainerStyle={styles.searchInput}
         onChangeText={text => searchFilterFunction(text)}
         autoCorrect={false}
         value={query}

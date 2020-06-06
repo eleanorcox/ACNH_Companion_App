@@ -16,20 +16,34 @@ export const Item = ({fossil}) => {
   const donated = useSelector(state => state.museum.donatedFossils);
 
   return (
-    <View style={styles.recipe}>
-      <Text>Name: {fossil.name}</Text>
-      <Image source={{uri: fossil.variants[0].image}} style={styles.image} />
-      <Text>Sell: {fossil.variants[0].sell}</Text>
-      <View style={styles.buttons}>
-        <Icon
-          name={donated.includes(fossil) ? 'bookmark' : 'bookmark-border'}
-          size={30}
-          onPress={() => {
-            donated.includes(fossil)
-              ? dispatch(removeDonatedFossil(fossil))
-              : dispatch(addDonatedFossil(fossil));
-          }}
-        />
+    <View style={styles.card}>
+      <View style={styles.row}>
+        <View style={styles.leftContainer}>
+          {/* <Image
+            source={{uri: fossil.variants[0].image}}
+            style={styles.image}
+          /> */}
+          <Text style={styles.name}>{fossil.name}</Text>
+        </View>
+        <View style={styles.rightContainer}>
+          <View style={styles.row}>
+            <View style={styles.characteristic}>
+              <Text>Sell</Text>
+            </View>
+            <View style={styles.characteristicAnswer}>
+              <Text>{fossil.variants[0].sell}</Text>
+            </View>
+            <Icon
+              name={donated.includes(fossil) ? 'bookmark' : 'bookmark-border'}
+              size={30}
+              onPress={() => {
+                donated.includes(fossil)
+                  ? dispatch(removeDonatedFossil(fossil))
+                  : dispatch(addDonatedFossil(fossil));
+              }}
+            />
+          </View>
+        </View>
       </View>
     </View>
   );

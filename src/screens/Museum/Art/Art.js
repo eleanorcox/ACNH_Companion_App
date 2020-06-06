@@ -15,7 +15,6 @@ const allArt = items.filter(item => item.sourceSheet === 'Art');
 const Art = ({navigation}) => {
   const [query, setQuery] = useState('');
   const [artToDisplay, setArtToDisplay] = useState(allArt);
-  const donated = useSelector(state => state.museum.donatedArt);
 
   useEffect(() => {
     let filteredArt = allArt;
@@ -40,8 +39,9 @@ const Art = ({navigation}) => {
         placeholder="Search..."
         lightTheme
         round
-        style={styles.search}
+        // style={styles.search}
         containerStyle={styles.searchContainer}
+        inputContainerStyle={styles.searchInput}
         onChangeText={text => searchFilterFunction(text)}
         autoCorrect={false}
         value={query}
