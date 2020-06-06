@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BEIGE_LIGHT, GREEN_MEDIUM} from 'assets/colours';
+import {BEIGE_LIGHT, GREEN_MEDIUM, ICON_BLUE, ICON_BLUE_LIGHT} from 'assets/colours';
 
 export default StyleSheet.create({
   headerBackground: {
@@ -10,19 +10,11 @@ export default StyleSheet.create({
     backgroundColor: BEIGE_LIGHT,
   },
 
-  view: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#000',
+  blue: {
+    backgroundColor: ICON_BLUE,
   },
 
-  scrollView: {
-    flex: 1,
-  },
-
-  image: {
-    width: 128,
-    height: 128,
+  lightBlue: {
+    backgroundColor: ICON_BLUE_LIGHT,
   },
 });

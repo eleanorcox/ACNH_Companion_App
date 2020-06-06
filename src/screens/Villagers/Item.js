@@ -12,6 +12,7 @@ import {
 } from '../../redux/villagersReducer';
 
 import styles from 'styles/villagersStyles';
+const items = require('@nooksbazaar/acdb/items.json');
 
 export const Item = ({villager}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,6 +22,13 @@ export const Item = ({villager}) => {
   const dispatch = useDispatch();
   const residents = useSelector(state => state.villagers.residents);
   const favourites = useSelector(state => state.villagers.favouriteVillagers);
+
+  const villagerName = villager.name;
+  const posters = items.filter(item => item.sourceSheet === 'Posters');
+  const villagerPoster = posters.filter(item =>
+    item.name.includes(villagerName),
+  );
+  const villagerPosterImage = villagerPoster[0].variants[0].image;
 
   return (
     <View style={styles.villager}>
@@ -100,21 +108,43 @@ export const Item = ({villager}) => {
       </View>
 
       <Modal transparent={true} visible={modalVisible}>
-        <View style={styles.itemModalContent}>
-          <View style={styles.itemView}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Image source={{uri: villagerPosterImage}} style={styles.poster} />
+            <View style={styles.row}>
+              <View style={styles.characteristic}>
+                <Text>Catchphrase</Text>
+              </View>
+              <View style={styles.characteristicAnswer}>
+                <Text>{villager.catchphrase}</Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.characteristic}>
+                <Text>Favourite Colours</Text>
+              </View>
+              <View style={styles.characteristicAnswer}>
+                <Text>
+                  {villager.colors[0]}, {villager.colors[1]}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.characteristic}>
+                <Text>Favourite Styles</Text>
+              </View>
+              <View style={styles.characteristicAnswer}>
+                <Text>
+                  {villager.styles[0]}, {villager.styles[1]}
+                </Text>
+              </View>
+            </View>
             <Button
               title={'Close'}
               onPress={() => {
                 toggleModal(false);
               }}
             />
-            <Text>Catchphrase: {villager.catchphrase}</Text>
-            <Text>
-              Favourite Colours: {villager.colors[0]}, {villager.colors[1]}
-            </Text>
-            <Text>
-              Favourite Styles: {villager.styles[0]}, {villager.styles[1]}
-            </Text>
           </View>
         </View>
       </Modal>

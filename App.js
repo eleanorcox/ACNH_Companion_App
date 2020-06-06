@@ -55,7 +55,14 @@ const App = () => {
             <Stack.Screen name="Todo" component={Todo} />
             <Stack.Screen name="Guides" component={Guides} />
             <Stack.Screen name="Recipes" component={Recipes} />
-            <Stack.Screen name="Villagers" component={Villagers} />
+            <Stack.Screen
+              name="Villagers"
+              component={Villagers}
+              options={{
+                headerStyle: styles.blue,
+                cardStyle: styles.lightBlue,
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
