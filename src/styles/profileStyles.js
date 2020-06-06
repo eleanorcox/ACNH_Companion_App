@@ -13,7 +13,7 @@ const windowWidth = dimensions.width;
 export default StyleSheet.create({
   // GENERAL
   view: {
-    backgroundColor: ICON_GREEN,
+    // backgroundColor: ICON_GREEN,
   },
 
   scrollView: {

@@ -43,18 +43,102 @@ const App = () => {
               // gestureEnabled: true,
             }}>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="Critters" component={Critters} />
-            <Stack.Screen name="Bugs" component={Bugs} />
-            <Stack.Screen name="Fish" component={Fish} />
-            <Stack.Screen name="Museum" component={Museum} />
-            <Stack.Screen name="Fossils" component={Fossils} />
-            <Stack.Screen name="Art" component={Art} />
-            <Stack.Screen name="Items" component={Items} />
-            <Stack.Screen name="Stalks" component={Stalks} />
-            <Stack.Screen name="Todo" component={Todo} />
-            <Stack.Screen name="Guides" component={Guides} />
-            <Stack.Screen name="Recipes" component={Recipes} />
+            <Stack.Screen
+              name="Profile"
+              component={Profile}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.green,
+              }}
+            />
+            <Stack.Screen
+              name="Critters"
+              component={Critters}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.darkYellow,
+              }}
+            />
+            <Stack.Screen
+              name="Bugs"
+              component={Bugs}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.darkYellow,
+              }}
+            />
+            <Stack.Screen
+              name="Fish"
+              component={Fish}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.darkYellow,
+              }}
+            />
+            <Stack.Screen
+              name="Museum"
+              component={Museum}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.pink,
+              }}
+            />
+            <Stack.Screen
+              name="Fossils"
+              component={Fossils}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.pink,
+              }}
+            />
+            <Stack.Screen
+              name="Art"
+              component={Art}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.pink,
+              }}
+            />
+            <Stack.Screen
+              name="Items"
+              component={Items}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.yellow,
+              }}
+            />
+            <Stack.Screen
+              name="Stalks"
+              component={Stalks}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.chartreuse,
+              }}
+            />
+            <Stack.Screen
+              name="Todo"
+              component={Todo}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.blue,
+              }}
+            />
+            <Stack.Screen
+              name="Guides"
+              component={Guides}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.purple,
+              }}
+            />
+            <Stack.Screen
+              name="Recipes"
+              component={Recipes}
+              options={{
+                // headerStyle: styles.blue,
+                cardStyle: styles.orange,
+              }}
+            />
             <Stack.Screen
               name="Villagers"
               component={Villagers}
