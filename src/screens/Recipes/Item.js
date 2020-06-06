@@ -53,26 +53,32 @@ export const Item = ({recipe}) => {
 
       <View style={styles.row}>
         <View style={styles.icon}>
-          <Icon
-            name={favourites.includes(recipe) ? 'star' : 'star-border'}
-            size={30}
-            onPress={() => {
-              favourites.includes(recipe)
-                ? dispatch(removeFavouriteRecipe(recipe))
-                : dispatch(addFavouriteRecipe(recipe));
-            }}
-          />
+          <View style={styles.iconRow}>
+            <Text style={styles.textDarkGrey}>Favourite </Text>
+            <Icon
+              name={favourites.includes(recipe) ? 'star' : 'star-border'}
+              size={30}
+              onPress={() => {
+                favourites.includes(recipe)
+                  ? dispatch(removeFavouriteRecipe(recipe))
+                  : dispatch(addFavouriteRecipe(recipe));
+              }}
+            />
+          </View>
         </View>
         <View style={styles.icon}>
-          <Icon
-            name={learned.includes(recipe) ? 'bookmark' : 'bookmark-border'}
-            size={30}
-            onPress={() => {
-              learned.includes(recipe)
-                ? dispatch(removeLearnedRecipe(recipe))
-                : dispatch(addLearnedRecipe(recipe));
-            }}
-          />
+          <View style={styles.iconRow}>
+            <Text style={styles.textDarkGrey}>Learned </Text>
+            <Icon
+              name={learned.includes(recipe) ? 'bookmark' : 'bookmark-border'}
+              size={30}
+              onPress={() => {
+                learned.includes(recipe)
+                  ? dispatch(removeLearnedRecipe(recipe))
+                  : dispatch(addLearnedRecipe(recipe));
+              }}
+            />
+          </View>
         </View>
       </View>
     </View>
