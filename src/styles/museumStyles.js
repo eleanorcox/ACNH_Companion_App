@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { ICON_PINK, BEIGE_LIGHT, BEIGE_DARK, BEIGE_MEDIUM } from 'assets/colours';
+import {ICON_PINK, BEIGE_LIGHT, BEIGE_DARK, BEIGE_MEDIUM} from 'assets/colours';
 import {Dimensions} from 'react-native';
 
 const dimensions = Dimensions.get('window');
@@ -7,11 +7,15 @@ const windowWidth = dimensions.width;
 const cardWidth = 0.95 * windowWidth;
 
 export default StyleSheet.create({
+  background: {
+    backgroundColor: ICON_PINK,
+  },
+
   view: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#000',
+    backgroundColor: ICON_PINK,
   },
 
   row: {

@@ -15,11 +15,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/screens/Home/Home';
 import Profile from './src/screens/Profile/Profile';
 import Critters from './src/screens/Critters/Critters';
-import Bugs from './src/screens/Critters/Bugs/Bugs';
-import Fish from './src/screens/Critters/Fish/Fish';
 import Museum from './src/screens/Museum/Museum';
-import Fossils from './src/screens/Museum/Fossils/Fossils';
-import Art from './src/screens/Museum/Art/Art';
 import Items from './src/screens/Items/Items';
 import Stalks from './src/screens/Stalks/Stalks';
 import Todo from './src/screens/Todo/Todo';
@@ -60,40 +56,8 @@ const App = () => {
               }}
             />
             <Stack.Screen
-              name="Bugs"
-              component={Bugs}
-              options={{
-                // headerStyle: styles.blue,
-                cardStyle: styles.darkYellow,
-              }}
-            />
-            <Stack.Screen
-              name="Fish"
-              component={Fish}
-              options={{
-                // headerStyle: styles.blue,
-                cardStyle: styles.darkYellow,
-              }}
-            />
-            <Stack.Screen
               name="Museum"
               component={Museum}
-              options={{
-                // headerStyle: styles.blue,
-                cardStyle: styles.pink,
-              }}
-            />
-            <Stack.Screen
-              name="Fossils"
-              component={Fossils}
-              options={{
-                // headerStyle: styles.blue,
-                cardStyle: styles.pink,
-              }}
-            />
-            <Stack.Screen
-              name="Art"
-              component={Art}
               options={{
                 // headerStyle: styles.blue,
                 cardStyle: styles.pink,

@@ -4,6 +4,7 @@ import {
   BEIGE_LIGHT,
   BEIGE_MEDIUM,
   BEIGE_DARK,
+  ICON_YELLOW_DARK,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
 
@@ -16,6 +17,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: ICON_YELLOW_DARK,
   },
 
   row: {

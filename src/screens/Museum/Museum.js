@@ -1,24 +1,29 @@
 import React from 'react';
-import {View, Button} from 'react-native';
 import styles from 'styles/museumStyles';
 
-const Museum = ({navigation}) => {
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import Fossils from './Fossils/Fossils';
+import Art from './Art/Art';
+
+const Tab = createMaterialTopTabNavigator();
+
+const MuseumTabs = () => {
   return (
-    <View style={styles.view}>
-      <Button
-        title="Fossils"
-        onPress={() => {
-          navigation.navigate('Fossils');
-        }}
-      />
-      <Button
-        title="Art"
-        onPress={() => {
-          navigation.navigate('Art');
-        }}
-      />
-    </View>
+    <Tab.Navigator
+      tabBarOptions={
+        {
+          // tabStyle: styles.background,
+          // style: styles.background,
+        }
+      }>
+      <Tab.Screen name="Fossils" component={Fossils} />
+      <Tab.Screen name="Art" component={Art} />
+    </Tab.Navigator>
   );
+};
+
+const Museum = ({navigation}) => {
+  return <MuseumTabs />;
 };
 
 export default Museum;
