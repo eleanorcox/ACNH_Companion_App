@@ -51,6 +51,7 @@ export default StyleSheet.create({
     fontSize: FONT_SIZE_18,
     fontWeight: FONT_WEIGHT_BOLD,
     color: GRAY_DARKER,
+    textAlign: 'center',
   },
 
   textWhite: {
@@ -71,7 +72,7 @@ export default StyleSheet.create({
   leftContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    flex: 1.2,
   },
 
   rightContainer: {
