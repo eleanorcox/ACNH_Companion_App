@@ -12,7 +12,12 @@ import {
   HEADER_YELLOW_DARK,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
-import { FONT_FAMILY, FONT_SIZE_18, FONT_WEIGHT_BOLD, FONT_SIZE_16 } from 'assets/fonts';
+import {
+  FONT_FAMILY,
+  FONT_SIZE_18,
+  FONT_WEIGHT_BOLD,
+  FONT_SIZE_16,
+} from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
@@ -20,7 +25,6 @@ const cardWidth = 0.9 * windowWidth;
 
 export default StyleSheet.create({
   tabs: {
-    // : HEADER_TAB_YELLOW_DARK,
     backgroundColor: BEIGE_LIGHT,
   },
 

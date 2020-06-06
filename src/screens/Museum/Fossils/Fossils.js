@@ -4,8 +4,6 @@ import {SearchBar} from 'react-native-elements';
 
 import styles from 'styles/museumStyles';
 
-import {useSelector} from 'react-redux';
-
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
 
@@ -15,7 +13,6 @@ const fossils = items.filter(item => item.sourceSheet === 'Fossils');
 const Fossils = ({navigation}) => {
   const [query, setQuery] = useState('');
   const [fossilsToDisplay, setFossilsToDisplay] = useState(fossils);
-  const donated = useSelector(state => state.bugs.donatedBugs);
 
   useEffect(() => {
     let filteredFossils = fossils;

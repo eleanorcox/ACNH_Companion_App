@@ -4,8 +4,6 @@ import {SearchBar} from 'react-native-elements';
 
 import styles from 'styles/museumStyles';
 
-import {useSelector} from 'react-redux';
-
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
 

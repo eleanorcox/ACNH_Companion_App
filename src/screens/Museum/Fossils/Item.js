@@ -28,10 +28,10 @@ export const Item = ({fossil}) => {
         <View style={styles.rightContainer}>
           <View style={styles.row}>
             <View style={styles.characteristic}>
-              <Text>Sell</Text>
+              <Text style={styles.textWhite}>Sell</Text>
             </View>
             <View style={styles.characteristicAnswer}>
-              <Text>{fossil.variants[0].sell}</Text>
+              <Text style={styles.textDarkGrey}>{fossil.variants[0].sell}</Text>
             </View>
             <Icon
               name={donated.includes(fossil) ? 'bookmark' : 'bookmark-border'}

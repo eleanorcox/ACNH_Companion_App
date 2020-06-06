@@ -1,6 +1,20 @@
 import {StyleSheet} from 'react-native';
-import {ICON_PINK, BEIGE_LIGHT, BEIGE_DARK, BEIGE_MEDIUM} from 'assets/colours';
+import {
+  ICON_PINK,
+  BEIGE_LIGHT,
+  BEIGE_DARK,
+  BEIGE_MEDIUM,
+  GRAY_DARKER,
+  WHITE,
+  GRAY_DARK,
+} from 'assets/colours';
 import {Dimensions} from 'react-native';
+import {
+  FONT_FAMILY,
+  FONT_SIZE_18,
+  FONT_WEIGHT_BOLD,
+  FONT_SIZE_16,
+} from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
@@ -8,7 +22,7 @@ const cardWidth = 0.95 * windowWidth;
 
 export default StyleSheet.create({
   background: {
-    backgroundColor: ICON_PINK,
+    backgroundColor: BEIGE_LIGHT,
   },
 
   view: {
@@ -33,6 +47,25 @@ export default StyleSheet.create({
 
   name: {
     marginBottom: 4,
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_18,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
+  },
+
+  textWhite: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+  },
+
+  textDarkGrey: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
+    textAlign: 'center',
   },
 
   leftContainer: {
@@ -57,10 +90,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: BEIGE_DARK,
     borderRadius: 10,
-    height: 30,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 1,
+    padding: 2,
   },
 
   characteristicAnswer: {
@@ -68,7 +101,7 @@ export default StyleSheet.create({
     margin: 1,
     backgroundColor: BEIGE_MEDIUM,
     borderRadius: 10,
-    height: 30,
+    padding: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },

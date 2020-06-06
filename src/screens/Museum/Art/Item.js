@@ -7,6 +7,19 @@ import {addDonatedArt, removeDonatedArt} from '../../../redux/museumReducer';
 
 import styles from 'styles/museumStyles';
 
+const InfoRow = ({title, result}) => {
+  return (
+    <View style={styles.row}>
+      <View style={styles.characteristic}>
+        <Text style={styles.textWhite}>{title}</Text>
+      </View>
+      <View style={styles.characteristicAnswer}>
+        <Text style={styles.textDarkGrey}>{result}</Text>
+      </View>
+    </View>
+  );
+};
+
 export const Item = ({art}) => {
   const dispatch = useDispatch();
   const donated = useSelector(state => state.museum.donatedArt);
@@ -19,22 +32,8 @@ export const Item = ({art}) => {
           <Image source={{uri: art.variants[0].image}} style={styles.image} />
         </View>
         <View style={styles.rightContainer}>
-          <View style={styles.row}>
-            <View style={styles.characteristicArt}>
-              <Text>Real Title</Text>
-            </View>
-            <View style={styles.characteristicAnswerArt}>
-              <Text>{art.realArtworkTitle}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristicArt}>
-              <Text>Artist</Text>
-            </View>
-            <View style={styles.characteristicAnswerArt}>
-              <Text>{art.artist}</Text>
-            </View>
-          </View>
+          <InfoRow title="Real Title" result={art.realArtworkTitle} />
+          <InfoRow title="Artist" result={art.artist} />
           <Icon
             name={donated.includes(art) ? 'bookmark' : 'bookmark-border'}
             size={30}
