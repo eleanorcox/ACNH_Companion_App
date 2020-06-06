@@ -7,6 +7,7 @@ import {
   WHITE,
   GRAY_DARK,
   HEADER_BLUE_LIGHT,
+  ICON_BLUE_LIGHT,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
 import {
@@ -41,6 +42,12 @@ export default StyleSheet.create({
     backgroundColor: HEADER_BLUE_LIGHT,
     marginVertical: 5,
     borderRadius: 10,
+  },
+
+  controlsContainer: {
+    height: windowHeight,
+    backgroundColor: ICON_BLUE_LIGHT,
+    alignItems: 'center',
   },
 
   villager: {
