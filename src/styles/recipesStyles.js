@@ -7,6 +7,7 @@ import {
   WHITE,
   GRAY_DARK,
   ICON_ORANGE,
+  ICON_ORANGE_LIGHT,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
 import {
@@ -18,6 +19,7 @@ import {
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
+const windowHeight = dimensions.height;
 const cardWidth = 0.9 * windowWidth;
 
 export default StyleSheet.create({
@@ -38,6 +40,12 @@ export default StyleSheet.create({
     backgroundColor: ICON_ORANGE,
     marginVertical: 5,
     borderRadius: 10,
+  },
+
+  controlsContainer: {
+    height: windowHeight,
+    backgroundColor: ICON_ORANGE_LIGHT,
+    alignItems: 'center',
   },
 
   recipe: {
