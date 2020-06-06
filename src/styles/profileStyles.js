@@ -4,8 +4,12 @@ import {
   BEIGE_LIGHT,
   ICON_GREEN,
   BEIGE_DARK,
+  WHITE,
+  GRAY_DARKER,
+  GRAY_DARK,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
+import { FONT_FAMILY, FONT_SIZE_16, FONT_BOLD, FONT_WEIGHT_BOLD, FONT_SIZE_14, FONT_SIZE_18 } from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
@@ -34,6 +38,18 @@ export default StyleSheet.create({
 
   title: {
     textAlign: 'center',
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_18,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
+  },
+
+  title16: {
+    textAlign: 'center',
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
   },
 
   rowContainer: {
@@ -41,6 +57,20 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginTop: 5,
     flex: 1,
+  },
+
+  textWhite: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+  },
+
+  textDarkGrey: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
   },
 
   //   PASSPORT
@@ -51,6 +81,10 @@ export default StyleSheet.create({
     borderRadius: 15,
     marginTop: 5,
     textAlign: 'center',
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
   },
 
   leftContainer: {
@@ -77,8 +111,11 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
     textAlign: 'right',
     width: 50,
-    height: 50,
     marginHorizontal: 5,
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
   },
 
   rightInput: {
@@ -87,6 +124,10 @@ export default StyleSheet.create({
     width: 130,
     backgroundColor: BEIGE_MEDIUM,
     borderRadius: 15,
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
   },
 
   //   RESIDENTS

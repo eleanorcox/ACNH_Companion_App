@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Dimensions} from 'react-native';
+import {FONT_FAMILY, FONT_WEIGHT_BOLD, FONT_SIZE_16} from 'assets/fonts';
+import {GRAY_DARKER} from 'assets/colours';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
@@ -27,5 +29,12 @@ export default StyleSheet.create({
   icon: {
     width: iconSize,
     height: iconSize,
+  },
+
+  text: {
+    fontFamily: FONT_FAMILY,
+    fontWeight: FONT_WEIGHT_BOLD,
+    fontSize: FONT_SIZE_16,
+    color: GRAY_DARKER,
   },
 });

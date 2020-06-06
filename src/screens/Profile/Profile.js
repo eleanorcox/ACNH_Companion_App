@@ -71,10 +71,10 @@ const DisplayBirthdays = ({residents, currentMonth}) => {
       return (
         <View style={styles.birthdayRowContainer}>
           <View style={styles.name}>
-            <Text>{resident.name}</Text>
+            <Text style={styles.textWhite}>{resident.name}</Text>
           </View>
           <View style={styles.birthday}>
-            <Text>{resident.birthday}</Text>
+            <Text style={styles.textDarkGrey}>{resident.birthday}</Text>
           </View>
         </View>
       );
@@ -85,6 +85,24 @@ const DisplayBirthdays = ({residents, currentMonth}) => {
   } else {
     return birthdays;
   }
+};
+
+const ProgressRow = ({title, completed, total}) => {
+  return (
+    <View style={styles.rowContainer}>
+      <View style={styles.progressLeft}>
+        <Text style={styles.textWhite}>{title}</Text>
+      </View>
+      <View style={styles.progressMid}>
+        <Text style={styles.textDarkGrey}>
+          {completed}/{total}
+        </Text>
+      </View>
+      {/* <View style={styles.progressRight}>
+      <Text>Progress Bar</Text>
+    </View> */}
+    </View>
+  );
 };
 
 const Profile = ({navigation}) => {
@@ -150,9 +168,11 @@ const Profile = ({navigation}) => {
           />
 
           {/* Native Fruit */}
+          {/* TODO: Styling of picker items does not allow you to change fontFamily.
+          Figure out workaround for this */}
           <View style={styles.rowContainer}>
             <View style={styles.leftContainer}>
-              <Text>Native Fruit</Text>
+              <Text style={styles.textWhite}>Native Fruit</Text>
             </View>
             <View style={styles.rightContainer}>
               <Image
@@ -163,6 +183,7 @@ const Profile = ({navigation}) => {
                 <Picker
                   selectedValue={nativeFruit}
                   mode={'dropdown'}
+                  style={styles.textDarkGrey}
                   onValueChange={value => {
                     dispatch(updateNativeFruit(value));
                   }}>
@@ -179,13 +200,14 @@ const Profile = ({navigation}) => {
           {/* Hemisphere */}
           <View style={styles.rowContainer}>
             <View style={styles.leftContainer}>
-              <Text>Hemisphere</Text>
+              <Text style={styles.textWhite}>Hemisphere</Text>
             </View>
             <View style={styles.rightContainer}>
               <Image source={hemisphereImage} style={styles.pickerImage} />
               <View style={styles.rightInput}>
                 <Picker
                   selectedValue={hemisphere}
+                  style={styles.textDarkGrey}
                   mode={'dropdown'}
                   onValueChange={value => {
                     dispatch(updateHemisphere(value));
@@ -200,7 +222,7 @@ const Profile = ({navigation}) => {
           {/* Friend Code */}
           <View style={styles.rowContainer}>
             <View style={styles.leftContainer}>
-              <Text>Switch Code </Text>
+              <Text style={styles.textWhite}>Switch Code </Text>
             </View>
             <View style={styles.rightContainer}>
               <Text style={styles.switchCodeSW}>SW-</Text>
@@ -227,7 +249,7 @@ const Profile = ({navigation}) => {
           </View>
           {residents.length > 0 && (
             <View>
-              <Text style={styles.title}>Upcoming Birthdays</Text>
+              <Text style={styles.title16}>Upcoming Birthdays</Text>
               <DisplayBirthdays
                 residents={residents}
                 currentMonth={currentMonth}
@@ -239,62 +261,34 @@ const Profile = ({navigation}) => {
         {/* Progress */}
         <View style={styles.card}>
           <Text style={styles.title}>Museum Progress</Text>
-          <View style={styles.rowContainer}>
-            <View style={styles.progressLeft}>
-              <Text>Bugs</Text>
-            </View>
-            <View style={styles.progressMid}>
-              <Text>
-                {donatedBugs.length}/{totalBugs}
-              </Text>
-            </View>
-            {/* <View style={styles.progressRight}>
-              <Text>Progress Bar</Text>
-            </View> */}
-          </View>
-          <View style={styles.rowContainer}>
-            <View style={styles.progressLeft}>
-              <Text>Fish</Text>
-            </View>
-            <View style={styles.progressMid}>
-              <Text>
-                {donatedFish.length}/{totalFish}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.rowContainer}>
-            <View style={styles.progressLeft}>
-              <Text>Fossils</Text>
-            </View>
-            <View style={styles.progressMid}>
-              <Text>
-                {donatedFossils.length}/{totalFossils}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.rowContainer}>
-            <View style={styles.progressLeft}>
-              <Text>Art</Text>
-            </View>
-            <View style={styles.progressMid}>
-              <Text>
-                {donatedArt.length}/{totalArt}
-              </Text>
-            </View>
-          </View>
+          <ProgressRow
+            title="Bugs"
+            completed={donatedBugs.length}
+            total={totalBugs}
+          />
+          <ProgressRow
+            title="Fish"
+            completed={donatedFish.length}
+            total={totalFish}
+          />
+          <ProgressRow
+            title="Fossils"
+            completed={donatedFossils.length}
+            total={totalFossils}
+          />
+          <ProgressRow
+            title="Art"
+            completed={donatedArt.length}
+            total={totalArt}
+          />
         </View>
         <View style={styles.card}>
           <Text style={styles.title}>Collections Progress</Text>
-          <View style={styles.rowContainer}>
-            <View style={styles.progressLeft}>
-              <Text>Recipes</Text>
-            </View>
-            <View style={styles.progressMid}>
-              <Text>
-                {learnedRecipes.length}/{totalRecipes}
-              </Text>
-            </View>
-          </View>
+          <ProgressRow
+            title="Recipes"
+            completed={learnedRecipes.length}
+            total={totalRecipes}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={profileIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Profile</Text>
+        <Text style={styles.text}>Profile</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -33,7 +33,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={villagersIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Villagers</Text>
+        <Text style={styles.text}>Villagers</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -43,7 +43,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={crittersIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Critters</Text>
+        <Text style={styles.text}>Critters</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -53,7 +53,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={museumIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Museum</Text>
+        <Text style={styles.text}>Museum</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -63,7 +63,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={recipesIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Recipes</Text>
+        <Text style={styles.text}>Recipes</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -73,7 +73,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={catalogueIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Items</Text>
+        <Text style={styles.text}>Items</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -83,7 +83,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={todoIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Daily Checklist</Text>
+        <Text style={styles.text}>Daily Checklist</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -93,7 +93,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={stalksIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Stalk Market</Text>
+        <Text style={styles.text}>Stalk Market</Text>
       </View>
 
       <View style={styles.iconContainer}>
@@ -103,7 +103,7 @@ const Home = ({navigation}) => {
           }}>
           <Image source={guidesIcon} style={styles.icon} />
         </TouchableOpacity>
-        <Text>Guides</Text>
+        <Text style={styles.text}>Guides</Text>
       </View>
     </View>
   );
