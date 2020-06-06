@@ -1,11 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {
-  ICON_YELLOW,
   BEIGE_LIGHT,
   BEIGE_MEDIUM,
   BEIGE_DARK,
   ICON_YELLOW_DARK,
-  HEADER_TAB_YELLOW_DARK,
   GRAY_DARKER,
   WHITE,
   GRAY_DARK,
@@ -141,5 +139,10 @@ export default StyleSheet.create({
   icon: {
     alignItems: 'center',
     flex: 1,
+  },
+
+  iconRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 });

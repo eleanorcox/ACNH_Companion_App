@@ -54,26 +54,32 @@ export const Item = ({bug}) => {
 
       <View style={styles.row}>
         <View style={styles.icon}>
-          <Icon
-            name={caught.includes(bug) ? 'star' : 'star-border'}
-            size={30}
-            onPress={() => {
-              caught.includes(bug)
-                ? dispatch(removeCaughtBug(bug))
-                : dispatch(addCaughtBug(bug));
-            }}
-          />
+          <View style={styles.iconRow}>
+            <Text style={styles.textDarkGrey}>Caught </Text>
+            <Icon
+              name={caught.includes(bug) ? 'star' : 'star-border'}
+              size={30}
+              onPress={() => {
+                caught.includes(bug)
+                  ? dispatch(removeCaughtBug(bug))
+                  : dispatch(addCaughtBug(bug));
+              }}
+            />
+          </View>
         </View>
         <View style={styles.icon}>
-          <Icon
-            name={donated.includes(bug) ? 'bookmark' : 'bookmark-border'}
-            size={30}
-            onPress={() => {
-              donated.includes(bug)
-                ? dispatch(removeDonatedBug(bug))
-                : dispatch(addDonatedBug(bug));
-            }}
-          />
+          <View style={styles.iconRow}>
+            <Text style={styles.textDarkGrey}>Donated </Text>
+            <Icon
+              name={donated.includes(bug) ? 'bookmark' : 'bookmark-border'}
+              size={30}
+              onPress={() => {
+                donated.includes(bug)
+                  ? dispatch(removeDonatedBug(bug))
+                  : dispatch(addDonatedBug(bug));
+              }}
+            />
+          </View>
         </View>
       </View>
     </View>

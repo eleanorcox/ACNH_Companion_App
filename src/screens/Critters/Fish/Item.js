@@ -54,26 +54,32 @@ export const Item = ({fish}) => {
 
       <View style={styles.row}>
         <View style={styles.icon}>
-          <Icon
-            name={caught.includes(fish) ? 'star' : 'star-border'}
-            size={30}
-            onPress={() => {
-              caught.includes(fish)
-                ? dispatch(removeCaughtFish(fish))
-                : dispatch(addCaughtFish(fish));
-            }}
-          />
+          <View style={styles.iconRow}>
+            <Text style={styles.textDarkGrey}>Caught </Text>
+            <Icon
+              name={caught.includes(fish) ? 'star' : 'star-border'}
+              size={30}
+              onPress={() => {
+                caught.includes(fish)
+                  ? dispatch(removeCaughtFish(fish))
+                  : dispatch(addCaughtFish(fish));
+              }}
+            />
+          </View>
         </View>
         <View style={styles.icon}>
-          <Icon
-            name={donated.includes(fish) ? 'bookmark' : 'bookmark-border'}
-            size={30}
-            onPress={() => {
-              donated.includes(fish)
-                ? dispatch(removeDonatedFish(fish))
-                : dispatch(addDonatedFish(fish));
-            }}
-          />
+          <View style={styles.iconRow}>
+            <Text style={styles.textDarkGrey}>Donated </Text>
+            <Icon
+              name={donated.includes(fish) ? 'bookmark' : 'bookmark-border'}
+              size={30}
+              onPress={() => {
+                donated.includes(fish)
+                  ? dispatch(removeDonatedFish(fish))
+                  : dispatch(addDonatedFish(fish));
+              }}
+            />
+          </View>
         </View>
       </View>
     </View>
