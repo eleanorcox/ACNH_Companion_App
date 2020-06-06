@@ -71,6 +71,7 @@ export default StyleSheet.create({
     fontSize: FONT_SIZE_16,
     fontWeight: FONT_WEIGHT_BOLD,
     color: WHITE,
+    textAlign: 'center',
   },
 
   textDarkGrey: {
@@ -78,6 +79,7 @@ export default StyleSheet.create({
     fontSize: FONT_SIZE_16,
     fontWeight: FONT_WEIGHT_BOLD,
     color: GRAY_DARK,
+    textAlign: 'center',
   },
 
   leftContainer: {
@@ -92,8 +94,8 @@ export default StyleSheet.create({
   },
 
   image: {
-    width: 128,
-    height: 128,
+    width: 120,
+    height: 120,
     backgroundColor: BEIGE_MEDIUM,
     borderRadius: 100,
   },
@@ -102,7 +104,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: BEIGE_DARK,
     borderRadius: 10,
-    height: 30,
+    // height: 30,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 1,
@@ -113,7 +115,7 @@ export default StyleSheet.create({
     margin: 1,
     backgroundColor: BEIGE_MEDIUM,
     borderRadius: 10,
-    height: 30,
+    // height: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
