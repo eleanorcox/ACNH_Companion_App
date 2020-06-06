@@ -45,7 +45,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: HEADER_YELLOW_DARK,
-    marginTop: 5,
+    marginVertical: 4,
     borderRadius: 10,
   },
 
