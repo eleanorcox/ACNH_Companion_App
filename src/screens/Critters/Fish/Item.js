@@ -14,6 +14,19 @@ import styles from 'styles/crittersStyles';
 import {getActiveMonthsStr} from 'utils/getActiveMonthsStr';
 import {getActiveHoursStr} from 'utils/getActiveHoursStr';
 
+const InfoRow = ({title, result}) => {
+  return (
+    <View style={styles.row}>
+      <View style={styles.characteristic}>
+        <Text style={styles.textWhite}>{title}</Text>
+      </View>
+      <View style={styles.characteristicAnswer}>
+        <Text style={styles.textDarkGrey}>{result}</Text>
+      </View>
+    </View>
+  );
+};
+
 export const Item = ({fish}) => {
   const hemisphere = useSelector(state => state.profile.hemisphere);
   const activeMonths = fish.activeMonths[hemisphere];
@@ -31,46 +44,11 @@ export const Item = ({fish}) => {
           <Image source={{uri: fish.iconImage}} style={styles.image} />
         </View>
         <View style={styles.rightContainer}>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Sell</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{fish.sell}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Location</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{fish.whereHow}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Shadow</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{fish.shadow}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Active Months</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{activeMonthsStr}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Active Hours</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{activeHoursStr}</Text>
-            </View>
-          </View>
+          <InfoRow title="Sell" result={fish.sell} />
+          <InfoRow title="Location" result={fish.whereHow} />
+          <InfoRow title="Shadow" result={fish.shadow} />
+          <InfoRow title="Active Months" result={activeMonthsStr} />
+          <InfoRow title="Active Hours" result={activeHoursStr} />
         </View>
       </View>
 

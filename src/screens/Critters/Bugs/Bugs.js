@@ -88,7 +88,7 @@ const Bugs = ({navigation}) => {
             toggleModal(false);
           }}
           style={styles.controlButton}>
-          <Text>Close Controls</Text>
+          <Text style={styles.textWhite}>Close Controls</Text>
         </TouchableOpacity>
       </Modal>
       <TouchableOpacity
@@ -96,7 +96,7 @@ const Bugs = ({navigation}) => {
           toggleModal(true);
         }}
         style={styles.controlButton}>
-        <Text>Open Controls</Text>
+        <Text style={styles.textWhite}>Open Controls</Text>
       </TouchableOpacity>
       <FlatList
         data={bugsToDisplay}

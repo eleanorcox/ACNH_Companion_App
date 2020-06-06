@@ -24,7 +24,7 @@ export const getActiveMonthsStr = activeMonths => {
       const name = monthsNames[range[j]];
       range[j] = name;
     }
-    const rangeStr = range.toString().replace(/,/g, '-');
+    const rangeStr = range.toString().replace(/,/g, ' - ');
     if (i !== monthsRanges.length - 1) {
       activeMonthsStr = activeMonthsStr.concat(rangeStr + ', ');
     } else {
@@ -32,7 +32,7 @@ export const getActiveMonthsStr = activeMonths => {
     }
   }
 
-  if (activeMonthsStr === 'January-December') {
+  if (activeMonthsStr === 'January - December') {
     activeMonthsStr = 'All Year';
   }
   return activeMonthsStr;

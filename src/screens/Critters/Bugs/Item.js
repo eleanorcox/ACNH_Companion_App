@@ -14,6 +14,19 @@ import styles from 'styles/crittersStyles';
 import {getActiveMonthsStr} from 'utils/getActiveMonthsStr';
 import {getActiveHoursStr} from 'utils/getActiveHoursStr';
 
+const InfoRow = ({title, result}) => {
+  return (
+    <View style={styles.row}>
+      <View style={styles.characteristic}>
+        <Text style={styles.textWhite}>{title}</Text>
+      </View>
+      <View style={styles.characteristicAnswer}>
+        <Text style={styles.textDarkGrey}>{result}</Text>
+      </View>
+    </View>
+  );
+};
+
 export const Item = ({bug}) => {
   const hemisphere = useSelector(state => state.profile.hemisphere);
   const activeMonths = bug.activeMonths[hemisphere];
@@ -31,46 +44,11 @@ export const Item = ({bug}) => {
           <Image source={{uri: bug.iconImage}} style={styles.image} />
         </View>
         <View style={styles.rightContainer}>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Sell</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{bug.sell}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Location</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{bug.whereHow}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Weather</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{bug.weather}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Active Months</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{activeMonthsStr}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Active Hours</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{activeHoursStr}</Text>
-            </View>
-          </View>
+          <InfoRow title="Sell" result={bug.sell} />
+          <InfoRow title="Location" result={bug.whereHow} />
+          <InfoRow title="Weather" result={bug.weather} />
+          <InfoRow title="Active Months" result={activeMonthsStr} />
+          <InfoRow title="Active Hours" result={activeHoursStr} />
         </View>
       </View>
 
