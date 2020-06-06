@@ -40,12 +40,18 @@ const styles = StyleSheet.create({
     backgroundColor: BEIGE_LIGHT,
     padding: 5,
     borderRadius: 10,
+    marginVertical: 3,
+    width: 120,
+    justifyContent: 'center',
   },
 
   buttonPressed: {
     backgroundColor: BEIGE_DARK,
     padding: 5,
     borderRadius: 10,
+    marginVertical: 3,
+    width: 120,
+    justifyContent: 'center',
   },
 
   textPressed: {

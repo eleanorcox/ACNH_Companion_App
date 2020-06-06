@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
 import {StyleSheet} from 'react-native';
@@ -8,6 +8,8 @@ import FilterButtons from './FilterButtons';
 import {updateFilters} from 'utils/updateFilters';
 import SortButtons from './SortButtons';
 import {updateSortAsc} from 'utils/updateSortAsc';
+import {BEIGE_LIGHT, WHITE} from 'assets/colours';
+import {FONT_FAMILY, FONT_WEIGHT_BOLD, FONT_SIZE_20} from 'assets/fonts';
 
 const ListControls = ({
   listControls,
@@ -56,11 +58,13 @@ const ListControls = ({
 
   return (
     <View style={styles.listControls}>
+      <Text style={styles.text}>Filters</Text>
       <FilterButtons
         filterOptions={filterOptions}
         changeFilter={handleChangeFilter}
         currentFilters={listControls.filters}
       />
+      <Text style={styles.text}>Sort By</Text>
       <SortButtons
         sortOptions={sortOptions}
         changeSort={handleChangeSort}
@@ -71,8 +75,8 @@ const ListControls = ({
         placeholder="Search..."
         lightTheme
         round
-        style={styles.search}
         containerStyle={styles.searchContainer}
+        inputContainerStyle={styles.searchInput}
         onChangeText={text => searchFilterFunction(text)}
         autoCorrect={false}
         value={query}
@@ -86,15 +90,28 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
-  searchContainer: {
-    width: '100%',
-    backgroundColor: 'white',
-    borderWidth: 0, //no effect
-    shadowColor: 'white', //no effect
+  text: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_20,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+    textAlign: 'center',
+    marginVertical: 8,
   },
 
   search: {
     width: '100%',
+  },
+
+  searchContainer: {
+    width: '100%',
+    backgroundColor: BEIGE_LIGHT,
+    borderRadius: 20,
+    marginVertical: 8,
+  },
+
+  searchInput: {
+    backgroundColor: BEIGE_LIGHT,
   },
 });
 
