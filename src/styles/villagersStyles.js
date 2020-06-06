@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {BEIGE_LIGHT, BEIGE_DARK, BEIGE_MEDIUM, ICON_BLUE} from 'assets/colours';
+import {BEIGE_LIGHT, BEIGE_DARK, BEIGE_MEDIUM, ICON_BLUE, GRAY_DARKER, WHITE, GRAY_DARK, HEADER_BLUE, HEADER_BLUE_LIGHT} from 'assets/colours';
 import {Dimensions} from 'react-native';
+import { FONT_FAMILY, FONT_SIZE_18, FONT_WEIGHT_BOLD, FONT_SIZE_16 } from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
@@ -24,8 +25,8 @@ export default StyleSheet.create({
     width: 150,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: ICON_BLUE,
-    marginTop: 5,
+    backgroundColor: HEADER_BLUE_LIGHT,
+    marginVertical: 5,
     borderRadius: 10,
   },
 
@@ -40,6 +41,24 @@ export default StyleSheet.create({
 
   name: {
     marginBottom: 4,
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_18,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
+  },
+
+  textWhite: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+  },
+
+  textDarkGrey: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
   },
 
   leftContainer: {
@@ -104,6 +123,16 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
+  },
+
+  closeModal: {
+    height: 30,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: HEADER_BLUE_LIGHT,
+    marginTop: 5,
+    borderRadius: 10,
   },
 
   poster: {

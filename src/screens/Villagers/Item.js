@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Button, Modal} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -13,6 +13,19 @@ import {
 
 import styles from 'styles/villagersStyles';
 const items = require('@nooksbazaar/acdb/items.json');
+
+const InfoRow = ({title, result}) => {
+  return (
+    <View style={styles.row}>
+      <View style={styles.characteristic}>
+        <Text style={styles.textWhite}>{title}</Text>
+      </View>
+      <View style={styles.characteristicAnswer}>
+        <Text style={styles.textDarkGrey}>{result}</Text>
+      </View>
+    </View>
+  );
+};
 
 export const Item = ({villager}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -38,38 +51,10 @@ export const Item = ({villager}) => {
           <Image source={{uri: villager.iconImage}} style={styles.image} />
         </View>
         <View style={styles.rightContainer}>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Species</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{villager.species}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Gender</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{villager.gender}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Personality</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{villager.personality}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.characteristic}>
-              <Text>Birthday</Text>
-            </View>
-            <View style={styles.characteristicAnswer}>
-              <Text>{villager.birthday}</Text>
-            </View>
-          </View>
+          <InfoRow title="Species" result={villager.species} />
+          <InfoRow title="Gender" result={villager.gender} />
+          <InfoRow title="Personality" result={villager.personality} />
+          <InfoRow title="Birthday" result={villager.birthday} />
         </View>
       </View>
 
@@ -111,40 +96,34 @@ export const Item = ({villager}) => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Image source={{uri: villagerPosterImage}} style={styles.poster} />
+            <InfoRow title="Species" result={villager.catchphrase} />
             <View style={styles.row}>
               <View style={styles.characteristic}>
-                <Text>Catchphrase</Text>
+                <Text style={styles.textWhite}>Favourite Colours</Text>
               </View>
               <View style={styles.characteristicAnswer}>
-                <Text>{villager.catchphrase}</Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.characteristic}>
-                <Text>Favourite Colours</Text>
-              </View>
-              <View style={styles.characteristicAnswer}>
-                <Text>
+                <Text style={styles.textDarkGrey}>
                   {villager.colors[0]}, {villager.colors[1]}
                 </Text>
               </View>
             </View>
             <View style={styles.row}>
               <View style={styles.characteristic}>
-                <Text>Favourite Styles</Text>
+                <Text style={styles.textWhite}>Favourite Styles</Text>
               </View>
               <View style={styles.characteristicAnswer}>
-                <Text>
+                <Text style={styles.textDarkGrey}>
                   {villager.styles[0]}, {villager.styles[1]}
                 </Text>
               </View>
             </View>
-            <Button
-              title={'Close'}
+            <TouchableOpacity
               onPress={() => {
                 toggleModal(false);
               }}
-            />
+              style={styles.closeModal}>
+              <Text style={styles.textWhite}>Close</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>

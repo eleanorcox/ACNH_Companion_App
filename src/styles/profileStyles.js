@@ -2,14 +2,18 @@ import {StyleSheet} from 'react-native';
 import {
   BEIGE_MEDIUM,
   BEIGE_LIGHT,
-  ICON_GREEN,
   BEIGE_DARK,
   WHITE,
   GRAY_DARKER,
   GRAY_DARK,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
-import { FONT_FAMILY, FONT_SIZE_16, FONT_BOLD, FONT_WEIGHT_BOLD, FONT_SIZE_14, FONT_SIZE_18 } from 'assets/fonts';
+import {
+  FONT_FAMILY,
+  FONT_SIZE_16,
+  FONT_WEIGHT_BOLD,
+  FONT_SIZE_18,
+} from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
