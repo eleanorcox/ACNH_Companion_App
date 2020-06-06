@@ -88,6 +88,7 @@ export default StyleSheet.create({
     fontSize: FONT_SIZE_16,
     fontWeight: FONT_WEIGHT_BOLD,
     color: WHITE,
+    textAlign: 'center',
   },
 
   textDarkGrey: {
