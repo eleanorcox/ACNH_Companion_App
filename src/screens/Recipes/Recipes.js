@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Button, FlatList, Modal} from 'react-native';
+import {View, TouchableOpacity, Text, FlatList, Modal} from 'react-native';
 
 import {useSelector} from 'react-redux';
 
@@ -74,19 +74,21 @@ const Recipes = () => {
           filterOptions={filterOptions}
           sortOptions={sortOptions}
         />
-        <Button
-          title={'Close Controls'}
+        <TouchableOpacity
           onPress={() => {
             toggleModal(false);
           }}
-        />
+          style={styles.controlButton}>
+          <Text>Close Controls</Text>
+        </TouchableOpacity>
       </Modal>
-      <Button
-        title={'Open Controls'}
+      <TouchableOpacity
         onPress={() => {
           toggleModal(true);
         }}
-      />
+        style={styles.controlButton}>
+        <Text>Open Controls</Text>
+      </TouchableOpacity>
       <FlatList
         data={recipesToDisplay}
         renderItem={({item}) => <Item recipe={item} />}

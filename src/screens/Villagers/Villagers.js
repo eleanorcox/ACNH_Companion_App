@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Button,
-  FlatList,
-  Modal,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import {View, FlatList, Modal, TouchableOpacity, Text} from 'react-native';
 
 import {useSelector} from 'react-redux';
 

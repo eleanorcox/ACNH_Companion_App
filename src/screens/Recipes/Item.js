@@ -30,31 +30,64 @@ export const Item = ({recipe}) => {
 
   return (
     <View style={styles.recipe}>
-      <Text>Name: {recipe.name}</Text>
-      <Text>Sources: {recipeSources}</Text>
-      {recipeHasSourceNotes && <Text>Notes: {recipe.sourceNotes}</Text>}
-      <Text>Category: {recipe.category}</Text>
-      <Text>Materials: {recipeMaterialsStr}</Text>
-
-      <View style={styles.buttons}>
-        <Icon
-          name={favourites.includes(recipe) ? 'star' : 'star-border'}
-          size={30}
-          onPress={() => {
-            favourites.includes(recipe)
-              ? dispatch(removeFavouriteRecipe(recipe))
-              : dispatch(addFavouriteRecipe(recipe));
-          }}
-        />
-        <Icon
-          name={learned.includes(recipe) ? 'bookmark' : 'bookmark-border'}
-          size={30}
-          onPress={() => {
-            learned.includes(recipe)
-              ? dispatch(removeLearnedRecipe(recipe))
-              : dispatch(addLearnedRecipe(recipe));
-          }}
-        />
+      <Text style={styles.name}>{recipe.name}</Text>
+      <View style={styles.row}>
+        <View style={styles.characteristic}>
+          <Text>Sources</Text>
+        </View>
+        <View style={styles.characteristicAnswer}>
+          <Text>{recipeSources}</Text>
+        </View>
+      </View>
+      {recipeHasSourceNotes && (
+        <View style={styles.row}>
+          <View style={styles.characteristic}>
+            <Text>Notes</Text>
+          </View>
+          <View style={styles.characteristicAnswer}>
+            <Text>{recipe.sourceNotes}</Text>
+          </View>
+        </View>
+      )}
+      <View style={styles.row}>
+        <View style={styles.characteristic}>
+          <Text>Category</Text>
+        </View>
+        <View style={styles.characteristicAnswer}>
+          <Text>{recipe.category}</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.characteristic}>
+          <Text>Materials</Text>
+        </View>
+        <View style={styles.characteristicAnswer}>
+          <Text>{recipeMaterialsStr}</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon
+            name={favourites.includes(recipe) ? 'star' : 'star-border'}
+            size={30}
+            onPress={() => {
+              favourites.includes(recipe)
+                ? dispatch(removeFavouriteRecipe(recipe))
+                : dispatch(addFavouriteRecipe(recipe));
+            }}
+          />
+        </View>
+        <View style={styles.icon}>
+          <Icon
+            name={learned.includes(recipe) ? 'bookmark' : 'bookmark-border'}
+            size={30}
+            onPress={() => {
+              learned.includes(recipe)
+                ? dispatch(removeLearnedRecipe(recipe))
+                : dispatch(addLearnedRecipe(recipe));
+            }}
+          />
+        </View>
       </View>
     </View>
   );
