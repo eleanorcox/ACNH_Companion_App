@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {StyleSheet} from 'react-native';
-import {BEIGE_LIGHT, BEIGE_DARK, WHITE, GRAY_DARKER} from 'assets/colours';
+import {BEIGE_LIGHT, GRAY_DARKER} from 'assets/colours';
 import {FONT_FAMILY, FONT_SIZE_16, FONT_WEIGHT_BOLD} from 'assets/fonts';
 
 const SortButtons = ({
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
 
   buttonPressed: {
-    backgroundColor: BEIGE_DARK,
+    backgroundColor: GRAY_DARKER,
     padding: 5,
     borderRadius: 10,
     marginVertical: 3,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY,
     fontSize: FONT_SIZE_16,
     fontWeight: FONT_WEIGHT_BOLD,
-    color: WHITE,
+    color: BEIGE_LIGHT,
     textAlign: 'center',
   },
 
