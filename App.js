@@ -32,7 +32,7 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              headerStyle: styles.headerBackground,
+              headerStyle: styles.green,
               headerTintColor: '#fff',
               headerTitleAlign: 'center',
               cardStyle: styles.screenBackground,
@@ -43,7 +43,7 @@ const App = () => {
               name="Profile"
               component={Profile}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerGreen,
                 cardStyle: styles.green,
               }}
             />
@@ -51,7 +51,7 @@ const App = () => {
               name="Critters"
               component={Critters}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerDarkYellow,
                 cardStyle: styles.darkYellow,
               }}
             />
@@ -59,7 +59,7 @@ const App = () => {
               name="Museum"
               component={Museum}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerPink,
                 cardStyle: styles.pink,
               }}
             />
@@ -67,7 +67,7 @@ const App = () => {
               name="Items"
               component={Items}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerYellow,
                 cardStyle: styles.yellow,
               }}
             />
@@ -75,7 +75,7 @@ const App = () => {
               name="Stalks"
               component={Stalks}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerChartreuse,
                 cardStyle: styles.chartreuse,
               }}
             />
@@ -83,7 +83,7 @@ const App = () => {
               name="Todo"
               component={Todo}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerBlue,
                 cardStyle: styles.blue,
               }}
             />
@@ -91,7 +91,7 @@ const App = () => {
               name="Guides"
               component={Guides}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerPurple,
                 cardStyle: styles.purple,
               }}
             />
@@ -99,7 +99,7 @@ const App = () => {
               name="Recipes"
               component={Recipes}
               options={{
-                // headerStyle: styles.blue,
+                headerStyle: styles.headerOrange,
                 cardStyle: styles.orange,
               }}
             />
@@ -107,7 +107,7 @@ const App = () => {
               name="Villagers"
               component={Villagers}
               options={{
-                headerStyle: styles.blue,
+                headerStyle: styles.headerLightBlue,
                 cardStyle: styles.lightBlue,
               }}
             />

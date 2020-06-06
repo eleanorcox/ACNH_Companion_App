@@ -6,14 +6,12 @@ export const GRAY_DARK = '#8a8a8a';
 export const BLACK = '#000000';
 
 // BEIGESCALE
-export const BEIGE_LIGHT = '#faf1e3';
-export const BEIGE_MEDIUM = '#e8e0c3';
-export const BEIGE_DARK = '#b8ac8a';
-
-// GREENSCALE
-export const GREEN_LIGHT = '#98d3c5';
-export const GREEN_MEDIUM = '#4fbaa0';
-export const GREEN_DARK = '#119a76';
+// export const BEIGE_LIGHT = '#faf1e3';
+// export const BEIGE_MEDIUM = '#e8e0c3';
+// export const BEIGE_DARK = '#b8ac8a';
+export const BEIGE_LIGHT = '#fff6de';
+export const BEIGE_MEDIUM = '#fbe3a7';
+export const BEIGE_DARK = '#efc583';
 
 // NOOKPHONE IN-GAME UI COLOURS
 export const PHONE_BACKGROUND = '#f4f2e3';
@@ -30,3 +28,15 @@ export const ICON_ORANGE_LIGHT = '#f8c07f'; //Best Friends
 export const ICON_ORANGE = '#e59366'; //DIY
 export const ICON_RED = '#ed686e'; //Rescue Service
 export const ICON_PINK = '#f09db2'; //Custom Designs
+
+// Screen Headers
+export const HEADER_PURPLE = '#9734ef';
+export const HEADER_BLUE = '#4e5dec';
+export const HEADER_BLUE_LIGHT = '#00beda';
+export const HEADER_GREEN = '#49a849';
+export const HEADER_CHARTREUSE = '#a7b32a';
+export const HEADER_YELLOW = '#edd531';
+export const HEADER_YELLOW_DARK = '#fabd34';
+export const HEADER_PINK = '#f06d8e';
+
+export const HEADER_TAB_YELLOW_DARK = '#fac246';

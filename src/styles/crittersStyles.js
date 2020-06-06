@@ -5,6 +5,7 @@ import {
   BEIGE_MEDIUM,
   BEIGE_DARK,
   ICON_YELLOW_DARK,
+  HEADER_TAB_YELLOW_DARK,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
 
@@ -13,6 +14,11 @@ const windowWidth = dimensions.width;
 const cardWidth = 0.9 * windowWidth;
 
 export default StyleSheet.create({
+  tabs: {
+    // : HEADER_TAB_YELLOW_DARK,
+    backgroundColor: HEADER_TAB_YELLOW_DARK,
+  },
+
   view: {
     flex: 1,
     justifyContent: 'center',
