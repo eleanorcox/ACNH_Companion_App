@@ -1,6 +1,8 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
+import {BEIGE_LIGHT, BEIGE_DARK, WHITE, GRAY_DARKER} from 'assets/colours';
+import {FONT_FAMILY, FONT_SIZE_16, FONT_WEIGHT_BOLD} from 'assets/fonts';
 
 const FilterButtonsByType = ({
   filterType,
@@ -24,7 +26,9 @@ const FilterButtonsByType = ({
           changeFilter([filterType, filter]);
         }}
         style={pressed ? styles.buttonPressed : styles.buttonUnpressed}>
-        <Text>{filter}</Text>
+        <Text style={pressed ? styles.textPressed : styles.textUnpressed}>
+          {filter}
+        </Text>
       </TouchableOpacity>
     );
   });
@@ -33,15 +37,31 @@ const FilterButtonsByType = ({
 
 const styles = StyleSheet.create({
   buttonUnpressed: {
-    // alignSelf: 'center',
-    borderColor: '#000066',
-    backgroundColor: 'blue',
+    backgroundColor: BEIGE_LIGHT,
+    padding: 5,
+    borderRadius: 10,
   },
 
   buttonPressed: {
-    // alignSelf: 'center',
-    borderColor: '#000066',
-    backgroundColor: 'pink',
+    backgroundColor: BEIGE_DARK,
+    padding: 5,
+    borderRadius: 10,
+  },
+
+  textPressed: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+    textAlign: 'center',
+  },
+
+  textUnpressed: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
+    textAlign: 'center',
   },
 });
 

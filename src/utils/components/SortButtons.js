@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {StyleSheet} from 'react-native';
+import {BEIGE_LIGHT, BEIGE_DARK, WHITE, GRAY_DARKER} from 'assets/colours';
+import {FONT_FAMILY, FONT_SIZE_16, FONT_WEIGHT_BOLD} from 'assets/fonts';
 
 const SortButtons = ({
   sortOptions,
@@ -22,12 +24,23 @@ const SortButtons = ({
                 ? styles.buttonPressed
                 : styles.buttonUnpressed
             }>
-            <Text>{sortByOpt}</Text>
-            {sortByOpt === currentSortBy && (
-              <Icon
-                name={currentSortAsc === 1 ? 'expand-more' : 'expand-less'}
-              />
-            )}
+            <View style={styles.buttons}>
+              <Text
+                style={
+                  sortByOpt === currentSortBy
+                    ? styles.textPressed
+                    : styles.textUnpressed
+                }>
+                {sortByOpt}
+              </Text>
+              <Text> </Text>
+              {sortByOpt === currentSortBy && (
+                <Icon
+                  size={20}
+                  name={currentSortAsc === 1 ? 'expand-more' : 'expand-less'}
+                />
+              )}
+            </View>
           </TouchableOpacity>
         );
       })}
@@ -39,19 +52,36 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    alignItems: 'center',
     flexWrap: 'wrap',
   },
 
   buttonUnpressed: {
-    // alignSelf: 'center',
-    borderColor: '#000066',
-    backgroundColor: 'blue',
+    backgroundColor: BEIGE_LIGHT,
+    padding: 5,
+    borderRadius: 10,
   },
 
   buttonPressed: {
-    // alignSelf: 'center',
-    borderColor: '#000066',
-    backgroundColor: 'pink',
+    backgroundColor: BEIGE_DARK,
+    padding: 5,
+    borderRadius: 10,
+  },
+
+  textPressed: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+    textAlign: 'center',
+  },
+
+  textUnpressed: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
+    textAlign: 'center',
   },
 });
 
