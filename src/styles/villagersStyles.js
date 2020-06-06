@@ -1,7 +1,20 @@
 import {StyleSheet} from 'react-native';
-import {BEIGE_LIGHT, BEIGE_DARK, BEIGE_MEDIUM, ICON_BLUE, GRAY_DARKER, WHITE, GRAY_DARK, HEADER_BLUE, HEADER_BLUE_LIGHT} from 'assets/colours';
+import {
+  BEIGE_LIGHT,
+  BEIGE_DARK,
+  BEIGE_MEDIUM,
+  GRAY_DARKER,
+  WHITE,
+  GRAY_DARK,
+  HEADER_BLUE_LIGHT,
+} from 'assets/colours';
 import {Dimensions} from 'react-native';
-import { FONT_FAMILY, FONT_SIZE_18, FONT_WEIGHT_BOLD, FONT_SIZE_16 } from 'assets/fonts';
+import {
+  FONT_FAMILY,
+  FONT_SIZE_18,
+  FONT_WEIGHT_BOLD,
+  FONT_SIZE_16,
+} from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;

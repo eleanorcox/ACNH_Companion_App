@@ -79,7 +79,7 @@ const Recipes = () => {
             toggleModal(false);
           }}
           style={styles.controlButton}>
-          <Text>Close Controls</Text>
+          <Text style={styles.textWhite}>Close Controls</Text>
         </TouchableOpacity>
       </Modal>
       <TouchableOpacity
@@ -87,7 +87,7 @@ const Recipes = () => {
           toggleModal(true);
         }}
         style={styles.controlButton}>
-        <Text>Open Controls</Text>
+        <Text style={styles.textWhite}>Open Controls</Text>
       </TouchableOpacity>
       <FlatList
         data={recipesToDisplay}

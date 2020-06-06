@@ -12,6 +12,19 @@ import {
 
 import styles from 'styles/recipesStyles';
 
+const InfoRow = ({title, result}) => {
+  return (
+    <View style={styles.row}>
+      <View style={styles.characteristic}>
+        <Text style={styles.textWhite}>{title}</Text>
+      </View>
+      <View style={styles.characteristicAnswer}>
+        <Text style={styles.textDarkGrey}>{result}</Text>
+      </View>
+    </View>
+  );
+};
+
 export const Item = ({recipe}) => {
   const dispatch = useDispatch();
   const learned = useSelector(state => state.recipes.learnedRecipes);
@@ -31,40 +44,13 @@ export const Item = ({recipe}) => {
   return (
     <View style={styles.recipe}>
       <Text style={styles.name}>{recipe.name}</Text>
-      <View style={styles.row}>
-        <View style={styles.characteristic}>
-          <Text>Sources</Text>
-        </View>
-        <View style={styles.characteristicAnswer}>
-          <Text>{recipeSources}</Text>
-        </View>
-      </View>
+      <InfoRow title="Sources" result={recipeSources} />
       {recipeHasSourceNotes && (
-        <View style={styles.row}>
-          <View style={styles.characteristic}>
-            <Text>Notes</Text>
-          </View>
-          <View style={styles.characteristicAnswer}>
-            <Text>{recipe.sourceNotes}</Text>
-          </View>
-        </View>
+        <InfoRow title="Notes" result={recipe.sourceNotes} />
       )}
-      <View style={styles.row}>
-        <View style={styles.characteristic}>
-          <Text>Category</Text>
-        </View>
-        <View style={styles.characteristicAnswer}>
-          <Text>{recipe.category}</Text>
-        </View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.characteristic}>
-          <Text>Materials</Text>
-        </View>
-        <View style={styles.characteristicAnswer}>
-          <Text>{recipeMaterialsStr}</Text>
-        </View>
-      </View>
+      <InfoRow title="Category" result={recipe.category} />
+      <InfoRow title="Materials" result={recipeMaterialsStr} />
+
       <View style={styles.row}>
         <View style={styles.icon}>
           <Icon

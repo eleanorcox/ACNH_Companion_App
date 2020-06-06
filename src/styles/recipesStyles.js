@@ -1,11 +1,20 @@
 import {StyleSheet} from 'react-native';
 import {
-  ICON_ORANGE_LIGHT,
   BEIGE_LIGHT,
   BEIGE_DARK,
   BEIGE_MEDIUM,
+  GRAY_DARKER,
+  WHITE,
+  GRAY_DARK,
+  ICON_ORANGE,
 } from 'assets/colours';
 import {Dimensions} from 'react-native';
+import {
+  FONT_FAMILY,
+  FONT_SIZE_18,
+  FONT_WEIGHT_BOLD,
+  FONT_SIZE_16,
+} from 'assets/fonts';
 
 const dimensions = Dimensions.get('window');
 const windowWidth = dimensions.width;
@@ -26,8 +35,8 @@ export default StyleSheet.create({
     width: 150,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: ICON_ORANGE_LIGHT,
-    marginTop: 5,
+    backgroundColor: ICON_ORANGE,
+    marginVertical: 5,
     borderRadius: 10,
   },
 
@@ -42,6 +51,25 @@ export default StyleSheet.create({
 
   name: {
     marginBottom: 4,
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_18,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARKER,
+  },
+
+  textWhite: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: WHITE,
+  },
+
+  textDarkGrey: {
+    fontFamily: FONT_FAMILY,
+    fontSize: FONT_SIZE_16,
+    fontWeight: FONT_WEIGHT_BOLD,
+    color: GRAY_DARK,
+    textAlign: 'center',
   },
 
   characteristic: {
