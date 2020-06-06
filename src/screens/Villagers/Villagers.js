@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Modal, TouchableOpacity, Text} from 'react-native';
+import {
+  View,
+  FlatList,
+  Modal,
+  TouchableOpacity,
+  Text,
+  ScrollView,
+} from 'react-native';
 
 import {useSelector} from 'react-redux';
 
@@ -62,19 +69,23 @@ const Villagers = () => {
     <View style={styles.view}>
       <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
         <View style={styles.controlsContainer}>
-          <ListControls
-            listControls={listControls}
-            updateControls={updateControls}
-            filterOptions={filterOptions}
-            sortOptions={sortOptions}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              toggleModal(false);
-            }}
-            style={styles.controlButton}>
-            <Text style={styles.textWhite}>Close Controls</Text>
-          </TouchableOpacity>
+          <ScrollView>
+            <ListControls
+              listControls={listControls}
+              updateControls={updateControls}
+              filterOptions={filterOptions}
+              sortOptions={sortOptions}
+            />
+            <View style={styles.controlsContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleModal(false);
+                }}
+                style={styles.controlButton}>
+                <Text style={styles.textWhite}>Close Controls</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
       </Modal>
       <TouchableOpacity

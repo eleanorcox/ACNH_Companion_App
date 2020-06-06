@@ -48,6 +48,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  alignCenter: {
+    alignItems: 'center',
+  },
+
   recipe: {
     width: cardWidth,
     alignItems: 'center',

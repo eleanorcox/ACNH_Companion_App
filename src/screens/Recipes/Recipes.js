@@ -18,6 +18,7 @@ import {filterData} from './filterData';
 import {sortData} from './sortData';
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Recipes = () => {
   // listControls is an object with the following key-value pairs:
@@ -69,19 +70,23 @@ const Recipes = () => {
     <View style={styles.view}>
       <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
         <View style={styles.controlsContainer}>
-          <ListControls
-            listControls={listControls}
-            updateControls={updateControls}
-            filterOptions={filterOptions}
-            sortOptions={sortOptions}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              toggleModal(false);
-            }}
-            style={styles.controlButton}>
-            <Text style={styles.textWhite}>Close Controls</Text>
-          </TouchableOpacity>
+          <ScrollView>
+            <ListControls
+              listControls={listControls}
+              updateControls={updateControls}
+              filterOptions={filterOptions}
+              sortOptions={sortOptions}
+            />
+            <View style={styles.alignCenter}>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleModal(false);
+                }}
+                style={styles.controlButton}>
+                <Text style={styles.textWhite}>Close Controls</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
       </Modal>
       <TouchableOpacity

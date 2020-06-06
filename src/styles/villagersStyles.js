@@ -45,7 +45,6 @@ export default StyleSheet.create({
   },
 
   controlsContainer: {
-    height: windowHeight,
     backgroundColor: ICON_BLUE_LIGHT,
     alignItems: 'center',
   },

@@ -51,8 +51,18 @@ export default StyleSheet.create({
   },
 
   controlsContainer: {
+    // height: windowHeight,
+    backgroundColor: ICON_YELLOW_DARK,
+    alignItems: 'center',
+  },
+
+  controlsContainerBugs: {
     height: windowHeight,
     backgroundColor: ICON_YELLOW_DARK,
+    alignItems: 'center',
+  },
+
+  alignCenter: {
     alignItems: 'center',
   },
 

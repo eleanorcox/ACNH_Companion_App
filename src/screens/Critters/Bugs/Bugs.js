@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, TouchableOpacity, Text, FlatList, Modal} from 'react-native';
+import {
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  Modal,
+} from 'react-native';
 
 import {useSelector} from 'react-redux';
 
@@ -77,20 +84,24 @@ const Bugs = ({navigation}) => {
   return (
     <View style={styles.view}>
       <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
-        <View style={styles.controlsContainer}>
-          <ListControls
-            listControls={listControls}
-            updateControls={updateControls}
-            filterOptions={filterOptions}
-            sortOptions={sortOptions}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              toggleModal(false);
-            }}
-            style={styles.controlButton}>
-            <Text style={styles.textWhite}>Close Controls</Text>
-          </TouchableOpacity>
+        <View style={styles.controlsContainerBugs}>
+          <ScrollView>
+            <ListControls
+              listControls={listControls}
+              updateControls={updateControls}
+              filterOptions={filterOptions}
+              sortOptions={sortOptions}
+            />
+            <View style={styles.alignCenter}>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleModal(false);
+                }}
+                style={styles.controlButton}>
+                <Text style={styles.textWhite}>Close Controls</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
       </Modal>
       <TouchableOpacity
