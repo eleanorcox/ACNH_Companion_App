@@ -25,14 +25,7 @@ const persistConfig = {
   // Storage Method (React Native)
   storage: AsyncStorage,
   // Whitelist (Save Specific Reducers)
-  whitelist: [
-    'profileReducer',
-    'villagersReducer',
-    'recipesReducer',
-    'bugsReducer',
-    'fishReducer',
-    'museumReducer',
-  ],
+  whitelist: ['profile', 'villagers', 'recipes', 'bugs', 'fish', 'museum'],
 };
 
 // Middleware: Redux Persist Persisted Reducer
