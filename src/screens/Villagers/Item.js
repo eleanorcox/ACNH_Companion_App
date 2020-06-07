@@ -96,7 +96,7 @@ export const Item = ({villager}) => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Image source={{uri: villagerPosterImage}} style={styles.poster} />
-            <InfoRow title="Species" result={villager.catchphrase} />
+            <InfoRow title="Catchphrase" result={villager.catchphrase} />
             <View style={styles.row}>
               <View style={styles.characteristic}>
                 <Text style={styles.textWhite}>Favourite Colours</Text>
