@@ -6,9 +6,9 @@ Currently, users can: fill out a profile of their town; add residents and view a
 
 ## Screenshots
 
-![Home Screen](/git_images/Home.png =360x576)
-![Profile Screen](/git_images/Profile.png =360x576)
-![Villagers Screen](/git_images/Villagers.png =360x576)
-![Critters Screen](/git_images/Critters.png =360x576)
-![Museum Screen](/git_images/Museum.png =360x576)
-![Recipes Screen](/git_images/Recipes.png =360x576)
+![Home Screen](/git_images/Home.png)
+![Profile Screen](/git_images/Profile.png)
+![Villagers Screen](/git_images/Villagers.png)
+![Critters Screen](/git_images/Critters.png)
+![Museum Screen](/git_images/Museum.png)
+![Recipes Screen](/git_images/Recipes.png)
