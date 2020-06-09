@@ -48,7 +48,7 @@ const Art = ({navigation}) => {
         data={artToDisplay}
         renderItem={({item}) => <Item art={item} />}
         keyExtractor={item => item.uniqueEntryId}
-        ListEmptyComponent={<NoResults numFilters={0} type={'allArt'} />}
+        ListEmptyComponent={<NoResults numFilters={0} type={'art'} />}
       />
     </View>
   );
