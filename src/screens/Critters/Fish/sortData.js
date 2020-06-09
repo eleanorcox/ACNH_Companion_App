@@ -26,7 +26,15 @@ export const sortData = (fishList, sortBy, asc, caught, donated) => {
 
     // Remove caught from fishListCopy
     for (let i = 0; i < caughtCopy.length; i++) {
-      const index = fishListCopy.indexOf(caughtCopy[i]);
+      const name = caughtCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < fishListCopy.length; j++) {
+        const currentName = fishListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       fishListCopy.splice(index, 1);
     }
 
@@ -47,7 +55,15 @@ export const sortData = (fishList, sortBy, asc, caught, donated) => {
 
     // Remove donated from fishListCopy
     for (let i = 0; i < donatedCopy.length; i++) {
-      const index = fishListCopy.indexOf(donatedCopy[i]);
+      const name = donatedCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < fishListCopy.length; j++) {
+        const currentName = fishListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       fishListCopy.splice(index, 1);
     }
 

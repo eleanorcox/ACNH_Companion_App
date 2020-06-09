@@ -10,6 +10,7 @@ import {
   removeFavouriteRecipe,
 } from '../../redux/recipesReducer';
 
+import {itemInList} from 'utils/itemInList';
 import styles from 'styles/recipesStyles';
 
 const InfoRow = ({title, result}) => {
@@ -56,10 +57,10 @@ export const Item = ({recipe}) => {
           <View style={styles.iconRow}>
             <Text style={styles.textDarkGrey}>Favourite </Text>
             <Icon
-              name={favourites.includes(recipe) ? 'star' : 'star-border'}
+              name={itemInList(recipe, favourites) ? 'star' : 'star-border'}
               size={30}
               onPress={() => {
-                favourites.includes(recipe)
+                itemInList(recipe, favourites)
                   ? dispatch(removeFavouriteRecipe(recipe))
                   : dispatch(addFavouriteRecipe(recipe));
               }}
@@ -70,10 +71,12 @@ export const Item = ({recipe}) => {
           <View style={styles.iconRow}>
             <Text style={styles.textDarkGrey}>Learned </Text>
             <Icon
-              name={learned.includes(recipe) ? 'bookmark' : 'bookmark-border'}
+              name={
+                itemInList(recipe, learned) ? 'bookmark' : 'bookmark-border'
+              }
               size={30}
               onPress={() => {
-                learned.includes(recipe)
+                itemInList(recipe, learned)
                   ? dispatch(removeLearnedRecipe(recipe))
                   : dispatch(addLearnedRecipe(recipe));
               }}

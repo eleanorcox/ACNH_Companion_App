@@ -13,6 +13,7 @@ const allMonths = [
   'December',
 ];
 import {getActiveMonthsRanges} from 'utils/getActiveMonthsRanges';
+import {itemInList} from 'utils/itemInList';
 
 export const filterData = (
   bugs,
@@ -50,12 +51,12 @@ export const filterData = (
     for (let i = 0; i < otherFilters.length; i++) {
       if (otherFilters[i] === 'Caught') {
         filteredBugs = filteredBugs.filter(bug => {
-          return caught.includes(bug);
+          return itemInList(bug, caught);
         });
       }
       if (otherFilters[i] === 'Donated') {
         filteredBugs = filteredBugs.filter(bug => {
-          return donated.includes(bug);
+          return itemInList(bug, donated);
         });
       }
     }

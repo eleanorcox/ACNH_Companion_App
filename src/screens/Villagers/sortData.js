@@ -54,7 +54,15 @@ export const sortData = (villagerList, sortBy, asc, favourites, residents) => {
 
     // Remove favourites from villagerListCopy
     for (let i = 0; i < favouritesCopy.length; i++) {
-      const index = villagerListCopy.indexOf(favouritesCopy[i]);
+      const name = favouritesCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < villagerListCopy.length; j++) {
+        const currentName = villagerListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       villagerListCopy.splice(index, 1);
     }
 
@@ -70,7 +78,15 @@ export const sortData = (villagerList, sortBy, asc, favourites, residents) => {
 
     // Remove residents from villagerListCopy
     for (let i = 0; i < residentsCopy.length; i++) {
-      const index = villagerListCopy.indexOf(residentsCopy[i]);
+      const name = residentsCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < villagerListCopy.length; j++) {
+        const currentName = villagerListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       villagerListCopy.splice(index, 1);
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -8,6 +8,7 @@ import {
   removeDonatedFossil,
 } from '../../../redux/museumReducer';
 
+import {itemInList} from 'utils/itemInList';
 import styles from 'styles/museumStyles';
 
 // TODO: Order fossils by collection (i.e. all diplodocus together)
@@ -34,10 +35,12 @@ export const Item = ({fossil}) => {
               <Text style={styles.textDarkGrey}>{fossil.variants[0].sell}</Text>
             </View>
             <Icon
-              name={donated.includes(fossil) ? 'bookmark' : 'bookmark-border'}
+              name={
+                itemInList(fossil, donated) ? 'bookmark' : 'bookmark-border'
+              }
               size={30}
               onPress={() => {
-                donated.includes(fossil)
+                itemInList(fossil, donated)
                   ? dispatch(removeDonatedFossil(fossil))
                   : dispatch(addDonatedFossil(fossil));
               }}

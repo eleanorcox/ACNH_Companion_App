@@ -1,3 +1,5 @@
+import {itemInList} from 'utils/itemInList';
+
 export const filterData = (
   villagers,
   filters,
@@ -36,12 +38,12 @@ export const filterData = (
     for (let i = 0; i < otherFilters.length; i++) {
       if (otherFilters[i] === 'Favourites') {
         filteredVillagers = filteredVillagers.filter(villager => {
-          return favourites.includes(villager);
+          return itemInList(villager, favourites);
         });
       }
       if (otherFilters[i] === 'Residents') {
         filteredVillagers = filteredVillagers.filter(villager => {
-          return residents.includes(villager);
+          return itemInList(villager, residents);
         });
       }
     }

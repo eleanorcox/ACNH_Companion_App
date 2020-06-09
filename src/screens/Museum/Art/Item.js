@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {addDonatedArt, removeDonatedArt} from '../../../redux/museumReducer';
+import {itemInList} from 'utils/itemInList';
 
 import styles from 'styles/museumStyles';
 
@@ -35,10 +36,10 @@ export const Item = ({art}) => {
           <InfoRow title="Real Title" result={art.realArtworkTitle} />
           <InfoRow title="Artist" result={art.artist} />
           <Icon
-            name={donated.includes(art) ? 'bookmark' : 'bookmark-border'}
+            name={itemInList(art, donated) ? 'bookmark' : 'bookmark-border'}
             size={30}
             onPress={() => {
-              donated.includes(art)
+              itemInList(art, donated)
                 ? dispatch(removeDonatedArt(art))
                 : dispatch(addDonatedArt(art));
             }}

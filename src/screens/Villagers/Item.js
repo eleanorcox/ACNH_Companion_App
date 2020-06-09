@@ -11,6 +11,8 @@ import {
   removeFavouriteVillager,
 } from '../../redux/villagersReducer';
 
+import {itemInList} from 'utils/itemInList';
+
 import styles from 'styles/villagersStyles';
 const items = require('@nooksbazaar/acdb/items.json');
 
@@ -61,10 +63,10 @@ export const Item = ({villager}) => {
       <View style={styles.row}>
         <View style={styles.icon}>
           <Icon
-            name={favourites.includes(villager) ? 'star' : 'star-border'}
+            name={itemInList(villager, favourites) ? 'star' : 'star-border'}
             size={35}
             onPress={() => {
-              favourites.includes(villager)
+              itemInList(villager, favourites)
                 ? dispatch(removeFavouriteVillager(villager))
                 : dispatch(addFavouriteVillager(villager));
             }}
@@ -72,10 +74,10 @@ export const Item = ({villager}) => {
         </View>
         <View style={styles.icon}>
           <MaterialCommunityIcons
-            name={residents.includes(villager) ? 'home' : 'home-outline'}
+            name={itemInList(villager, residents) ? 'home' : 'home-outline'}
             size={35}
             onPress={() => {
-              residents.includes(villager)
+              itemInList(villager, residents)
                 ? dispatch(removeResident(villager))
                 : dispatch(addResident(villager));
             }}

@@ -13,6 +13,7 @@ import {
 import styles from 'styles/crittersStyles';
 import {getActiveMonthsStr} from 'utils/getActiveMonthsStr';
 import {getActiveHoursStr} from 'utils/getActiveHoursStr';
+import {itemInList} from 'utils/itemInList';
 
 const InfoRow = ({title, result}) => {
   return (
@@ -57,10 +58,10 @@ export const Item = ({fish}) => {
           <View style={styles.iconRow}>
             <Text style={styles.textDarkGrey}>Caught </Text>
             <Icon
-              name={caught.includes(fish) ? 'star' : 'star-border'}
+              name={itemInList(fish, caught) ? 'star' : 'star-border'}
               size={30}
               onPress={() => {
-                caught.includes(fish)
+                itemInList(fish, caught)
                   ? dispatch(removeCaughtFish(fish))
                   : dispatch(addCaughtFish(fish));
               }}
@@ -71,10 +72,10 @@ export const Item = ({fish}) => {
           <View style={styles.iconRow}>
             <Text style={styles.textDarkGrey}>Donated </Text>
             <Icon
-              name={donated.includes(fish) ? 'bookmark' : 'bookmark-border'}
+              name={itemInList(fish, donated) ? 'bookmark' : 'bookmark-border'}
               size={30}
               onPress={() => {
-                donated.includes(fish)
+                itemInList(fish, donated)
                   ? dispatch(removeDonatedFish(fish))
                   : dispatch(addDonatedFish(fish));
               }}

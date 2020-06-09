@@ -13,6 +13,7 @@ import {
 import styles from 'styles/crittersStyles';
 import {getActiveMonthsStr} from 'utils/getActiveMonthsStr';
 import {getActiveHoursStr} from 'utils/getActiveHoursStr';
+import {itemInList} from 'utils/itemInList';
 
 const InfoRow = ({title, result}) => {
   return (
@@ -57,10 +58,10 @@ export const Item = ({bug}) => {
           <View style={styles.iconRow}>
             <Text style={styles.textDarkGrey}>Caught </Text>
             <Icon
-              name={caught.includes(bug) ? 'star' : 'star-border'}
+              name={itemInList(bug, caught) ? 'star' : 'star-border'}
               size={30}
               onPress={() => {
-                caught.includes(bug)
+                itemInList(bug, caught)
                   ? dispatch(removeCaughtBug(bug))
                   : dispatch(addCaughtBug(bug));
               }}
@@ -71,10 +72,10 @@ export const Item = ({bug}) => {
           <View style={styles.iconRow}>
             <Text style={styles.textDarkGrey}>Donated </Text>
             <Icon
-              name={donated.includes(bug) ? 'bookmark' : 'bookmark-border'}
+              name={itemInList(bug, donated) ? 'bookmark' : 'bookmark-border'}
               size={30}
               onPress={() => {
-                donated.includes(bug)
+                itemInList(bug, donated)
                   ? dispatch(removeDonatedBug(bug))
                   : dispatch(addDonatedBug(bug));
               }}

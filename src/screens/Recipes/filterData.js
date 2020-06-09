@@ -1,3 +1,5 @@
+import {itemInList} from 'utils/itemInList';
+
 export const filterData = (recipes, filters, query, favourites, learned) => {
   let filteredRecipes = recipes;
   let sourcesFilters = [];
@@ -30,12 +32,12 @@ export const filterData = (recipes, filters, query, favourites, learned) => {
     for (let i = 0; i < otherFilters.length; i++) {
       if (otherFilters[i] === 'Favourites') {
         filteredRecipes = filteredRecipes.filter(recipe => {
-          return favourites.includes(recipe);
+          return itemInList(recipe, favourites);
         });
       }
       if (otherFilters[i] === 'Learned') {
         filteredRecipes = filteredRecipes.filter(recipe => {
-          return learned.includes(recipe);
+          return itemInList(recipe, learned);
         });
       }
     }

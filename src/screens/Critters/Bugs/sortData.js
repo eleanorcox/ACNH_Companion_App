@@ -26,7 +26,15 @@ export const sortData = (bugList, sortBy, asc, caught, donated) => {
 
     // Remove caught from bugListCopy
     for (let i = 0; i < caughtCopy.length; i++) {
-      const index = bugListCopy.indexOf(caughtCopy[i]);
+      const name = caughtCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < bugListCopy.length; j++) {
+        const currentName = bugListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       bugListCopy.splice(index, 1);
     }
 
@@ -47,7 +55,15 @@ export const sortData = (bugList, sortBy, asc, caught, donated) => {
 
     // Remove donated from bugListCopy
     for (let i = 0; i < donatedCopy.length; i++) {
-      const index = bugListCopy.indexOf(donatedCopy[i]);
+      const name = donatedCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < bugListCopy.length; j++) {
+        const currentName = bugListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       bugListCopy.splice(index, 1);
     }
 

@@ -34,7 +34,15 @@ export const sortData = (recipeList, sortBy, asc, favourites, learned) => {
 
     // Remove favourites from recipeListCopy
     for (let i = 0; i < favouritesCopy.length; i++) {
-      const index = recipeListCopy.indexOf(favouritesCopy[i]);
+      const name = favouritesCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < recipeListCopy.length; j++) {
+        const currentName = recipeListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       recipeListCopy.splice(index, 1);
     }
 
@@ -50,7 +58,15 @@ export const sortData = (recipeList, sortBy, asc, favourites, learned) => {
 
     // Remove learned from recipeListCopy
     for (let i = 0; i < learnedCopy.length; i++) {
-      const index = recipeListCopy.indexOf(learnedCopy[i]);
+      const name = learnedCopy[i].name;
+      let index = -1;
+      for (let j = 0; j < recipeListCopy.length; j++) {
+        const currentName = recipeListCopy[j].name;
+        if (name === currentName) {
+          index = j;
+          break;
+        }
+      }
       recipeListCopy.splice(index, 1);
     }
 
