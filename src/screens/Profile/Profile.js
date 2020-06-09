@@ -63,11 +63,27 @@ const DisplayResidents = ({residents}) => {
 };
 
 const DisplayBirthdays = ({residents, currentMonth}) => {
-  const birthdays = residents.map(resident => {
+  const birthdaysThisMonth = residents.filter(resident => {
     let birthday = resident.birthday;
     birthday = birthday.split('/');
     const birthdayMonth = Number(birthday[0]) - 1;
-    if (birthdayMonth === currentMonth) {
+    return birthdayMonth === currentMonth;
+  });
+
+  birthdaysThisMonth.sort((a, b) => {
+    return a.birthday > b.birthday
+      ? 1
+      : a.birthday === b.birthday
+      ? a.name > b.name
+        ? 1
+        : -1
+      : -1;
+  });
+
+  if (birthdaysThisMonth.length === 0) {
+    return <Text>No birthdays this month!</Text>;
+  } else {
+    return birthdaysThisMonth.map(resident => {
       return (
         <View style={styles.birthdayRowContainer}>
           <View style={styles.name}>
@@ -78,13 +94,31 @@ const DisplayBirthdays = ({residents, currentMonth}) => {
           </View>
         </View>
       );
-    }
-  });
-  if (birthdays[0] === undefined) {
-    return <Text>No birthdays this month!</Text>;
-  } else {
-    return birthdays;
+    });
   }
+
+  // const birthdays = residents.map(resident => {
+  //   let birthday = resident.birthday;
+  //   birthday = birthday.split('/');
+  //   const birthdayMonth = Number(birthday[0]) - 1;
+  //   if (birthdayMonth === currentMonth) {
+  //     return (
+  //       // <View style={styles.birthdayRowContainer}>
+  //       //   <View style={styles.name}>
+  //       //     <Text style={styles.textWhite}>{resident.name}</Text>
+  //       //   </View>
+  //       //   <View style={styles.birthday}>
+  //       //     <Text style={styles.textDarkGrey}>{resident.birthday}</Text>
+  //       //   </View>
+  //       // </View>
+  //     );
+  //   }
+  // });
+  // if (birthdays[0] === undefined) {
+  //   return <Text>No birthdays this month!</Text>;
+  // } else {
+  //   return birthdays;
+  // }
 };
 
 const ProgressRow = ({title, completed, total}) => {
