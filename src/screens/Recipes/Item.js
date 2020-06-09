@@ -40,7 +40,8 @@ export const Item = ({recipe}) => {
   for (let [key, value] of Object.entries(recipeMaterials)) {
     recipeMaterialsArr.push(`${key}: ${value}`);
   }
-  const recipeMaterialsStr = recipeMaterialsArr.toString().replace(/,/g, ', ');
+  let recipeMaterialsStr = recipeMaterialsArr.toString().replace(/,/g, ', ');
+  recipeMaterialsStr = recipeMaterialsStr.replace(/: /g, ' x');
 
   return (
     <View style={styles.recipe}>
