@@ -136,6 +136,7 @@ export default StyleSheet.create({
     width: '100%',
     backgroundColor: BEIGE_LIGHT,
     borderRadius: 20,
+    marginBottom: 4,
   },
 
   searchInput: {
