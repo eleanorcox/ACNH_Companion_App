@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo Bundling Android...
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+
+echo Deleting Unused Resources...
+cd android/app/src/main/res
+rm -r drawable-hdpi/ drawable-mdpi/ drawable-xhdpi/ drawable-xxhdpi/ drawable-xxxhdpi/ raw/
+
+echo Assembling Release...
+cd ../../../..
+./gradlew assembleRelease
+
+echo APK Built!
+echo To install, type \"npx react-native run-android --variant=release\"
