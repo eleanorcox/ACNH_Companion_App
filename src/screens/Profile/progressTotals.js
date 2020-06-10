@@ -1,14 +1,8 @@
-const recipes = require('@nooksbazaar/acdb/recipes.json');
-export const totalRecipes = recipes.length;
+import {allRecipes, allBugs, allFish, allFossils, allArt} from 'utils/data';
 
-const critters = require('@nooksbazaar/acdb/creatures.json');
-const fish = critters.filter(critter => critter.sourceSheet === 'Fish');
-const bugs = critters.filter(critter => critter.sourceSheet === 'Bugs');
-export const totalFish = fish.length;
-export const totalBugs = bugs.length;
+export const totalRecipes = allRecipes.length;
 
-const items = require('@nooksbazaar/acdb/items.json');
-const fossils = items.filter(item => item.sourceSheet === 'Fossils');
-const art = items.filter(item => item.sourceSheet === 'Art');
-export const totalFossils = fossils.length;
-export const totalArt = art.length;
+export const totalFish = allFish.length;
+export const totalBugs = allBugs.length;
+export const totalFossils = allFossils.length;
+export const totalArt = allArt.length;

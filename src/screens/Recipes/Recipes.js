@@ -5,13 +5,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import {useSelector} from 'react-redux';
 
-const allRecipes = require('@nooksbazaar/acdb/recipes.json');
-for (let i = 0; i < allRecipes.length; i++) {
-  let name = allRecipes[i].name;
-  name = name[0].toUpperCase() + name.substring(1);
-  allRecipes[i].name = name;
-}
-
+import {allRecipes} from 'utils/data';
 import styles from 'styles/recipesStyles';
 
 import ListControls from 'utils/components/ListControls';
@@ -34,7 +28,6 @@ const Recipes = () => {
     searchQuery: '',
   });
   const [recipesToDisplay, setRecipesToDisplay] = useState(allRecipes);
-
   const [modalVisible, setModalVisible] = useState(false);
   const learned = useSelector(state => state.recipes.learnedRecipes);
   const favourites = useSelector(state => state.recipes.favouriteRecipes);

@@ -1,12 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {StyleSheet} from 'react-native';
-
-const items = require('@nooksbazaar/acdb/items.json');
-const housewares = items.filter(item => item.sourceSheet === 'Housewares');
-const constructionSigns = housewares.filter(
-  item => item.name === 'construction sign',
-);
+import {constructionSigns} from 'utils/data';
 
 const UnderConstruction = ({navigation}) => {
   const randomIndex = Math.round(Math.random() * 4);

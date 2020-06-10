@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useSelector} from 'react-redux';
 
-const allVillagers = require('@nooksbazaar/acdb/villagers.json');
+import {allVillagers} from 'utils/data';
 import styles from 'styles/villagersStyles';
 
 import ListControls from 'utils/components/ListControls';

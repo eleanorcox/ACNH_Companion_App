@@ -4,26 +4,19 @@ import {FlatList} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
+import {allFossils} from 'utils/data';
 
 import styles from 'styles/museumStyles';
 
-const items = require('@nooksbazaar/acdb/items.json');
-const fossils = items.filter(item => item.sourceSheet === 'Fossils');
-for (let i = 0; i < fossils.length; i++) {
-  let name = fossils[i].name;
-  name = name[0].toUpperCase() + name.substring(1);
-  fossils[i].name = name;
-}
-
 const Fossils = ({navigation}) => {
   const [query, setQuery] = useState('');
-  const [fossilsToDisplay, setFossilsToDisplay] = useState(fossils);
+  const [fossilsToDisplay, setFossilsToDisplay] = useState(allFossils);
 
   useEffect(() => {
-    let filteredFossils = fossils;
+    let filteredFossils = allFossils;
     if (query !== '') {
       const queryCaps = query.toUpperCase();
-      filteredFossils = fossils.filter(fossil => {
+      filteredFossils = allFossils.filter(fossil => {
         const fossilName = fossil.name.toUpperCase();
         return fossilName.includes(queryCaps);
       });

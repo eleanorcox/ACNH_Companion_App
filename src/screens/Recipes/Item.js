@@ -38,10 +38,9 @@ export const Item = ({recipe}) => {
   let recipeMaterialsArr = [];
   // eslint-disable-next-line no-unused-vars
   for (let [key, value] of Object.entries(recipeMaterials)) {
-    recipeMaterialsArr.push(`${key}: ${value}`);
+    recipeMaterialsArr.push(`${key} x${value}`);
   }
   let recipeMaterialsStr = recipeMaterialsArr.toString().replace(/,/g, ', ');
-  recipeMaterialsStr = recipeMaterialsStr.replace(/: /g, ' x');
 
   return (
     <View style={styles.recipe}>

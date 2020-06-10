@@ -19,20 +19,7 @@ import {filterData} from './filterData';
 import {sortData} from './sortData';
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
-
-const creatures = require('@nooksbazaar/acdb/creatures.json');
-const allBugs = [];
-for (let i = 0; i < creatures.length; i++) {
-  const type = creatures[i].sourceSheet;
-  if (type === 'Bugs') {
-    allBugs.push(creatures[i]);
-  }
-}
-for (let i = 0; i < allBugs.length; i++) {
-  let name = allBugs[i].name;
-  name = name[0].toUpperCase() + name.substring(1);
-  allBugs[i].name = name;
-}
+import {allBugs} from 'utils/data';
 
 const Bugs = ({navigation}) => {
   // listControls is an object with the following key-value pairs:

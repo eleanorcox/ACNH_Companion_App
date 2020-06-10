@@ -16,6 +16,7 @@ import {
   totalArt,
   totalFossils,
 } from './progressTotals';
+import {fruitImages} from 'utils/data';
 
 import styles from 'styles/profileStyles';
 
@@ -28,26 +29,17 @@ import {
   updateFriendCode,
 } from '../../redux/profileReducer';
 
-const items = require('@nooksbazaar/acdb/items.json');
-const other = items.filter(item => item.sourceSheet === 'Other');
-for (let i = 0; i < other.length; i++) {
-  let name = other[i].name;
-  name = name[0].toUpperCase() + name.substring(1);
-  other[i].name = name;
-}
-const fruits = other.filter(item => {
-  return (
-    item.name === 'Apple' ||
-    item.name === 'Cherry' ||
-    item.name === 'Orange' ||
-    item.name === 'Peach' ||
-    item.name === 'Pear'
-  );
-});
-const fruitImages = {};
-for (let i = 0; i < fruits.length; i++) {
-  fruitImages[fruits[i].name] = fruits[i].variants[0].inventoryImage;
-}
+// Components & Functions
+
+const formatCode = text => {
+  let formatted = text;
+  formatted = formatted.replace(/-/g, '');
+  if (text.length > 0) {
+    const chunks = text.match(/.{1,4}/g);
+    formatted = chunks.toString().replace(/,/g, '-');
+  }
+  return formatted;
+};
 
 const DisplayResidents = ({residents}) => {
   if (residents.length === 0) {
@@ -96,29 +88,6 @@ const DisplayBirthdays = ({residents, currentMonth}) => {
       );
     });
   }
-
-  // const birthdays = residents.map(resident => {
-  //   let birthday = resident.birthday;
-  //   birthday = birthday.split('/');
-  //   const birthdayMonth = Number(birthday[0]) - 1;
-  //   if (birthdayMonth === currentMonth) {
-  //     return (
-  //       // <View style={styles.birthdayRowContainer}>
-  //       //   <View style={styles.name}>
-  //       //     <Text style={styles.textWhite}>{resident.name}</Text>
-  //       //   </View>
-  //       //   <View style={styles.birthday}>
-  //       //     <Text style={styles.textDarkGrey}>{resident.birthday}</Text>
-  //       //   </View>
-  //       // </View>
-  //     );
-  //   }
-  // });
-  // if (birthdays[0] === undefined) {
-  //   return <Text>No birthdays this month!</Text>;
-  // } else {
-  //   return birthdays;
-  // }
 };
 
 const ProgressRow = ({title, completed, total}) => {
@@ -139,6 +108,8 @@ const ProgressRow = ({title, completed, total}) => {
   );
 };
 
+// Profile
+
 const Profile = ({navigation}) => {
   const dispatch = useDispatch();
 
@@ -157,16 +128,6 @@ const Profile = ({navigation}) => {
 
   const currentMonth = new Date().getMonth(); //TODO: state
 
-  const formatCode = text => {
-    let formatted = text;
-    formatted = formatted.replace(/-/g, '');
-    if (text.length > 0) {
-      const chunks = text.match(/.{1,4}/g);
-      formatted = chunks.toString().replace(/,/g, '-');
-    }
-    return formatted;
-  };
-
   const nativeFruitImage = fruitImages[nativeFruit];
   const hemisphereImage =
     hemisphere === 'northern'
@@ -175,10 +136,7 @@ const Profile = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.view}>
-      <ScrollView
-        style={styles.scrollView}
-        // contentContainerStyle={styles.scrollViewContent}
-      >
+      <ScrollView style={styles.scrollView}>
         {/* Passport */}
         <View style={styles.card}>
           <Text style={styles.title}>Passport</Text>

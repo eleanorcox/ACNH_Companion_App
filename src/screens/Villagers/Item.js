@@ -12,9 +12,8 @@ import {
 } from '../../redux/villagersReducer';
 
 import {itemInList} from 'utils/itemInList';
-
+import {posters} from 'utils/data';
 import styles from 'styles/villagersStyles';
-const items = require('@nooksbazaar/acdb/items.json');
 
 const InfoRow = ({title, result}) => {
   return (
@@ -34,17 +33,15 @@ export const Item = ({villager}) => {
   const toggleModal = visible => {
     setModalVisible(visible);
   };
+
   const dispatch = useDispatch();
   const residents = useSelector(state => state.villagers.residents);
   const favourites = useSelector(state => state.villagers.favouriteVillagers);
 
-  const villagerName = villager.name;
-  const posters = items.filter(item => item.sourceSheet === 'Posters');
   const villagerPoster = posters.filter(item =>
-    item.name.includes(villagerName),
+    item.name.includes(villager.name),
   );
   const villagerPosterImage = villagerPoster[0].variants[0].image;
-
   const villagerColoursStr = `${villager.colors[0]}, ${villager.colors[1]}`;
   const villagerStylesStr = `${villager.styles[0]}, ${villager.styles[1]}`;
 
