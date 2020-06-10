@@ -9,6 +9,11 @@ import styles from 'styles/museumStyles';
 
 const items = require('@nooksbazaar/acdb/items.json');
 const fossils = items.filter(item => item.sourceSheet === 'Fossils');
+for (let i = 0; i < fossils.length; i++) {
+  let name = fossils[i].name;
+  name = name[0].toUpperCase() + name.substring(1);
+  fossils[i].name = name;
+}
 
 const Fossils = ({navigation}) => {
   const [query, setQuery] = useState('');

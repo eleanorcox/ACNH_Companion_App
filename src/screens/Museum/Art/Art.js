@@ -9,6 +9,11 @@ import styles from 'styles/museumStyles';
 
 const items = require('@nooksbazaar/acdb/items.json');
 const allArt = items.filter(item => item.sourceSheet === 'Art');
+for (let i = 0; i < allArt.length; i++) {
+  let name = allArt[i].name;
+  name = name[0].toUpperCase() + name.substring(1);
+  allArt[i].name = name;
+}
 
 const Art = ({navigation}) => {
   const [query, setQuery] = useState('');
