@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, TouchableOpacity, Text, FlatList, Modal} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {useSelector} from 'react-redux';
 
@@ -18,7 +20,6 @@ import {filterData} from './filterData';
 import {sortData} from './sortData';
 import {Item} from './Item';
 import NoResults from 'utils/components/NoResults';
-import {ScrollView} from 'react-native-gesture-handler';
 
 const Recipes = () => {
   // listControls is an object with the following key-value pairs:
@@ -67,7 +68,7 @@ const Recipes = () => {
   };
 
   return (
-    <View style={styles.view}>
+    <SafeAreaView style={styles.view}>
       <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
         <View style={styles.controlsContainer}>
           <ScrollView>
@@ -100,6 +101,7 @@ const Recipes = () => {
         data={recipesToDisplay}
         renderItem={({item}) => <Item recipe={item} />}
         keyExtractor={item => item.name}
+        contentContainerStyle={styles.flatList}
         ListEmptyComponent={
           <NoResults
             numFilters={listControls.filters.length}
@@ -107,7 +109,7 @@ const Recipes = () => {
           />
         }
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

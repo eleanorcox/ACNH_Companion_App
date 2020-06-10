@@ -7,6 +7,7 @@ import {
   FlatList,
   Modal,
 } from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {useSelector} from 'react-redux';
 
@@ -82,7 +83,7 @@ const Bugs = ({navigation}) => {
   };
 
   return (
-    <View style={styles.view}>
+    <SafeAreaView style={styles.view}>
       <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
         <View style={styles.controlsContainerBugs}>
           <ScrollView>
@@ -119,7 +120,7 @@ const Bugs = ({navigation}) => {
           <NoResults numFilters={listControls.filters.length} type={'bugs'} />
         }
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

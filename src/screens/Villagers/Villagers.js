@@ -99,6 +99,7 @@ const Villagers = () => {
         data={villagersToDisplay}
         renderItem={({item}) => <Item villager={item} />}
         keyExtractor={item => item.name}
+        contentContainerStyle={styles.flatList}
         ListEmptyComponent={
           <NoResults
             numFilters={listControls.filters.length}

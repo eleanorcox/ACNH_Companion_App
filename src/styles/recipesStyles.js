@@ -28,6 +28,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  flatList: {
+    paddingBottom: 30,
+  },
+
   row: {
     flexDirection: 'row',
   },
