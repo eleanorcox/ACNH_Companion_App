@@ -84,7 +84,13 @@ const Bugs = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.view}>
-      <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
+      <Modal
+        animationType={'slide'}
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          toggleModal(false);
+        }}>
         <View style={styles.controlsContainerBugs}>
           <ScrollView>
             <ListControls

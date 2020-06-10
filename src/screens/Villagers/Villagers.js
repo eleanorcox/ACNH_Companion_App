@@ -7,7 +7,6 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-
 import {useSelector} from 'react-redux';
 
 const allVillagers = require('@nooksbazaar/acdb/villagers.json');
@@ -67,7 +66,13 @@ const Villagers = () => {
 
   return (
     <View style={styles.view}>
-      <Modal animationType={'slide'} transparent={false} visible={modalVisible}>
+      <Modal
+        animationType={'slide'}
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          toggleModal(false);
+        }}>
         <View style={styles.controlsContainer}>
           <ScrollView>
             <ListControls
