@@ -48,6 +48,7 @@ const Art = ({navigation}) => {
         renderItem={({item}) => <Item art={item} />}
         keyExtractor={item => item.uniqueEntryId}
         ListEmptyComponent={<NoResults numFilters={0} type={'art'} />}
+        contentContainerStyle={styles.flatList}
       />
     </SafeAreaView>
   );

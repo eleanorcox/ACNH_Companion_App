@@ -116,6 +116,7 @@ const Fish = ({navigation}) => {
         data={fishToDisplay}
         renderItem={({item}) => <Item fish={item} />}
         keyExtractor={item => item.uniqueEntryId}
+        contentContainerStyle={styles.flatList}
         ListEmptyComponent={
           <NoResults numFilters={listControls.filters.length} type={'fish'} />
         }

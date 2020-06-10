@@ -116,6 +116,7 @@ const Bugs = ({navigation}) => {
         data={bugsToDisplay}
         renderItem={({item}) => <Item bug={item} />}
         keyExtractor={item => item.uniqueEntryId}
+        contentContainerStyle={styles.flatList}
         ListEmptyComponent={
           <NoResults numFilters={listControls.filters.length} type={'bugs'} />
         }

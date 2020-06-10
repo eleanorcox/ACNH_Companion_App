@@ -26,6 +26,7 @@ export default StyleSheet.create({
 
   scrollView: {
     marginHorizontal: 20,
+    paddingHorizontal: 5,
   },
 
   scrollViewContent: {

@@ -48,6 +48,7 @@ const Fossils = ({navigation}) => {
         renderItem={({item}) => <Item fossil={item} />}
         keyExtractor={item => item.uniqueEntryId}
         ListEmptyComponent={<NoResults numFilters={0} type={'fossils'} />}
+        contentContainerStyle={styles.flatList}
       />
     </SafeAreaView>
   );

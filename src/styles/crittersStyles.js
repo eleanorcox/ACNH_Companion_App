@@ -34,6 +34,11 @@ export default StyleSheet.create({
     backgroundColor: ICON_YELLOW_DARK,
   },
 
+  flatList: {
+    paddingHorizontal: 5,
+    paddingBottom: 30,
+  },
+
   row: {
     flexDirection: 'row',
   },

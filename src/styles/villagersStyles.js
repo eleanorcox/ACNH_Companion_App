@@ -31,6 +31,7 @@ export default StyleSheet.create({
   },
 
   flatList: {
+    paddingHorizontal: 5,
     paddingBottom: 30,
   },
 
