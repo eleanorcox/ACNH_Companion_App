@@ -113,6 +113,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 1,
+    padding: 2,
   },
 
   characteristicAnswer: {
@@ -123,6 +124,7 @@ export default StyleSheet.create({
     // height: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 2,
   },
 
   icon: {
