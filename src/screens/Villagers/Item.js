@@ -45,6 +45,9 @@ export const Item = ({villager}) => {
   );
   const villagerPosterImage = villagerPoster[0].variants[0].image;
 
+  const villagerColoursStr = `${villager.colors[0]}, ${villager.colors[1]}`;
+  const villagerStylesStr = `${villager.styles[0]}, ${villager.styles[1]}`;
+
   return (
     <View style={styles.villager}>
       <Text style={styles.name}>{villager.name}</Text>
@@ -104,26 +107,8 @@ export const Item = ({villager}) => {
           <View style={styles.modalContent}>
             <Image source={{uri: villagerPosterImage}} style={styles.poster} />
             <InfoRow title="Catchphrase" result={villager.catchphrase} />
-            <View style={styles.row}>
-              <View style={styles.characteristic}>
-                <Text style={styles.textWhite}>Favourite Colours</Text>
-              </View>
-              <View style={styles.characteristicAnswer}>
-                <Text style={styles.textDarkGrey}>
-                  {villager.colors[0]}, {villager.colors[1]}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.characteristic}>
-                <Text style={styles.textWhite}>Favourite Styles</Text>
-              </View>
-              <View style={styles.characteristicAnswer}>
-                <Text style={styles.textDarkGrey}>
-                  {villager.styles[0]}, {villager.styles[1]}
-                </Text>
-              </View>
-            </View>
+            <InfoRow title="Favourite Colours" result={villagerColoursStr} />
+            <InfoRow title="Favourite Styles" result={villagerStylesStr} />
             <TouchableOpacity
               onPress={() => {
                 toggleModal(false);
