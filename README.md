@@ -32,15 +32,10 @@ Some screens on the app show an 'under construction' message. These are planned 
 ## Screenshots
 
 ![Home Screen](/git_images/Home1.0.1.png)
-
 ![Profile Screen](/git_images/Profile1.0.0.png)
-
 ![Villagers Screen](/git_images/Villagers1.0.0.png)
-
 ![Critters Screen](/git_images/Critters1.0.0.png)
-
 ![Museum Screen](/git_images/Museum1.0.1.png)
-
 ![Recipes Screen](/git_images/Recipes1.0.1.png)
 
 ## Release Notes
