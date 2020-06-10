@@ -94,7 +94,12 @@ export const Item = ({villager}) => {
         </View>
       </View>
 
-      <Modal transparent={true} visible={modalVisible}>
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          toggleModal(false);
+        }}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Image source={{uri: villagerPosterImage}} style={styles.poster} />
