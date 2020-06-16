@@ -1,7 +1,7 @@
 
 # 'Animal Crossing: New Horizons' Companion App
 
-A React Native mobile app that acts as a companion for Animal Crossing: New Horizons. An MVP is currently in review to be released on the Google Play Store and I am continually adding new features.
+A React Native mobile app that acts as a companion for Animal Crossing: New Horizons. Now available on the [Google Play Store](https://play.google.com/store/apps/details?id=com.acnh_companion_app)!
 
 ## Features
 
