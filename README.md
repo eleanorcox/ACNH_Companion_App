@@ -3,6 +3,8 @@
 
 A React Native mobile app that acts as a companion for Animal Crossing: New Horizons. Now available on the [Google Play Store](https://play.google.com/store/apps/details?id=com.acnh_companion_app)!
 
+**UPDATE Sept 2024:** This app is no longer supported and has been removed from the Google Play Store. 
+
 ## Features
 
 **Home Screen**: Based on the UI of the in-game mobile device, the home screen allows users to navigate between all other screens. Some icons (Profile, Critters, Recipes, Items) were taken from the game, whereas others (Villagers, Museum, Daily Checklist, Stalk Market, Guides) I created myself using assets from AC:NH.
